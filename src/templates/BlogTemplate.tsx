@@ -1,10 +1,15 @@
-import React from 'react';
-import { graphql, PageProps } from 'gatsby';
-import {BlogPageQuery} from '../../graphql-types'
+import React from "react";
+import { graphql, PageProps } from "gatsby";
+import { BlogPageQuery } from "../../graphql-types";
 
 const BlogTemplate: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
   const { markdownRemark } = data;
+  if (!markdownRemark) return null;
+
   const { frontmatter, html } = markdownRemark;
+
+  if (!frontmatter) return null;
+  if (!html) return null;
   return (
     <div>
       <h1>{frontmatter.title}</h1>
@@ -17,7 +22,7 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
 };
 
 export const pageQuery = graphql`
-  query BlogPage ($id: String) {
+  query BlogPage($id: String) {
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
@@ -27,6 +32,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 export default BlogTemplate;
