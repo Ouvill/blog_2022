@@ -25,9 +25,10 @@ export const pageQuery = graphql`
   query BlogPage($id: String) {
     markdownRemark(id: { eq: $id }) {
       html
-      frontmatter {
-        title
+      fields {
         slug
+      }
+      frontmatter {
         title
       }
     }

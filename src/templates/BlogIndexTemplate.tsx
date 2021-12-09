@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, PageProps } from "gatsby";
+import { graphql, Link, PageProps } from "gatsby";
 import { BlogIndexPageQuery } from "../../graphql-types";
 
 const BlogIndexTemplate: React.FC<PageProps<BlogIndexPageQuery>> = ({
@@ -13,12 +13,15 @@ const BlogIndexTemplate: React.FC<PageProps<BlogIndexPageQuery>> = ({
         if (
           !node.frontmatter ||
           !node.frontmatter.title ||
-          !node.frontmatter.date
+          !node.frontmatter.date ||
+          !node.fields?.slug
         )
           return null;
         return (
           <div key={node.id}>
-            <h3>{node.frontmatter.title}</h3>
+            <Link to={node.fields.slug}>
+              <h3>{node.frontmatter.title}</h3>
+            </Link>
             <p>{node.frontmatter.date}</p>
           </div>
         );
@@ -38,10 +41,12 @@ export const pageQuery = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             date(formatString: "MMMM DD, YYYY")
-            slug
           }
         }
       }
