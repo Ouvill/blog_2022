@@ -2,11 +2,11 @@
 title: "Firefox Send と Tresorit Send - 暗号化ファイル送信サービス"
 subTitle: "「宅ふぁいる便」に代わるファイル転送サービス"
 description: "今回は「宅ふぁいる便」に代わるファイル転送サービスについて紹介しようと思います。"
-date: 2019-01-29 20:00:08 category: 'it' tags:
-
-- security
-- crypto
-
+date: 2019-01-29 20:00:08
+category: 'it'
+tags:
+  - security
+  - crypto
 ---
 
 Firefox Send と Tresorit Send は大容量のファイルを安全に相手に送信したいときに便利なサービスです。送信するファイルは暗号化されるため、安全に使えます。
@@ -26,7 +26,7 @@ Firefox Send と Tresorit Send は大容量のファイルを安全に相手に�
 紹介するのは、以下の二つのサービスです。
 
 * [Firefox Send](https://send.firefox.com)
-* [Tresorit Send](https://send.tresorit.com)
+* [Tresorit Send](https://send.tresorit.com) 
 
 ## Firefox Send
 
@@ -55,8 +55,7 @@ Web ブラウザー「Firefox 」の開発元である Mozilla が提供して�
 
 ## Tresorit Send
 
-[Tresorit Send](https://send.tresorit.com) もおすすめのファイル共有サービスです。[Tresorit](https://tresorit.com/about-us/team)
-というDropboxのようなオンラインストレージサービスを提供している会社が運営しています。
+[Tresorit Send](https://send.tresorit.com) もおすすめのファイル共有サービスです。[Tresorit](https://tresorit.com/about-us/team) というDropboxのようなオンラインストレージサービスを提供している会社が運営しています。
 
 ![](./images/tresorit_send.jpg)
 
@@ -84,6 +83,4 @@ Web ブラウザー「Firefox 」の開発元である Mozilla が提供して�
 
 ![](./cabinet.jpg)
 
-Photo
-by [Jan Laugesen](https://unsplash.com/photos/4UbSaPKGRqc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/search/photos/cabinet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Photo by [Jan Laugesen](https://unsplash.com/photos/4UbSaPKGRqc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/cabinet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

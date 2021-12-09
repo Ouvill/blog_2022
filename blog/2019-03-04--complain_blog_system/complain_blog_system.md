@@ -2,7 +2,9 @@
 title: "ブログシステムを変更するかも……？"
 subTitle: "gatsby から別のシステムを考え中 "
 description: "現在、このブログは Gatsby を利用して生成されています。導入したときは便利かなぁって思っていたんですけど、すこしずつばかり欠点も見えるようになってきました。"
-date: 2019-03-04 20:00:08 category: 'diary' cover: "thumb.jpg"
+date: 2019-03-04 20:00:08
+category: 'diary'
+cover: "thumb.jpg"
 ---
 
 お久しぶりです。
@@ -17,8 +19,7 @@ date: 2019-03-04 20:00:08 category: 'diary' cover: "thumb.jpg"
 
 ### 不満1 ： スマートフォンでの表示安定性がよろしくない
 
-現在利用しているテーマは、[greglobinski/gatsby-starter-personal-blog](https://github.com/greglobinski/gatsby-starter-personal-blog)
-を利用しています。このテーマはスマホで表示したときに、表示が崩れることがあったり、スクロールできないときがあるとわかりました。
+現在利用しているテーマは、[greglobinski/gatsby-starter-personal-blog](https://github.com/greglobinski/gatsby-starter-personal-blog) を利用しています。このテーマはスマホで表示したときに、表示が崩れることがあったり、スクロールできないときがあるとわかりました。
 
 最近のウェブアクセスは、スマホが中心になってきています。パソコンの表示よりもスマホの表示快適性を追求すべきだんかいになりつつあると言えるでしょう。
 
@@ -46,8 +47,7 @@ Gatsby の Theme はネットに多数公開されています。気に入った
 
 ### 現在のテーマを使い続ける。
 
-現在のテーマを使い続けるのもひとつの手です。現在のGatsby は v1 で動作しています。スマホの表示が崩れる理由は Gatsby の v1 であるだろうと予想がついています。現在テーマ作成者が v2
-にするための移行作業をしているので、しばらく待っていれば表示が崩れる問題は解決すると思われます。
+現在のテーマを使い続けるのもひとつの手です。現在のGatsby は v1 で動作しています。スマホの表示が崩れる理由は Gatsby の v1 であるだろうと予想がついています。現在テーマ作成者が v2 にするための移行作業をしているので、しばらく待っていれば表示が崩れる問題は解決すると思われます。
 
 ~~しかし、それほど作成者はバージョンアップに乗り気でない~~
 
@@ -73,6 +73,4 @@ Gatsby は比較的新しめのシステムです。
 
 ![note](./images/note.jpg)
 
-Photo
-by [JESHOOTS.COM](https://unsplash.com/photos/pUAM5hPaCRI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/search/photos/blog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Photo by [JESHOOTS.COM](https://unsplash.com/photos/pUAM5hPaCRI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/blog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

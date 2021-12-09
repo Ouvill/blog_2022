@@ -1,10 +1,12 @@
 ---
-category: develop tags:
-
-- javascript
-- webpack date: 2019-04-15 title: webpack 環境構築 - 導入手順 vssue-title: create-webpack-environment description: "webpack
-  は現代的な JavaScript アプリケーションの静的モジュールバンドラーです。複数のモジュールからなる JavaScript アプリケーションを一つにまとめます。環境構築編です"
-
+category: develop
+tags:
+  - javascript
+  - webpack
+date: 2019-04-15
+title: webpack 環境構築 - 導入手順
+vssue-title: create-webpack-environment
+description: "webpack は現代的な JavaScript アプリケーションの静的モジュールバンドラーです。複数のモジュールからなる JavaScript アプリケーションを一つにまとめます。環境構築編です"
 ---
 
 ## webpack とは
@@ -60,8 +62,7 @@ my-project
 
 ## webpack で JavaScript をバンドルしてみる
 
-webpack の導入がすんだので、webpack を使って複数の JavaScript を1つのファイルにバンドルします。`index.js` から `hello.js` に定義された `hello()`
-メソッドを呼び出すプログラムを作成します。
+webpack の導入がすんだので、webpack を使って複数の JavaScript を1つのファイルにバンドルします。`index.js` から `hello.js` に定義された `hello()` メソッドを呼び出すプログラムを作成します。
 
 `src` フォルダを作成し、`index.js` と `hello.js` を作成します。
 
@@ -69,7 +70,6 @@ webpack の導入がすんだので、webpack を使って複数の JavaScript �
 
 ```js
 import hello from "./hello";
-
 hello();
 ```
 
@@ -77,7 +77,7 @@ hello();
 
 ```js
 export default function hello() {
-    alert("hello world !!");
+  alert("hello world !!");
 }
 ```
 
@@ -96,13 +96,12 @@ npx webpack
 ```HTML
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Webpack App</title>
-</head>
-<body>
-<script type="text/javascript" src="main.js"></script>
-</body>
+  </head>
+  <body>
+  <script type="text/javascript" src="main.js"></script></body>
 </html>
 ```
 
@@ -118,11 +117,11 @@ webpack.config.js を変更することで、エントリーポイント（プ�
 const path = require("path");
 
 module.exports = {
-    entry: "./path/to/my/entry/file.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "my-first-webpack.bundle.js"
-    }
+  entry: "./path/to/my/entry/file.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "my-first-webpack.bundle.js"
+  }
 };
 ```
 
@@ -148,12 +147,12 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var path = require("path");
 
 module.exports = {
-    entry: "./src/index.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "main.js"
-    },
-    plugins: [new HtmlWebpackPlugin({template: "./src/index.html"})]
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js"
+  },
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })]
 };
 ```
 
@@ -162,8 +161,8 @@ module.exports = {
 ```html
 <!DOCTYPE html>
 <html>
-<head></head>
-<body></body>
+  <head> </head>
+  <body></body>
 </html>
 ```
 

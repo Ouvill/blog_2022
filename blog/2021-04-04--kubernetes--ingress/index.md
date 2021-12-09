@@ -2,12 +2,12 @@
 title: "[kubernetes]Ingress-ドメインやURLに応じて接続するコンテナを切り替える。"
 subTitle: ""
 description: ""
-date: 2021-04-04 category: 'it' tags:
-
-- Kubernetes
-- Ingress
-- Nginx
-
+date: 2021-04-04
+category: 'it'
+tags:
+  - Kubernetes
+  - Ingress
+  - Nginx
 ---
 
 Kubernetesについて。今回はクラスターにやってきたアクセスをURLベースでアクセス制御できる`Ingress`についてです。
@@ -35,8 +35,7 @@ ingressを利用すると、URLベースでコンテナのアクセスを振り�
 
 ### 目標
 
-ApacheとNginxのコンテナを立ち上げて、`127.0.0.1/nginx`にアクセスすると`nginx`に、`127.0.0.1/apache`にアクセスすると`apache`
-にルーティングされるKubernetes環境を作成します。
+ApacheとNginxのコンテナを立ち上げて、`127.0.0.1/nginx`にアクセスすると`nginx`に、`127.0.0.1/apache`にアクセスすると`apache`にルーティングされるKubernetes環境を作成します。
 
 ### 方法
 
@@ -139,6 +138,7 @@ nginx-service   NodePort   10.152.183.65   <none>        80:32596/TCP   103s
 
 ![Screenshot from 2021-03-30 21-31-25.png](./images/771a48947514447ca3411b744083696d.png)
 
+
 ### Apacheのコンテナをデプロイ
 
 Nginxのコンテナと同様にApacheのコンテナをデプロイします。
@@ -222,6 +222,7 @@ apache-service   NodePort   10.152.183.229   <none>        80:31144/TCP   27m
 
 ![Screenshot from 2021-03-30 21-55-53.png](./images/7a05c07317ad47d0a3023112428dd94c.png)
 
+
 ### Ingressの設定
 
 Ingressは有効にしましたか？
@@ -274,8 +275,7 @@ spec:
 
 ```
 
-`/nginx`のアクセスは`backend`に指定されたサービス、`nginx-service`の80ポートに転送され、`/apache`のアクセスは`backend`に指定されたサービス、`apache-service`
-の80ポートに転送されるように設定しています。
+`/nginx`のアクセスは`backend`に指定されたサービス、`nginx-service`の80ポートに転送され、`/apache`のアクセスは`backend`に指定されたサービス、`apache-service`の80ポートに転送されるように設定しています。
 
 ```
 $ kubectl apply -f sample-ingress.yml

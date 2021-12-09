@@ -1,14 +1,15 @@
 ---
-category: develop tags:
-
-- javascript
-- webpack
-- typescript
-- sass
-- css date: 2019-04-17 title: webpack を使って、Sass、TypeScript を利用できる開発環境を作成する。 vssue-title: webpack-sass-typescript
-  description: " webpack を利用して、 SCSS を自動的に CSS に変換してくれる開発環境を作成します。ただの HTML + CSS
-  のサイトを作成する場合、手間だと感じますが、最初にビルド設定をしておくことで開発効率をあげることができます。"
-
+category: develop
+tags:
+  - javascript
+  - webpack
+  - typescript
+  - sass
+  - css
+date: 2019-04-17
+title: webpack を使って、Sass、TypeScript を利用できる開発環境を作成する。
+vssue-title: webpack-sass-typescript
+description: " webpack を利用して、 SCSS を自動的に CSS に変換してくれる開発環境を作成します。ただの HTML + CSS のサイトを作成する場合、手間だと感じますが、最初にビルド設定をしておくことで開発効率をあげることができます。"
 ---
 
 ## 開発環境の準備
@@ -43,13 +44,13 @@ index.html
 ```html
 <!DOCTYPE html>
 <html>
-<head></head>
-<body>
-<div>
-    <h1>hello</h1>
-</div>
-<h1>world</h1>
-</body>
+  <head> </head>
+  <body>
+    <div>
+      <h1>hello</h1>
+    </div>
+    <h1>world</h1>
+  </body>
 </html>
 ```
 
@@ -63,9 +64,9 @@ index.scss
 
 ```scss
 div {
-    h2 {
-        color: red;
-    }
+  h2 {
+    color: red;
+  }
 }
 ```
 
@@ -80,9 +81,9 @@ webpack を呼び出せるように `package.json` を編集します。`package
 ```json
 //package.json
 {
-    "scripts": {
-        "build": "webpack --mode=production"
-    }
+  "scripts": {
+    "build": "webpack --mode=production"
+  }
 }
 ```
 
@@ -109,13 +110,13 @@ webpack でのビルド結果をどのフォルダに出力するかを指定し
 var path = require("path"); // ディレクトリパスを取得するときに必要
 
 module.exports = {
-    // 省略
-    entry: "./src/index.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "main.js"
-    }
-    // 省略
+  // 省略
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js"
+  }
+  // 省略
 };
 ```
 
@@ -123,8 +124,7 @@ module.exports = {
 
 ### html-webpack-plugin をインストール
 
-html と webpack で生成した javascript を自動的に結びつけるために `html-webpack-plugin` を利用します。html と javascript がリンクした結果の html
-が `webpack.config.js` で指定した `path` に出力されます。今回の場合、`dist` フォルダに出力されます。
+html と webpack で生成した javascript を自動的に結びつけるために `html-webpack-plugin` を利用します。html と javascript がリンクした結果の html が `webpack.config.js` で指定した `path` に出力されます。今回の場合、`dist` フォルダに出力されます。
 
 ```bash
 npm install -D html-webpack-plugin
@@ -134,9 +134,9 @@ npm install -D html-webpack-plugin
 //webpack.config.js
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //installed via npm
 module.exports = {
-    //
-    plugins: [new HtmlWebpackPlugin({template: "./src/index.html"})]
-    //
+  //
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })]
+  //
 };
 ```
 
@@ -165,18 +165,18 @@ npm install -D  style-loader css-loader sass-loader node-sass
 ```js
 //webpack.config.js
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /(\.s[ac]ss)$/,
-                use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
-                ]
-            }
+  module: {
+    rules: [
+      {
+        test: /(\.s[ac]ss)$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
-    }
+      }
+    ]
+  }
 };
 ```
 
@@ -200,14 +200,13 @@ CSS で最新の機能を利用しようとした場合、どうしても ベン
 
 ```css
 div {
-    -webkit-transform: scale(2);
-    -ms-transform: scale(2);
-    transform: scale(2);
+  -webkit-transform: scale(2);
+  -ms-transform: scale(2);
+  transform: scale(2);
 }
 ```
 
-[Autoprefixer](https://github.com/postcss/autoprefixer)
-を使うと、ベンダープレフィックスを自動的に付与してくれます。そのため、コーディングに集中でき、ブラウザ間の差異に意識する必要が減ります。
+[Autoprefixer](https://github.com/postcss/autoprefixer) を使うと、ベンダープレフィックスを自動的に付与してくれます。そのため、コーディングに集中でき、ブラウザ間の差異に意識する必要が減ります。
 
 webpack で Autoprefixer を使う場合、`postcss-loader` と `autoprefixer` が必要になるのでインストールします。
 
@@ -220,21 +219,21 @@ npm install -D postcss-loader autoprefixer
 ```js
 // webpack.config.js
 module.exports = {
-    // 省略
-    module: {
-        rules: [
-            {
-                test: /\.s[ca]ss$/,
-                use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "postcss-loader", // 追記
-                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
-                ]
-            }
+  // 省略
+  module: {
+    rules: [
+      {
+        test: /\.s[ca]ss$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "postcss-loader", // 追記
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
-    }
-    // 省略
+      }
+    ]
+  }
+  // 省略
 };
 ```
 
@@ -242,11 +241,11 @@ module.exports = {
 
 ```js
 module.exports = {
-    plugins: [
-        require("autoprefixer")({
-            grid: "autoplace" // gridレイアウトを有効にする
-        })
-    ]
+  plugins: [
+    require("autoprefixer")({
+      grid: "autoplace" // gridレイアウトを有効にする
+    })
+  ]
 };
 ```
 
@@ -266,10 +265,10 @@ webpack-dev-server をコマンドで呼び出せるように `package.json` を
 
 ```json
 {
-    "scripts": {
-        "build": "webpack --mode=production",
-        "start:dev": "webpack-dev-server"
-    }
+  "scripts": {
+    "build": "webpack --mode=production",
+    "start:dev": "webpack-dev-server"
+  }
 }
 ```
 
@@ -293,26 +292,26 @@ webpack.config.js に TypeScript に関する設定を追記します。
 
 ```js
 module.exports = {
-    // 省略
+  // 省略
 
-    module: {
-        rules: [
-            {
-                test: /\.s[ca]ss$/
-                //   省略
-            },
-            {
-                test: /\.tsx?$/,
-                use: "ts-loader",
-                exclude: /node_modules/
-            }
-        ]
-    },
+  module: {
+    rules: [
+      {
+        test: /\.s[ca]ss$/
+        //   省略
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/
+      }
+    ]
+  },
 
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"]
-    }
-    //   省略
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
+  }
+  //   省略
 };
 ```
 
@@ -320,15 +319,15 @@ typescript をどのようにコンパイルするか `tsconfig.json`に記述�
 
 ```json
 {
-    "compilerOptions": {
-        "outDir": "./dist/",
-        "noImplicitAny": true,
-        "sourceMap": true,
-        "module": "es6",
-        "target": "es5",
-        "jsx": "react",
-        "allowJs": true
-    }
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true
+  }
 }
 ```
 
@@ -341,35 +340,35 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 var path = require("path");
 
 module.exports = {
-    entry: "./src/index.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "main.js"
-    },
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js"
+  },
 
-    module: {
-        rules: [
-            {
-                test: /\.scss$/,
-                use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "postcss-loader", // add Autoprefixer
-                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
-                ]
-            },
-            {
-                test: /\.tsx?$/,
-                use: "ts-loader",
-                exclude: /node_modules/
-            }
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "postcss-loader", // add Autoprefixer
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
-    },
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"]
-    },
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"]
+  },
 
-    plugins: [new HtmlWebpackPlugin({template: "./src/index.html"})]
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })]
 };
 ```
 

@@ -2,12 +2,12 @@
 title: "FlutterでLinuxアプリをビルドする。"
 subTitle: ""
 description: ""
-date: 2021-06-15 category: 'it' tags:
-
-- Flutter
-- Linux
-- Desktop
-
+date: 2021-06-15
+category: 'it'
+tags:
+  - Flutter
+  - Linux
+  - Desktop
 ---
 
 Flutterに興味があります。
@@ -19,8 +19,7 @@ FlutterのサポートがAndroid、iOSだけでなく、Webもサポート対象
 
 今回はFlutterでLinuxアプリを作成できる環境を構築してみます。
 
-行なっていることは公式ドキュメントの[Get the Flutter SDK](https://flutter.dev/docs/get-started/install/linux)と[Build and release a Linux
-app to the Snap Store](https://flutter.dev/docs/deployment/linux)やっているだけです。
+行なっていることは公式ドキュメントの[Get the Flutter SDK](https://flutter.dev/docs/get-started/install/linux)と[Build and release a Linux app to the Snap Store](https://flutter.dev/docs/deployment/linux)やっているだけです。
 
 ## Flutterの環境構築
 
@@ -63,6 +62,7 @@ $ flutter create --platforms=linux super-cool-app
 ```
 
 `super-cool-app`はプロジェクト名です。名前はご自由に。同名のディレクトリにFlutterのコードが生成されます
+
 
 ## プロジェクトにLinux対応を追加する
 
@@ -170,6 +170,7 @@ $ snapcraft
 snapの作成については以下の記事が詳しく書かれています。
 
 [第654回 snapパッケージング入門](https://gihyo.jp/admin/serial/01/ubuntu-recipe/0654?page=1)
+
 
 ## Linuxビルドしてみてわかったこと
 

@@ -1,15 +1,15 @@
 ---
-category: develop tags:
-
-- javascript
-- typescript date: 2019-04-14 title: TypeScript を学習してみた vssue-title: learn-typescript description: "JavaScript
-  の上位互換といわれる TypeScript 。[TypeScript - JavaScript that scales](https://www.typescriptlang.org/)
-  を見て勉強しました。学んだ内容を解説しようと思います。"
-
+category: develop
+tags:
+  - javascript
+  - typescript
+date: 2019-04-14
+title: TypeScript を学習してみた
+vssue-title: learn-typescript
+description: "JavaScript の上位互換といわれる TypeScript 。[TypeScript - JavaScript that scales](https://www.typescriptlang.org/) を見て勉強しました。学んだ内容を解説しようと思います。"
 ---
 
-JavaScript の上位互換といわれる TypeScript 。[TypeScript - JavaScript that scales](https://www.typescriptlang.org/)
-を見て勉強しました。学んだ内容を解説しようと思います。
+JavaScript の上位互換といわれる TypeScript 。[TypeScript - JavaScript that scales](https://www.typescriptlang.org/) を見て勉強しました。学んだ内容を解説しようと思います。
 
 <!-- more -->
 
@@ -21,8 +21,7 @@ Typescript では 変数にデータ型をつけることができ、静的チ�
 
 ## TypeScript のデモ
 
-TypeScript の[デモの実行環境](https://www.typescriptlang.org/play/)を公式が用意してくれています。画面左側が TypeScript 、 右側がコンパイルした結果生成される
-JavaScript になっています。
+TypeScript の[デモの実行環境](https://www.typescriptlang.org/play/)を公式が用意してくれています。画面左側が TypeScript 、 右側がコンパイルした結果生成される JavaScript になっています。
 
 TypeScript のコード学習にとても有用です。
 
@@ -46,14 +45,13 @@ tsc helloworld.ts
 
 ## TypeScript のサンプルコードを書いてみる。
 
-[TypeScript in 5 minites](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
-のドキュメントを参考にサンプルコードを書きます。
+[TypeScript in 5 minites](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) のドキュメントを参考にサンプルコードを書きます。
 
 `greeter.ts` という名前で保存しました。
 
 ```ts
 function greeter(person) {
-    return "Hello, " + person;
+  return "Hello, " + person;
 }
 
 let user = "Jane User";
@@ -75,7 +73,7 @@ tsc greeter.ts
 
 ```ts
 function greeter(person: string) {
-    return "Hello, " + person;
+  return "Hello, " + person;
 }
 
 let user = "Jane User";
@@ -89,7 +87,7 @@ document.body.innerHTML = greeter(user);
 
 ```ts
 function greeter(person: string) {
-    return "Hello, " + person;
+  return "Hello, " + person;
 }
 
 let user = [0, 1, 2];
@@ -119,15 +117,15 @@ TypeScirpt では Interface を利用できます。サンプルコードでは�
 
 ```ts
 interface Person {
-    firstName: string;
-    lastName: string;
+  firstName: string;
+  lastName: string;
 }
 
 function greeter(person: Person) {
-    return "Hello, " + person.firstName + " " + person.lastName;
+  return "Hello, " + person.firstName + " " + person.lastName;
 }
 
-let user = {firstName: "Jane", lastName: "User"};
+let user = { firstName: "Jane", lastName: "User" };
 
 document.body.innerHTML = greeter(user);
 ```
@@ -146,24 +144,23 @@ TypeScript ではクラスがあります。TypeScript はクラスベースの�
 
 ```ts
 class Student {
-    fullName: string;
-
-    constructor(
-        public firstName: string,
-        public middleInitial: string,
-        public lastName: string
-    ) {
-        this.fullName = firstName + " " + middleInitial + " " + lastName;
-    }
+  fullName: string;
+  constructor(
+    public firstName: string,
+    public middleInitial: string,
+    public lastName: string
+  ) {
+    this.fullName = firstName + " " + middleInitial + " " + lastName;
+  }
 }
 
 interface Person {
-    firstName: string;
-    lastName: string;
+  firstName: string;
+  lastName: string;
 }
 
 function greeter(person: Person) {
-    return "Hello, " + person.firstName + " " + person.lastName;
+  return "Hello, " + person.firstName + " " + person.lastName;
 }
 
 let user = new Student("Jane", "M.", "User");
@@ -180,12 +177,12 @@ TypeScript を利用して Web アプリを作成してみます。
 ```html
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>TypeScript Greeter</title>
-</head>
-<body>
-<script src="greeter.js"></script>
-</body>
+  </head>
+  <body>
+    <script src="greeter.js"></script>
+  </body>
 </html>
 ```
 

@@ -2,10 +2,11 @@
 title: "PHP のお勉強2"
 subTitle: ""
 description: ""
-date: 2020-01-07 category: 'it' tags:
-
-- PHP cover: ./images/cover.png
-
+date: 2020-01-07
+category: 'it'
+tags:
+  - PHP
+cover: ./images/cover.png
 ---
 PHP 入門2
 
@@ -133,4 +134,5 @@ Ouvill
 
 ## まとめ
 
-PHP のクラスについて。 基本的に他言語と同じように使える。
+PHP のクラスについて。
+基本的に他言語と同じように使える。

@@ -2,13 +2,14 @@
 title: "Window のターミナルの色を簡単に変更する（ WLS にも適応）"
 subTitle: "cmd.exe の色を変更して見やすい環境を構築しよう"
 description: "cmd.exe の色を変更して見やすい環境を構築しよう"
-date: 2019-01-11 20:00:08 category: 'it' cover: "thumb.jpg"
+date: 2019-01-11 20:00:08
+category: 'it'
+cover: "thumb.jpg"
 ---
 
 Windows の コマンドラインって色が大変見にくいです。[^1]
 
-[^1]: コマンドラインの色は Windows 10 Fall Creators Update
-で[変更](http://www.itmedia.co.jp/news/articles/1708/03/news050.html)されています。しかし、それが適応されるのは Windows 10を新規インストールした人のみです。
+[^1]: コマンドラインの色は Windows 10 Fall Creators Update で[変更](http://www.itmedia.co.jp/news/articles/1708/03/news050.html)されています。しかし、それが適応されるのは Windows 10を新規インストールした人のみです。
 
 Windows の `cmd.exe` の色を変更する場合、`cmd.exe` の プロパティを開き、ぽちぽち一色ずつ文字を変更する必要があります。
 
@@ -50,6 +51,8 @@ solarized_dark を適用する場合、
 
 私は OneHalfDark を設定しました。
 
+
+
 ### その他オプション
 
 その他指定できるオプションを確認したい場合、ヘルプを表示してください
@@ -65,6 +68,4 @@ solarized_dark を適用する場合、
 
 ![](./code.jpg)
 
-Photo
-by [Markus Spiske](https://unsplash.com/photos/4T5MTKMrjZg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/search/photos/command?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Photo by [Markus Spiske](https://unsplash.com/photos/4T5MTKMrjZg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/command?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

@@ -1,7 +1,8 @@
 ---
 title: "何でもできる必要はない。ウェブ開発を一人でしてみて"
 subTitle: "専門家集団のほうがつよい"
-date: 2018-05-20 category: "develop"
+date: 2018-05-20
+category: "develop"
 ---
 
 ウェブサービスの構築をフロントからインフラまで何でも一人で開発しているくせに、「何でも一人でやる必要ないよね」という思いが最近ふつふつと湧いてきました。
@@ -20,10 +21,8 @@ date: 2018-05-20 category: "develop"
 すべて4月中に制作してリリースしていますね。
 
 * [https://flashgif.ouvill.net](https://flashgif.ouvill.net) : フラッシュGIFメーカー。添付Gifのようなものが作れます
-* ~~[https://zeneditor.ouvill.net](https://zeneditor.ouvill.net) : ブラウザ動作の縦書きエディタ（Firefoxくらいしか安定動作しません……）~~
-  アクセス数がそれほど稼げなかったので停止
-* ~~[https://word2vec.ouvill.net](https://word2vec.ouvil.net)~~:
-  重たいので公開停止。機械学習を用いた類語検索。文章作成の言い換えを探す用途などにどうぞ。「女」と検索すると「細君」と出てきたりする点が気に入っています。
+* ~~[https://zeneditor.ouvill.net](https://zeneditor.ouvill.net) : ブラウザ動作の縦書きエディタ（Firefoxくらいしか安定動作しません……）~~ アクセス数がそれほど稼げなかったので停止
+* ~~[https://word2vec.ouvill.net](https://word2vec.ouvil.net)~~:重たいので公開停止。機械学習を用いた類語検索。文章作成の言い換えを探す用途などにどうぞ。「女」と検索すると「細君」と出てきたりする点が気に入っています。
 
 ![](https://flashgif.ouvill.net/images/sample.gif)
 

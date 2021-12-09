@@ -2,11 +2,12 @@
 title: "Ubuntu Desktop の Alt + 全角半角(`) で日本語切り替えできるように設定[ショートカット]"
 subTitle: ""
 description: ""
-date: 2020-02-05 category: 'it' tags:
-
-- Ubuntu
-- Shortcut cover: ./images/cover.png
-
+date: 2020-02-05
+category: 'it'
+tags:
+  - Ubuntu
+  - Shortcut
+cover: ./images/cover.png
 ---
 
 ## ショートカット Alt + 全角半角(`) で日本語切り替えできるようにする
@@ -43,4 +44,5 @@ date: 2020-02-05 category: 'it' tags:
 
 ## まとめ
 
-以上、入力インプットの設定切り替えでした。 また入力インプットの切り替えですが、Mozc のプロパティからショートカットを変更して、mozc のモード変更に割り当ててもいいと思います。
+以上、入力インプットの設定切り替えでした。
+また入力インプットの切り替えですが、Mozc のプロパティからショートカットを変更して、mozc のモード変更に割り当ててもいいと思います。

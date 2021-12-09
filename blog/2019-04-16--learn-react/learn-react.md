@@ -1,11 +1,13 @@
 ---
-category: develop tags:
-
-- javascript
-- react
-- typescript date: 2019-04-16 title: TypeScript + React で 三目並べを作った vssue-title: react-tutorial-with-typescript
-  description: " TypeScript + React で 三目並べを作った"
-
+category: develop
+tags:
+  - javascript
+  - react
+  - typescript
+date: 2019-04-16
+title: TypeScript + React で 三目並べを作った
+vssue-title: react-tutorial-with-typescript
+description: " TypeScript + React で 三目並べを作った"
 ---
 
 この記事は日記。
@@ -26,31 +28,30 @@ TypeScript + React で React 公式が紹介している Tutorial を行って�
 
 ```typescript
 interface HelloProps {
-    name: string;
+  name: string;
 }
 
 interface HelloState {
-    count: number;
+  count: number;
 }
 
 class Hello extends React.Component<HelloProps, HelloState> {
-    constructor(props: HelloProps) {
-        super(props);
-        this.state = {
-            count: 0
-        };
-    }
+  constructor(props: HelloProps) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
 
-    render() {
-        const name = this.props.name;
-        const message = "hello " + name + "!";
-        return <div className = "hello" > {message} < /div>;
-    }
+  render() {
+    const name = this.props.name;
+    const message = "hello " + name + "!";
+    return <div className="hello">{message}</div>;
+  }
 }
 ```
 
-上記のソースコードだと `Hello` というコンポーネントは、`props` に string 型の`name` を受け取るし、`state` に `count`
-という数字を保持すると定義している。（なお今回のプログラムでは `state` を変更する処理を追加していないので、ずっと`state`は変わらないまま）
+上記のソースコードだと `Hello` というコンポーネントは、`props` に string 型の`name` を受け取るし、`state` に `count` という数字を保持すると定義している。（なお今回のプログラムでは `state` を変更する処理を追加していないので、ずっと`state`は変わらないまま）
 
 わざわざインターフェースを定義するのは面倒くさい気もするけども、インターフェースを定義しているお陰で、コンポーネントが受け取る値を把握できる。もし間違っている型を引数に与えてしまっていたら、コンパイル時に指摘してくれる。エディターの設定によっては書いている途中で、エラーを指摘してくれる。
 

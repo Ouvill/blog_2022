@@ -1,17 +1,21 @@
 ---
-category: develop tags:
-
-- vue
-- web
-- blog date: 2019-03-30 title: Vuepress で ブログを作る vssue-title: make_vuepress_blog description: "Vuepress でブログの作成方法の紹介"
-
+category: develop
+tags:
+  - vue
+  - web
+  - blog
+date: 2019-03-30
+title: Vuepress で ブログを作る
+vssue-title: make_vuepress_blog
+description: "Vuepress でブログの作成方法の紹介"
 ---
 
 Vuepress でブログ運営できるんではないかと思ったので、現在このブログは Vuepress で作成されています。
 
 <!-- more -->
 
-::: tip 注釈 基本的な Vuepress の使い方は「[VuePress の使い方](../2018-12-02--vuepress/vuepress.md) 」で書きました。こちらも参考にしてください。
+::: tip 注釈
+基本的な Vuepress の使い方は「[VuePress の使い方](../2018-12-02--vuepress/vuepress.md) 」で書きました。こちらも参考にしてください。
 :::
 
 ## Vuepress のプロジェクトを作成する
@@ -30,9 +34,7 @@ npm install -s vuepress@next
 
 ## vuepress のテーマを適応する
 
-デフォルトの Vuepress
-のテーマも素敵なのですが、ちょっと味気ないのでテーマを適応します。個人的に[vuepress-theme-meteorlxy](https://vuepress-theme-meteorlxy.meteorlxy.cn/)
-というテーマファイルが素敵だなと思っているのでこちらを適応します。
+デフォルトの Vuepress のテーマも素敵なのですが、ちょっと味気ないのでテーマを適応します。個人的に[vuepress-theme-meteorlxy](https://vuepress-theme-meteorlxy.meteorlxy.cn/) というテーマファイルが素敵だなと思っているのでこちらを適応します。
 
 ```bash
 npm install -s vuepress-theme-meteorlxy@next
@@ -46,7 +48,8 @@ vuepress-theme-meteorlxy を適応したサイト例
 
 ## vuepress に必要なファイルを用意する
 
-vuepress でブログを書くのに必要なフォルダやファイルを用意していきます。 以下のようなフォルダ構成にします。
+vuepress でブログを書くのに必要なフォルダやファイルを用意していきます。
+以下のようなフォルダ構成にします。
 
 ```bash
 vuepress_blog
@@ -78,10 +81,10 @@ vuepress のビルド設定を行います。`package.json`の`script`フィー�
 
 ```json
 {
-    "scripts": {
-        "dev": "vuepress dev src",
-        "build": "vuepress build src --dest dist"
-    }
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src --dest dist"
+  }
 }
 ```
 
@@ -93,20 +96,20 @@ package.json 全体では以下のようになります。
 
 ```json
 {
-    "name": "vuepress_blog_sample",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "vuepress dev src",
-        "build": "vuepress build src --dest dist"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "vuepress": "^1.0.0-alpha.44",
-        "vuepress-theme-meteorlxy": "^1.0.0-alpha.32"
-    }
+  "name": "vuepress_blog_sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src --dest dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vuepress": "^1.0.0-alpha.44",
+    "vuepress-theme-meteorlxy": "^1.0.0-alpha.32"
+  }
 }
 ```
 
@@ -114,7 +117,8 @@ package.json 全体では以下のようになります。
 
 ## Vuepress の設定
 
-`src/.vuepress/config.json` を編集します。 サンプルを掲載します。
+`src/.vuepress/config.json` を編集します。
+サンプルを掲載します。
 
 変更するべき場所は、`title`, `descritption`, `themeConfig` です。`themeConfig`は編集場所が多いです。その他の場所も好みに応じて編集してください。
 
@@ -126,140 +130,140 @@ package.json 全体では以下のようになります。
 // .vuepress/config.js
 
 module.exports = {
-    // Title of your website
-    title: 'My Blog',
-    // Description of your website
-    description: 'This is my blog',
-    // Language of your website
-    locales: {
-        '/': {
-            lang: 'ja-JP',
-        },
+  // Title of your website
+  title: 'My Blog',
+  // Description of your website
+  description: 'This is my blog',
+  // Language of your website
+  locales: {
+    '/': {
+      lang: 'ja-JP',
     },
-    // Theme to use
-    theme: 'meteorlxy',
-    // Theme config
-    themeConfig: {
-        // Language of this theme. See the [Theme Language] section below.
-        lang: require('vuepress-theme-meteorlxy/lib/langs/ja-JP'),
-        // Personal infomation (delete the fields if you don't have / don't want to display)
-        personalInfo: {
-            // Nickname
-            nickname: 'meteorlxy',
-            // Introduction of yourself
-            description: 'Happy Coding<br/>Happy Life',
-            // Email
-            email: 'meteor.lxy@foxmail.com',
-            // Your location
-            location: 'Xi\'an City, China',
-            // Your organization
-            organization: 'Xi\'an Jiao Tong University',
-            // Your avatar image
-            // Set to external link
-            avatar: 'https: //www.meteorlxy.cn/assets/img/avatar.jpg',
-            // Or put into `.vuepress/public` directory. E.g. `.vuepress/public/img/avatar.jpg`
-            // avatar: '/img/avatar.jpg',
-            // Accounts of SNS
-            sns: {
-                // Github account and link
-                github: {
-                    account: 'meteorlxy',
-                    link: 'https: //github.com/meteorlxy',
-                },
-                // Facebook account and link
-                facebook: {
-                    account: 'meteorlxy.cn',
-                    link: 'https: //www.facebook.com/meteorlxy.cn',
-                },
-                // LinkedIn account and link
-                linkedin: {
-                    account: 'meteorlxy',
-                    link: 'http: //www.linkedin.com/in/meteorlxy',
-                },
-                // Twitter account and link
-                twitter: {
-                    account: 'meteorlxy_cn',
-                    link: 'https: //twitter.com/meteorlxy_cn',
-                },
-                // Sina Weibo account and link
-                weibo: {
-                    account: '@焦炭君_Meteor',
-                    link: 'https: //weibo.com/u/2039655434',
-                },
-                // Zhihu account and link
-                zhihu: {
-                    account: 'meteorlxy.cn',
-                    link: 'https: //www.zhihu.com/people/meteorlxy.cn',
-                },
-                // Douban account and link
-                douban: {
-                    account: '159342708',
-                    link: 'https: //www.douban.com/people/159342708',
-                },
-                // Reddit account and link
-                reddit: {
-                    account: 'meteorlxy',
-                    link: 'https: //www.reddit.com/user/meteorlxy',
-                },
-                // Medium account and link
-                medium: {
-                    account: 'meteorlxy.cn',
-                    link: 'https: //medium.com/@meteorlxy.cn',
-                },
-                // Instagram account and link
-                instagram: {
-                    account: 'meteorlxy.cn',
-                    link: 'https: //www.instagram.com/meteorlxy.cn',
-                },
-                // GitLab account and link
-                gitlab: {
-                    account: 'meteorlxy',
-                    link: 'https: //gitlab.com/meteorlxy',
-                },
-                // Bitbucket account and link
-                bitbucket: {
-                    account: 'meteorlxy',
-                    link: 'https: //bitbucket.org/meteorlxy',
-                },
-                // Docker Hub account and link
-                docker: {
-                    account: 'meteorlxy',
-                    link: 'https: //hub.docker.com/u/meteorlxy',
-                },
-            },
+  },
+  // Theme to use
+  theme: 'meteorlxy',
+  // Theme config
+  themeConfig: {
+    // Language of this theme. See the [Theme Language] section below.
+    lang: require('vuepress-theme-meteorlxy/lib/langs/ja-JP'),
+    // Personal infomation (delete the fields if you don't have / don't want to display)
+    personalInfo: {
+      // Nickname
+      nickname: 'meteorlxy',
+      // Introduction of yourself
+      description: 'Happy Coding<br/>Happy Life',
+      // Email
+      email: 'meteor.lxy@foxmail.com',
+      // Your location
+      location: 'Xi\'an City, China',
+      // Your organization
+      organization: 'Xi\'an Jiao Tong University',
+      // Your avatar image
+      // Set to external link
+      avatar: 'https: //www.meteorlxy.cn/assets/img/avatar.jpg',
+      // Or put into `.vuepress/public` directory. E.g. `.vuepress/public/img/avatar.jpg`
+      // avatar: '/img/avatar.jpg',
+      // Accounts of SNS
+      sns: {
+        // Github account and link
+        github: {
+          account: 'meteorlxy',
+          link: 'https: //github.com/meteorlxy',
         },
-        // Header Config
-        header: {
-            // The background of the header. You can choose to use an image, or to use random pattern (geopattern)
-            background: {
-                // URL of the background image. If you set the URL, the random pattern will not be generated, and the `useGeo` will be ignored.
-                url: '/assets/img/bg.jpg',
-                // Use random pattern. If you set it to `false`, and you don't set the image URL, the background will be blank.
-                useGeo: true,
-            },
-            // show title in the header or not
-            showTitle: true,
+        // Facebook account and link
+        facebook: {
+          account: 'meteorlxy.cn',
+          link: 'https: //www.facebook.com/meteorlxy.cn',
         },
-        // Show the last updated time of your posts
-        lastUpdated: true,
-        // The content of your navbar links
-        nav: [
-            {
-                text: 'Home', link: '/', exact: true
-            },
-            {
-                text: 'Posts', link: '/posts/', exact: false
-            },
-        ],
-        // Comments config. See the [Posts Comments] section below.
-        comments: false,
-        // comments: {
-        //   owner: 'meteorlxy',
-        //   repo: 'vuepress-theme-meteorlxy',
-        //   clientId: 'MY_CLIENT_ID',
-        //   clientSecret: 'MY_CLIENT_SECRET',
-        // },
+        // LinkedIn account and link
+        linkedin: {
+          account: 'meteorlxy',
+          link: 'http: //www.linkedin.com/in/meteorlxy',
+        },
+        // Twitter account and link
+        twitter: {
+          account: 'meteorlxy_cn',
+          link: 'https: //twitter.com/meteorlxy_cn',
+        },
+        // Sina Weibo account and link
+        weibo: {
+          account: '@焦炭君_Meteor',
+          link: 'https: //weibo.com/u/2039655434',
+        },
+        // Zhihu account and link
+        zhihu: {
+          account: 'meteorlxy.cn',
+          link: 'https: //www.zhihu.com/people/meteorlxy.cn',
+        },
+        // Douban account and link
+        douban: {
+          account: '159342708',
+          link: 'https: //www.douban.com/people/159342708',
+        },
+        // Reddit account and link
+        reddit: {
+          account: 'meteorlxy',
+          link: 'https: //www.reddit.com/user/meteorlxy',
+        },
+        // Medium account and link
+        medium: {
+          account: 'meteorlxy.cn',
+          link: 'https: //medium.com/@meteorlxy.cn',
+        },
+        // Instagram account and link
+        instagram: {
+          account: 'meteorlxy.cn',
+          link: 'https: //www.instagram.com/meteorlxy.cn',
+        },
+        // GitLab account and link
+        gitlab: {
+          account: 'meteorlxy',
+          link: 'https: //gitlab.com/meteorlxy',
+        },
+        // Bitbucket account and link
+        bitbucket: {
+          account: 'meteorlxy',
+          link: 'https: //bitbucket.org/meteorlxy',
+        },
+        // Docker Hub account and link
+        docker: {
+          account: 'meteorlxy',
+          link: 'https: //hub.docker.com/u/meteorlxy',
+        },
+      },
     },
+    // Header Config
+    header: {
+      // The background of the header. You can choose to use an image, or to use random pattern (geopattern)
+      background: {
+        // URL of the background image. If you set the URL, the random pattern will not be generated, and the `useGeo` will be ignored.
+        url: '/assets/img/bg.jpg',
+        // Use random pattern. If you set it to `false`, and you don't set the image URL, the background will be blank.
+        useGeo: true,
+      },
+      // show title in the header or not
+      showTitle: true,
+    },
+    // Show the last updated time of your posts
+    lastUpdated: true,
+    // The content of your navbar links
+    nav: [
+      {
+        text: 'Home', link: '/', exact: true
+      },
+      {
+        text: 'Posts', link: '/posts/', exact: false
+      },
+    ],
+    // Comments config. See the [Posts Comments] section below.
+    comments: false,
+    // comments: {
+    //   owner: 'meteorlxy',
+    //   repo: 'vuepress-theme-meteorlxy',
+    //   clientId: 'MY_CLIENT_ID',
+    //   clientSecret: 'MY_CLIENT_SECRET',
+    // },
+  },
 }
 ```
 
@@ -269,8 +273,7 @@ module.exports = {
 
 ## 記事を書く
 
-設定が完了したので、記事を書きましょう。今回適応した[テーマ (vuepress-theme-meteorlxy)](https://github.com/meteorlxy/vuepress-theme-meteorlxy)
-では `_posts` フォルダ中の Markdown ファイルがブログポストとして扱われます。
+設定が完了したので、記事を書きましょう。今回適応した[テーマ (vuepress-theme-meteorlxy)](https://github.com/meteorlxy/vuepress-theme-meteorlxy) では `_posts` フォルダ中の Markdown ファイルがブログポストとして扱われます。
 
 ファイルを作成して記事を作成していきましょう
 
@@ -282,11 +285,12 @@ touch src/_posts/2019-03-29-hello-world.md
 
 ```markdown
 ---
-category: hello tags:
-
-- world date: 2019-01-21 title: Hello, world!
-  vssue-title: Hello, world!
-
+category: hello
+tags:
+  - world
+date: 2019-01-21
+title: Hello, world!
+vssue-title: Hello, world!
 ---
 
 これは最初の投稿です。
@@ -318,10 +322,8 @@ Netlify で公開するときのDeploy 設定は以下の通りです
 
 SEO 対策を施しましょう。以下のプラグインを私は導入しました。
 
-- [vuepress-plugin-sitemap](https://github.com/ekoeryanto/vuepress-plugin-sitemap): /sitemap.xml を生成します。google search
-  console に登録することで効率的にクロールしてくれます。
-- [@vuepress/plugin-google-analytics](https://v1.vuepress.vuejs.org/plugin/official/plugin-google-analytics.html):
-  Google アナリティクスを追加します。プライバシーポリシーに解析する旨を記述してください。
+- [vuepress-plugin-sitemap](https://github.com/ekoeryanto/vuepress-plugin-sitemap): /sitemap.xml を生成します。google search console に登録することで効率的にクロールしてくれます。
+- [@vuepress/plugin-google-analytics](https://v1.vuepress.vuejs.org/plugin/official/plugin-google-analytics.html): Google アナリティクスを追加します。プライバシーポリシーに解析する旨を記述してください。
 - [vuepress-plugin-seo](https://github.com/lorisleiva/vuepress-plugin-seo): og タグや twitter カードの生成をしてくれます。
 
 ## その他のプラグイン
@@ -334,8 +336,7 @@ SEO 対策を施しましょう。以下のプラグインを私は導入しま�
 
 以上が Vuepress でブログ運用する方法です。
 
-より詳しい情報を得たい場合、[Vuepress 公式サイト](https://v1.vuepress.vuejs.org/)
-や [テーマの作者サイト](https://vuepress-theme-meteorlxy.meteorlxy.cn/
+より詳しい情報を得たい場合、[Vuepress 公式サイト](https://v1.vuepress.vuejs.org/) や [テーマの作者サイト](https://vuepress-theme-meteorlxy.meteorlxy.cn/
 ) を閲覧してください。
 
 ## 参考

@@ -1,11 +1,13 @@
 ---
-category: develop tags:
-
-- javascript
-- typescript
-- react date: 2019-04-14 title: TypeScript を使う React プロジェクトを作成する vssue-title: start-react-with-typescript
-  description: ""
-
+category: develop
+tags:
+  - javascript
+  - typescript
+  - react
+date: 2019-04-14
+title: TypeScript を使う React プロジェクトを作成する
+vssue-title: start-react-with-typescript
+description: ""
 ---
 
 TypeScript は JavaScript に型宣言やクラス宣言を用意に実装可能な上位互換のような言語です。React プロジェクトで TypeScript を利用する方法を調べました。
@@ -14,8 +16,7 @@ TypeScript は JavaScript に型宣言やクラス宣言を用意に実装可能
 
 ## TypeScript に最適化した React 環境を新規作成
 
-'create-react-app' という node 製アプリがあります。これは React 学習するための環境や single-page アプリケーションの作成に最良のアプリです。これを利用することで簡単に TypeScript
-に対応した React 環境を作成できます。
+'create-react-app' という node 製アプリがあります。これは React 学習するための環境や single-page アプリケーションの作成に最良のアプリです。これを利用することで簡単に TypeScript に対応した React 環境を作成できます。
 
 ```
 npx create-react-app my-app --typescript
@@ -30,8 +31,7 @@ npm start
 
 ::: warning
 
-解説サイトによっては TypeScript 対応の React 環境を作成する場合、以下のようにかかれている場合もあります。こちらは TypeScript の環境を構築するための React の fork プロジェクト
-の成果物を利用します。ですが、公式 React が TypeScript をサポートしたため廃止予定です。
+解説サイトによっては TypeScript 対応の React 環境を作成する場合、以下のようにかかれている場合もあります。こちらは TypeScript の環境を構築するための React の fork プロジェクト の成果物を利用します。ですが、公式 React が TypeScript をサポートしたため廃止予定です。
 
 ```
 npx create-react-app my-app --scripts-version=react-scripts-ts
@@ -41,8 +41,7 @@ npx create-react-app my-app --scripts-version=react-scripts-ts
 
 ## create-react-app をグローバルにインストールしてはいけない
 
-create-react-app を `npm install -g`
-でインストールしてしまっていると、どうやら正常に動作しないようです。[create-react-app with --typescript doesn't work #6319](https://github.com/facebook/create-react-app/issues/6319#issuecomment-459627529)
+create-react-app を `npm install -g` でインストールしてしまっていると、どうやら正常に動作しないようです。[create-react-app with --typescript doesn't work #6319](https://github.com/facebook/create-react-app/issues/6319#issuecomment-459627529)
 
 以下のコマンドでグローバルから 'create-react-app' をアンインストールしてください。
 

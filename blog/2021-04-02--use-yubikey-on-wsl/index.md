@@ -2,13 +2,14 @@
 title: "WSL2でYubikeyを利用する。"
 subTitle: ""
 description: ""
-date: 2021-04-02 category: 'it' tags:
-
-- Yubikey
-- WSL
-- SSH
-- GPG cover: ./images/cover.png
-
+date: 2021-04-02
+category: 'it'
+tags:
+  - Yubikey
+  - WSL
+  - SSH
+  - GPG
+cover: ./images/cover.png
 ---
 
 ## 動機
@@ -47,8 +48,8 @@ SSHクライアントの[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/put
 
 #### `gpg-agent.conf`の設定
 
-`gpg-agent`の設定ファイル`gpg-agent.conf`を編集します Windows 10の初期設定だと、`C:\Users\%USERNAME%\AppData\Roaming\gnupg\gpg-agent.conf`
-にあります。
+`gpg-agent`の設定ファイル`gpg-agent.conf`を編集します
+Windows 10の初期設定だと、`C:\Users\%USERNAME%\AppData\Roaming\gnupg\gpg-agent.conf`にあります。
 
 下記を追加してください
 

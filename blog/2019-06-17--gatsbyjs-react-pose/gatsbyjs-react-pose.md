@@ -2,19 +2,19 @@
 title: "GatsbyJS のページ移動時にReact Pose でアニメーションを実装する"
 subTitle: ""
 description: ""
-date: 2019-06-17 category: 'it' tags:
-
-- react
-- web
-- svg
-
+date: 2019-06-17
+category: 'it'
+tags:
+  - react
+  - web
+  - svg
 ---
 
 現在、静的サイトジェネレーターの GatsbyJS を利用してサイトを作成しています。
 
 ページ遷移するときにフェードインフェードアウトのアニメーションを付与する方法について。
 
-## React Pose
+## React Pose 
 
 React Pose ばアニメーションライブラリです。
 
@@ -30,26 +30,25 @@ React Pose ばアニメーションライブラリです。
 
 ### マウント、アンマウントのアニメーション
 
-React Pose には `PoseGroup`
-というコンポーネントがあります。[Enter/exit transitions](https://popmotion.io/pose/learn/react-exit-enter-transitions/)
+React Pose には `PoseGroup` というコンポーネントがあります。[Enter/exit transitions](https://popmotion.io/pose/learn/react-exit-enter-transitions/)
 
 コンポーネントがマウントされたときの状態、アンマウントされたときの状態を定義し、それにしたがってアニメーションさせることができます。
 
 ```jsx
-import posed, {PoseGroup} from 'react-pose'
+import posed, { PoseGroup } from 'react-pose'
 
 const Fade = posed.div({
-    enter: {opacity: 1},
-    exit: {opacity: 0}
+  enter: { opacity: 1 },
+  exit: { opacity: 0 }
 })
 
-const Page = ({items}) => (
-    <PoseGroup>
-        <Fade key="key">
-            {/* コンテンツ  */}
-            {/* <Main/>   */}
-        </Fade>
-    </PoseGroup>
+const Page = ({ items }) => (
+  <PoseGroup>
+    <Fade key="key" >
+        {/* コンテンツ  */}
+        {/* <Main/>   */}
+    </Fade>
+  </PoseGroup>
 )
 ```
 
@@ -68,20 +67,20 @@ Gatsby ではページコンポーネントやテンプレートコンポーネ�
 なのでページ遷移のアニメーションを実装する場合、以下のようになります。
 
 ```jsx
-import posed, {PoseGroup} from 'react-pose'
+import posed, { PoseGroup } from 'react-pose'
 
 const Fade = posed.div({
-    enter: {opacity: 1},
-    exit: {opacity: 0}
+  enter: { opacity: 1 },
+  exit: { opacity: 0 }
 })
 
-const Page = ({items}) => (
-    <PoseGroup>
-        <Fade key={props.location.pathname}>
-            {/* コンテンツ  */}
-            {/* <Main/>   */}
-        </Fade>
-    </PoseGroup>
+const Page = ({ items }) => (
+  <PoseGroup>
+    <Fade key={props.location.pathname} >
+        {/* コンテンツ  */}
+        {/* <Main/>   */}
+    </Fade>
+  </PoseGroup>
 )
 ```
 
@@ -92,22 +91,22 @@ const Page = ({items}) => (
 ```jsx
 import React from "react"
 
-import posed, {PoseGroup} from "react-pose"
+import posed, { PoseGroup } from "react-pose"
 
 const Transition = posed.div({
-    enter: {opacity: 1, delay: 300, beforeChildren: true},
-    exit: {opacity: 0},
+  enter: { opacity: 1, delay: 300, beforeChildren: true },
+  exit: { opacity: 0 },
 })
 
-export const replaceComponentRenderer = ({props, ...other}) => {
-    const {component} = props.pageResources
-    return (
-        <PoseGroup>
-            <Transition key={props.location.pathname}>
-                {React.createElement(component, props)}
-            </Transition>
-        </PoseGroup>
-    )
+export const replaceComponentRenderer = ({ props, ...other }) => {
+  const { component } = props.pageResources
+  return (
+    <PoseGroup>
+      <Transition key={props.location.pathname}>
+        {React.createElement(component, props)}
+      </Transition>
+    </PoseGroup>
+  )
 }
 ```
 
@@ -126,19 +125,19 @@ export const replaceComponentRenderer = ({props, ...other}) => {
 ```jsx
 import React from "react"
 
-import posed, {PoseGroup} from "react-pose"
+import posed, { PoseGroup } from "react-pose"
 
 const Transition = posed.div({})
 
-export const replaceComponentRenderer = ({props, ...other}) => {
-    const {component} = props.pageResources
-    return (
-        <PoseGroup>
-            <Transition key={props.location.pathname}>
-                {React.createElement(component, props)}
-            </Transition>
-        </PoseGroup>
-    )
+export const replaceComponentRenderer = ({ props, ...other }) => {
+  const { component } = props.pageResources
+  return (
+    <PoseGroup>
+      <Transition key={props.location.pathname}>
+        {React.createElement(component, props)}
+      </Transition>
+    </PoseGroup>
+  )
 }
 ```
 
@@ -146,20 +145,20 @@ export const replaceComponentRenderer = ({props, ...other}) => {
 
 ```jsx
 const Fade = posed.div({
-    enter: {
-        opacity: 1,
-        delay: 100,
-    },
-    exit: {
-        opacity: 0,
-    },
+  enter: {
+    opacity: 1,
+    delay: 100,
+  },
+  exit: {
+    opacity: 0,
+  },
 })
 
 const Layout = () => (
     <div>
-        <Header/>
-        <Main><Fade>{children}</Fade></Main>
-        <Footer/>
+      <Header/>
+      <Main><Fade>{children}</Fade></Main>
+      <Footer/>
     </div>
 )
 ```

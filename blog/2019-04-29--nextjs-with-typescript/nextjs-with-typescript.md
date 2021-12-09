@@ -1,9 +1,12 @@
 ---
-category: develop tags:
-
-- javascript
-- xml date: 2019-04-29 title: NextJS を TypeScript で開発する vssue-title: nextjs-with-typescript description: ""
-
+category: develop
+tags:
+  - javascript
+  - xml
+date: 2019-04-29
+title: NextJS を TypeScript で開発する
+vssue-title: nextjs-with-typescript
+description: ""
 ---
 
 NextJS は React を用いてサーバーサイドレンダリングに対応したサイトを作成するためのフレームワークです。
@@ -32,11 +35,11 @@ mkdir pages
 
 ```json
 {
-    "scripts": {
-        "dev": "next",
-        "build": "next build",
-        "start": "next start"
-    }
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
 }
 ```
 
@@ -46,11 +49,11 @@ NextJS では pages に格納された JS ファイルを Web ページとして
 
 ```js
 const Index = () => {
-    return (
-        <div>
-            <p>Hello World</p>
-        </div>
-    );
+  return (
+    <div>
+      <p>Hello World</p>
+    </div>
+  );
 };
 export default Index;
 ```
@@ -90,26 +93,23 @@ module.exports = withTypescript();
 
 ```json
 {
-    "compilerOptions": {
-        "allowJs": true,
-        "allowSyntheticDefaultImports": true,
-        "jsx": "preserve",
-        "lib": [
-            "dom",
-            "es2017"
-        ],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noEmit": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "preserveConstEnums": true,
-        "removeComments": false,
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "strict": true,
-        "target": "esnext"
-    }
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2017"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext"
+  }
 }
 ```
 

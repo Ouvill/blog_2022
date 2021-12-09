@@ -1,6 +1,8 @@
 ---
-title: Gitlab と Discord をSlack APIを使ってサクッと連携させる。 subTitle: "Discord を開発ツールとして使う"
-date: 2018-11-23 00:00:00 category: "develop"
+title: Gitlab と Discord をSlack APIを使ってサクッと連携させる。
+subTitle: "Discord を開発ツールとして使う"
+date: 2018-11-23 00:00:00
+category: "develop"
 cover:
 ---
 
@@ -42,8 +44,7 @@ https://discordapp.com/developers/docs/resources/webhook
 >
 > POST /webhooks/{webhook.id}/{webhook.token}/slack
 
-Discord の Webhook は末尾に /slack を付加すると Slack 互換のWebhook になります。Gitlab は Slack へのWebhook は対応しているため、こちらのURLを利用することで Slack Bot
-として登録できるようになります。
+Discord の Webhook は末尾に /slack を付加すると Slack 互換のWebhook になります。Gitlab は Slack へのWebhook は対応しているため、こちらのURLを利用することで Slack Bot として登録できるようになります。
 
 そのことを踏まえて設定していきましょう。
 
@@ -97,7 +98,6 @@ https://discordapp.com/api/webhooks/{webhook.id}/{webhook.token}/slack
 
 ## おわりに
 
-「Discord は Slack 互換で動作させることができる」というのが今回の記事の肝です。最近のサービスではたいてい Slack は対応しています。おそらく、Slack互換動作のことを知っていれば、ほかの Webhook
-サービスも簡単に Discord に対応させることが出来ると思います。
+「Discord は Slack 互換で動作させることができる」というのが今回の記事の肝です。最近のサービスではたいてい Slack は対応しています。おそらく、Slack互換動作のことを知っていれば、ほかの Webhook サービスも簡単に Discord に対応させることが出来ると思います。
 
 本記事は Qiita にも投稿してあります。投稿時は本ブログが存在しなかったため、投稿場所としてQiita を利用しました。

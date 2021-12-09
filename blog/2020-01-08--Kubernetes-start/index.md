@@ -2,11 +2,12 @@
 title: "Kubernetes のお勉強"
 subTitle: ""
 description: ""
-date: 2020-01-07 category: 'it' tags:
-
-- インフラ
-- コンテナ cover: ./images/cover.png
-
+date: 2020-01-07
+category: 'it'
+tags:
+  - インフラ
+  - コンテナ
+cover: ./images/cover.png
 ---
 
 ## kubenetes の環境構築
@@ -87,11 +88,11 @@ sample-pod.yml（nginx を立ち上げるだけの簡単なもの）
 apiVersion: v1
 kind: Pod
 metadata:
-    name: sample-pod
+  name: sample-pod
 spec:
-    containers:
-        -   name: nginx-container
-            image: nginx:1.13
+  containers:
+    - name: nginx-container
+      image: nginx:1.13
 ```
 
 リソースファイルを元にコンテナを立ち上げる。

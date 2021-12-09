@@ -2,12 +2,12 @@
 title: "SVG Object をマウスでグリグリとドラッグする"
 subTitle: "SVG Object をマウスドラッグする"
 description: ""
-date: 2019-05-18 category: 'it' tags:
-
-- react
-- web
-- svg
-
+date: 2019-05-18
+category: 'it'
+tags:
+  - react
+  - web
+  - svg
 ---
 
 SVG を利用して、ちょっとしたお絵かきアプリ的な物を作成しようと思いました。
@@ -25,23 +25,23 @@ SVG オブジェクトをドラッグするにはどうすればいいのだろ�
 ```jsx
 const SVGComponents = () => {
     return (
-        <svg
-            version="1.1"
-            width="1240"
-            height="1754"
-            xmlns="http://www.w3.org/2000/svg"
-            ref={svgRef}
-        >
-            <rect
-                width="100"
-                height="100"
-                x="50"
-                y="50"
-                fill="#900"
-                stroke="#666"
-                strokeWidth="5"
-            />
-        </svg>
+   <svg
+      version="1.1"
+      width="1240"
+      height="1754"
+      xmlns="http://www.w3.org/2000/svg"
+      ref={svgRef}
+    >
+      <rect
+        width="100"
+        height="100"
+        x="50"
+        y="50"
+        fill="#900"
+        stroke="#666"
+        strokeWidth="5"
+      />
+    </svg>
     )
 }
 ```
@@ -136,6 +136,7 @@ const SVGComponents = () => {
 ### マウスドラッグ中の座標を取得する
 
 `isMouseDown` が `true` のときにマウスを座標を取得します。表示してあるページに対しての、マウスの座標を取得するには `event.pageX`、`event.pageY` を利用します。
+
 
 ```jsx{16-23,42}
 const SVGComponents = () => {
@@ -356,71 +357,72 @@ const SVGComponents = () => {
 今回作成したサンプルコードの TypeScript バージョンもアップしておきます。
 
 ```tsx 
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 
 const SVGComponents = () => {
-    const [isMouseDown, setIsMouseDown] = useState(false);
-    const [x, setX] = useState(50);
-    const [y, setY] = useState(50);
-    const [gap, setGap] = useState({x: 0, y: 0});
-    const svgRef = useRef<SVGSVGElement>(null);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [x, setX] = useState(50);
+  const [y, setY] = useState(50);
+  const [gap, setGap] = useState({ x: 0, y: 0 });
+  const svgRef = useRef<SVGSVGElement>(null);
 
-    // クリックされたとき
-    const onMouseDown = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
-        setIsMouseDown(true);
-        const rect = e.currentTarget.getBoundingClientRect();
-        const mouseX = e.pageX;
-        const mouseY = e.pageY;
-        setGap({x: mouseX - rect.left, y: mouseY - rect.top});
-    };
+  // クリックされたとき
+  const onMouseDown = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+    setIsMouseDown(true);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.pageX;
+    const mouseY = e.pageY;
+    setGap({ x: mouseX - rect.left, y: mouseY - rect.top });
+  };
 
-    // マウスが離れたとき
-    const onMouseUp = () => {
-        setIsMouseDown(false);
-    };
+  // マウスが離れたとき
+  const onMouseUp = () => {
+    setIsMouseDown(false);
+  };
 
-    // マウスを移動中
-    const onMouseMove = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
-        if (isMouseDown) {
-            const mouseX = e.pageX;
-            const mouseY = e.pageY;
-            if (svgRef && svgRef.current) {
-                const svgRect = svgRef.current.getBoundingClientRect();
-                const relativeX = mouseX - svgRect.left;
-                const relativeY = mouseY - svgRect.top;
-                setX(relativeX - gap.x);
-                setY(relativeY - gap.y);
-            }
-        }
-    };
+  // マウスを移動中
+  const onMouseMove = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+    if (isMouseDown) {
+      const mouseX = e.pageX;
+      const mouseY = e.pageY;
+      if (svgRef && svgRef.current) {
+        const svgRect = svgRef.current.getBoundingClientRect();
+        const relativeX = mouseX - svgRect.left;
+        const relativeY = mouseY - svgRect.top;
+        setX(relativeX - gap.x);
+        setY(relativeY - gap.y);
+      }
+    }
+  };
 
-    return (
-        <svg
-            version="1.1"
-            width="1240"
-            height="1754"
-            xmlns="http://www.w3.org/2000/svg"
-            ref={svgRef}
-        >
-            <rect
-                width="100"
-                height="100"
-                x={x}
-                y={y}
-                fill="#900"
-                stroke="#666"
-                strokeWidth="5"
-                onMouseDown={onMouseDown}
-                onMouseLeave={onMouseUp}
-                onMouseUp={onMouseUp}
-                onMouseMove={onMouseMove}
-            />
-        </svg>
-    );
+  return (
+    <svg
+      version="1.1"
+      width="1240"
+      height="1754"
+      xmlns="http://www.w3.org/2000/svg"
+      ref={svgRef}
+    >
+      <rect
+        width="100"
+        height="100"
+        x={x}
+        y={y}
+        fill="#900"
+        stroke="#666"
+        strokeWidth="5"
+        onMouseDown={onMouseDown}
+        onMouseLeave={onMouseUp}
+        onMouseUp={onMouseUp}
+        onMouseMove={onMouseMove}
+      />
+    </svg>
+  );
 };
 
 export default SVGComponents;
 ```
+
 
 参考
 

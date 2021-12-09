@@ -1,16 +1,16 @@
 ---
-category: develop tags:
-
-- css
-- sass
-- web date: 2019-04-15 title: Sass/SCSS 入門 vssue-title: learn-sass description: "CSS 自体は HTML
-  を装飾できて楽しいものです。ですが、スタイルシートは大きくなるにつれ、複雑になり保守性が低下します。プリプロセッサはこの状況を改善します。 CSS にはない、変数や入れ子、継承や CSS を書くことが楽しくなるその他機能を Sass
-  は提供します。"
-
+category: develop
+tags:
+  - css
+  - sass
+  - web
+date: 2019-04-15
+title: Sass/SCSS 入門
+vssue-title: learn-sass
+description: "CSS 自体は HTML を装飾できて楽しいものです。ですが、スタイルシートは大きくなるにつれ、複雑になり保守性が低下します。プリプロセッサはこの状況を改善します。 CSS にはない、変数や入れ子、継承や CSS を書くことが楽しくなるその他機能を Sass は提供します。"
 ---
 
-CSS 自体は HTML を装飾できて楽しいものです。ですが、スタイルシートは大きくなるにつれ、複雑になり保守性が低下します。プリプロセッサはこの状況を改善します。 CSS にはない、変数や入れ子、継承や CSS
-を書くことが楽しくなるその他機能を Sass は提供します。
+CSS 自体は HTML を装飾できて楽しいものです。ですが、スタイルシートは大きくなるにつれ、複雑になり保守性が低下します。プリプロセッサはこの状況を改善します。 CSS にはない、変数や入れ子、継承や CSS を書くことが楽しくなるその他機能を Sass は提供します。
 
 <!-- more -->
 
@@ -28,8 +28,7 @@ Sass はコンパイルすることで CSS ファイルを生成します。CSS 
 
 ## Sass をインストールする
 
-Sass を解説している日本語記事を見ていると ruby を使ったインストール方法が紹介されています。ですが、いまでは [LibSass](https://sass-lang.com/libsass) という Sass エンジンの
-C/C++ 実装がリリースされています。LibSass を使った wrapper が多数開発されているため、今では ruby をインストールする必要もなく、 node で Sass の実行環境を用意できます。
+Sass を解説している日本語記事を見ていると ruby を使ったインストール方法が紹介されています。ですが、いまでは [LibSass](https://sass-lang.com/libsass) という Sass エンジンの C/C++ 実装がリリースされています。LibSass を使った wrapper が多数開発されているため、今では ruby をインストールする必要もなく、 node で Sass の実行環境を用意できます。
 
 以下のコマンドでローカル環境に node-sass をインストールできます。
 
@@ -82,8 +81,8 @@ $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 
 body {
-    font: 100% $font-stack;
-    color: $primary-color;
+  font: 100% $font-stack;
+  color: $primary-color;
 }
 ```
 
@@ -97,21 +96,21 @@ HTML が入れ子構造であるように Sass では入れ子で書くことが
 
 ```scss
 nav {
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-    li {
-        display: inline-block;
-    }
+  li {
+    display: inline-block;
+  }
 
-    a {
-        display: block;
-        padding: 6px 12px;
-        text-decoration: none;
-    }
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
 }
 ```
 
@@ -119,8 +118,7 @@ nav {
 
 ## Partials ( 分割 )
 
-Sass は 分割して記述することができます。モジュール化することで保守性を向上させます。モジュール化するためにはファイル名を`_partial.scss` のように、`_` (アンダーバー) で始めます。`_` がついたファイルは単体では
-CSS が生成されません。別の Sass ファイルに `@import` を記述し読み込ませます。
+Sass は 分割して記述することができます。モジュール化することで保守性を向上させます。モジュール化するためにはファイル名を`_partial.scss` のように、`_` (アンダーバー) で始めます。`_` がついたファイルは単体では CSS が生成されません。別の Sass ファイルに `@import` を記述し読み込ませます。
 
 ## Import
 
@@ -137,8 +135,8 @@ html,
 body,
 ul,
 ol {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 ```
 
@@ -148,8 +146,8 @@ ol {
 @import "reset";
 
 body {
-    font: 100% Helvetica, sans-serif;
-    background-color: #efefef;
+  font: 100% Helvetica, sans-serif;
+  background-color: #efefef;
 }
 ```
 
@@ -161,18 +159,17 @@ CSS 3 では多数のベンダープレフィックスが存在します。mixin
 
 ```scss
 @mixin transform($property) {
-    -webkit-transform: $property;
-    -ms-transform: $property;
-    transform: $property;
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
 }
 
 .box {
-    @include transform(rotate(30deg));
+  @include transform(rotate(30deg));
 }
 ```
 
-mixin を作成するために `@mixin` と記述し、`transform` という名前を宣言しています。`$property` を引数として与えることで、全ての変換に値を与えることができます。作成した mixin
-を利用するには `@include` で呼び出します。
+mixin を作成するために `@mixin` と記述し、`transform` という名前を宣言しています。`$property` を引数として与えることで、全ての変換に値を与えることができます。作成した mixin を利用するには `@include` で呼び出します。
 
 ## 継承
 
@@ -183,34 +180,34 @@ Sass では継承が利用可能です。`@extend` を利用することで CSS 
 ```scss
 /* This CSS will print because %message-shared is extended. */
 %message-shared {
-    border: 1px solid #ccc;
-    padding: 10px;
-    color: #333;
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
 }
 
 // This CSS won't print because %equal-heights is never extended.
 %equal-heights {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .message {
-    @extend %message-shared;
+  @extend %message-shared;
 }
 
 .success {
-    @extend %message-shared;
-    border-color: green;
+  @extend %message-shared;
+  border-color: green;
 }
 
 .error {
-    @extend %message-shared;
-    border-color: red;
+  @extend %message-shared;
+  border-color: red;
 }
 
 .warning {
-    @extend %message-shared;
-    border-color: yellow;
+  @extend %message-shared;
+  border-color: yellow;
 }
 ```
 
@@ -220,17 +217,17 @@ Sass では`+`, `-`, `*`, `/`, `%` のような演算子が利用できます。
 
 ```scss
 .container {
-    width: 100%;
+  width: 100%;
 }
 
 article[role="main"] {
-    float: left;
-    width: 600px / 960px * 100%;
+  float: left;
+  width: 600px / 960px * 100%;
 }
 
 aside[role="complementary"] {
-    float: right;
-    width: 300px / 960px * 100%;
+  float: right;
+  width: 300px / 960px * 100%;
 }
 ```
 

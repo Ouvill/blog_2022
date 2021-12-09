@@ -2,8 +2,12 @@
 title: "npm install sharpで失敗するときの対処"
 subTitle: ""
 description: ""
-date: 2019-06-14 category: 'it' tags:
-- linux - javascript - node
+date: 2019-06-14
+category: 'it'
+tags:
+    - linux
+    - javascript
+    - node
 ---
 
 最近 GatsbyJS を利用して開発しているのですが、当方の環境（ubuntu 19.04) では `yarn install` を行うとインストールがコケます。
@@ -11,6 +15,7 @@ date: 2019-06-14 category: 'it' tags:
 なんでコケるんだろうと思いつつも、そんなときは node docker コンテナを立ち上げて、そちらで`yarn start` や `yarn install` を行っていました。
 
 ただやっぱりローカルで実行できる環境も構築しておきたかったので、対策を施しました。
+
 
 ## 状況説明
 
@@ -80,7 +85,6 @@ gyp ERR! System Linux 5.0.0-16-generic
 gyp ERR! command "/usr/bin/node" "/usr/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
 gyp ERR! cwd /home/user/workspace/gatsby/blog/node_modules/sharp
 ```
-
 エラーメッセージを見ると、vips/vips8 というライブラリが足りていないようです。そのため追加でインストールします。
 
 ```

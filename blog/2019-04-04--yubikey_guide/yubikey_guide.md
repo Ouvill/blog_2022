@@ -1,15 +1,15 @@
 ---
-category: develop tags:
-
-- security
-- yubikey date: 2019-04-04 title: Yubikey の購入ガイド vssue-title: "yubikey_guide"
-  description: "Yubikey は Yubico 社が提供しているセキュリティデバイスです。FIDO U2F や FIDO2, OATH, OTP といった二段階認証用デバイスとして利用できたり、PIV Card や
-  OpenPGP Card として利用できる機能を持っています。今回は海外から個人輸入する方法をご紹介します。"
-
+category: develop
+tags:
+  - security
+  - yubikey
+date: 2019-04-04
+title: Yubikey の購入ガイド
+vssue-title: "yubikey_guide"
+description: "Yubikey は Yubico 社が提供しているセキュリティデバイスです。FIDO U2F や FIDO2, OATH, OTP といった二段階認証用デバイスとして利用できたり、PIV Card や OpenPGP Card として利用できる機能を持っています。今回は海外から個人輸入する方法をご紹介します。"
 ---
 
-Yubikey は Yubico 社が提供しているセキュリティデバイスです。FIDO U2F や FIDO2, OATH, OTP といった二段階認証用デバイスとして利用できたり、PIV Card や OpenPGP Card
-として利用できる機能を持っています。今回は海外から個人輸入する方法をご紹介します。
+Yubikey は Yubico 社が提供しているセキュリティデバイスです。FIDO U2F や FIDO2, OATH, OTP といった二段階認証用デバイスとして利用できたり、PIV Card や OpenPGP Card として利用できる機能を持っています。今回は海外から個人輸入する方法をご紹介します。
 
 <!-- more -->
 
@@ -34,8 +34,7 @@ Yubikey は Yubico 社が提供しているセキュリティデバイスです�
 
 ### Yubico の公式ホームページから個人輸入
 
-Yubikey の販売元の Yubico は全世界[^1]に発送しています。[公式サイト](<https://www.yubico.com/>)から注文することで日本に送ってもらうことも可能です。公式サイトでは Yubikey 5 NFC
-が 45 $ , 発送料が 5 $ となっています[^2]。為替にもよりますが、正規代理店よりも安く購入できます。
+Yubikey の販売元の Yubico は全世界[^1]に発送しています。[公式サイト](<https://www.yubico.com/>)から注文することで日本に送ってもらうことも可能です。公式サイトでは Yubikey 5 NFC が 45 $ , 発送料が 5 $ となっています[^2]。為替にもよりますが、正規代理店よりも安く購入できます。
 
 さらに時々 10%OFF や 20%OFF のクーポンが配られていたりするので、お得に購入することができます。
 
@@ -43,6 +42,7 @@ Yubikey の販売元の Yubico は全世界[^1]に発送しています。[公�
 
 [^1]: 一部発送を制限している国があります。
 [^2]: 記事作成時(2019/04/04) の価格
+
 
 ::: tip 補足
 
@@ -54,18 +54,15 @@ Yubikey の販売元の Yubico は全世界[^1]に発送しています。[公�
 
 Yubikey 5 NFC の購入をオススメします。一番汎用性が高いためです。
 
-現在 Yubico が販売する Yubikey シリーズの最新モデルは Yubikey 5 です。 Yubikey 5 は USB-A と USB-C の接続形式、着脱を前提とするかで 4つのモデルに分かれています。Yubikey 5
-NFC, Yubikey 5 Nano, Yubikey 5C, Yubikey 5C Nano の4つです。
+現在 Yubico が販売する Yubikey シリーズの最新モデルは Yubikey 5 です。 Yubikey 5 は USB-A と USB-C の接続形式、着脱を前提とするかで 4つのモデルに分かれています。Yubikey 5 NFC, Yubikey 5 Nano, Yubikey 5C, Yubikey 5C Nano の4つです。
 
 機能的には全て同じです。ご自身の所有しているパソコンにあったものを購入しましょう。
 
-私は Yubikey 5 NFC を購入しました。さらにバックアップ用として、Security Key NFCも購入しました。手元にあるパソコンが USB-A しか搭載してないものがあったり、スマホでも利用したいがためです。USB-C
-しか搭載していないパソコンには変換ケーブルで対応しています。
+私は Yubikey 5 NFC を購入しました。さらにバックアップ用として、Security Key NFCも購入しました。手元にあるパソコンが USB-A しか搭載してないものがあったり、スマホでも利用したいがためです。USB-C しか搭載していないパソコンには変換ケーブルで対応しています。
 
 ::: danger
 
-Yubikey 5C を購入して、変換ケーブルを用いて、USB-A に接続する方法は推奨しません。USB-C オスを USB-A オスに変換する規格は、USB
-として定義されていないためです。過剰電力が流れる恐れがあるため規格として定義されませんでした。
+Yubikey 5C を購入して、変換ケーブルを用いて、USB-A に接続する方法は推奨しません。USB-C オスを USB-A オスに変換する規格は、USB として定義されていないためです。過剰電力が流れる恐れがあるため規格として定義されませんでした。
 
 :::
 
@@ -80,7 +77,7 @@ Yubikey 5C を購入して、変換ケーブルを用いて、USB-A に接続す
 - 配送方法を選択します。急がない場合 5$ の `Posten 1st Class` で良いでしょう。![](./image/buy04.png)
 - `Proceed to checkout` をクリックします
 - 支払い情報を入力します ![](./image/buy05.png)
-  -`First name`(名前) 、`Last name`(名字) を入力
+    -`First name`(名前) 、`Last name`(名字) を入力
     - `Country` に `Japan`
     - `Street address` に住所
     - `Town/City` に市区町村名

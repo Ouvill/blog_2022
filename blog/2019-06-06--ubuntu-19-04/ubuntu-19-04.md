@@ -2,8 +2,13 @@
 title: "Ubuntu 19.04をインストール"
 subTitle: "Ubuntu 19.04 をインストール"
 description: ""
-date: 2019-06-06 category: 'it' tags:
-- linux - ubuntu - app cover: "./images/Disco-Dingo.jpg"
+date: 2019-06-06
+category: 'it'
+tags:
+    - linux
+    - ubuntu
+    - app
+cover: "./images/Disco-Dingo.jpg"
 ---
 
 ## Ubuntu 19.04 インストール
@@ -85,13 +90,13 @@ newgrp docker
 sudo snap install docker
 ```
 
-##### gitkraken
+##### gitkraken 
 
 Git GUI クライアント
 
 `sudo snap install gitkraken`
 
-##### kvm
+##### kvm 
 
 仮想PC。Android エミュレーターの高速化のため
 
@@ -101,7 +106,7 @@ Git GUI クライアント
 
 ##### Tresorit
 
-暗号化対応のオンラインストレージ
+ 暗号化対応のオンラインストレージ
 
 ##### keybase
 

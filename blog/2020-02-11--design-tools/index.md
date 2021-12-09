@@ -2,14 +2,16 @@
 title: "デザインを作るときに役立ちそうなサイト"
 subTitle: ""
 description: ""
-date: 2020-02-11 category: 'it' tags:
-
-- Design
-- Tool cover: ./images/cover.png
-
+date: 2020-02-11
+category: 'it'
+tags:
+  - Design
+  - Tool
+cover: ./images/cover.png
 ---
 
-Web サイトをデザイン、作成するときに利用しているサイトをまとめます。 自分も利用しているんですが、ときどきサイト名を忘れてしまったりするので自分への備忘録としても作成します。
+Web サイトをデザイン、作成するときに利用しているサイトをまとめます。
+自分も利用しているんですが、ときどきサイト名を忘れてしまったりするので自分への備忘録としても作成します。
 
 ## 色
 

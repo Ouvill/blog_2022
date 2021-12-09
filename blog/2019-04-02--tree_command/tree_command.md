@@ -1,9 +1,11 @@
 ---
-category: develop tags:
-
-- command date: 2019-04-02 title: tree コマンドでディレクトリ構成をわかりやすく伝える vssue-title: tree_command description: " tree
-  コマンドでディレクトリ構成をわかりやすく伝える"
-
+category: develop
+tags:
+  - command
+date: 2019-04-02
+title: tree コマンドでディレクトリ構成をわかりやすく伝える
+vssue-title: tree_command
+description: " tree コマンドでディレクトリ構成をわかりやすく伝える"
 ---
 
 tree コマンドを使うことで、ディレクトリ構造を簡単にツリー形式で表示できます。

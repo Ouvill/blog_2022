@@ -1,10 +1,12 @@
 ---
-category: develop tags:
-
-- javascript
-- webpack date: 2019-04-15 title: webpack 入門 vssue-title: learn-webpack description: "webpack は現代的な JavaScript
-  アプリケーションの静的モジュールバンドラーです。複数のモジュールからなる JavaScript アプリケーションを一つにまとめます。 webpack の概要について説明します"
-
+category: develop
+tags:
+  - javascript
+  - webpack
+date: 2019-04-15
+title: webpack 入門
+vssue-title: learn-webpack
+description: "webpack は現代的な JavaScript アプリケーションの静的モジュールバンドラーです。複数のモジュールからなる JavaScript アプリケーションを一つにまとめます。 webpack の概要について説明します"
 ---
 
 webpack の概要について説明します
@@ -13,7 +15,8 @@ webpack の概要について説明します
 
 ## webpack とは
 
-webpack は現代的な JavaScript アプリケーションの静的モジュールバンドラーです。 複数のモジュールからなる JavaScript アプリケーションを一つにまとめます。 ( バンドル - bundle )
+webpack は現代的な JavaScript アプリケーションの静的モジュールバンドラーです。
+複数のモジュールからなる JavaScript アプリケーションを一つにまとめます。 ( バンドル - bundle )
 
 ## webpack はどのような動作をするのか サンプルコード
 
@@ -22,28 +25,28 @@ webpack は現代的な JavaScript アプリケーションの静的モジュー
 ```js
 // src/index.js
 import bar from "./bar";
-
 bar();
 ```
 
 ```js
 // src/bar.js
 export default function bar() {
-    //
+  //
 }
 ```
 
-以下のような webpack の設定ファイルを用意します。（必ずしも必要ではないです） entry ポイント（プログラムの最初に呼び出すファイル）を指定し、`./dist/bundle.js` に生成結果を出力する設定をしています。
+以下のような webpack の設定ファイルを用意します。（必ずしも必要ではないです）
+entry ポイント（プログラムの最初に呼び出すファイル）を指定し、`./dist/bundle.js` に生成結果を出力する設定をしています。
 
 ```js
 const path = require("path");
 
 module.exports = {
-    entry: "./src/index.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
-    }
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js"
+  }
 };
 ```
 
@@ -54,13 +57,13 @@ module.exports = {
 ```html
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     ...
-</head>
-<body>
-...
-<script src="../dist/bundle.js"></script>
-</body>
+  </head>
+  <body>
+    ...
+    <script src="../dist/bundle.js"></script>
+  </body>
 </html>
 ```
 
@@ -81,8 +84,7 @@ webpack を利用するにあたってコアとなるコンセプトを理解し
 
 ### Entry
 
-**エントリーポイント(entry point)** は内部依存関係グラフの関係を開始するために webpack がどのモジュールを使用すべきかを示します。webpack
-はどのモジュールやライブラリがそのエントリポイントに依存しているかを把握します。
+**エントリーポイント(entry point)** は内部依存関係グラフの関係を開始するために webpack がどのモジュールを使用すべきかを示します。webpack はどのモジュールやライブラリがそのエントリポイントに依存しているかを把握します。
 
 デフォルト設定では `./src/index.js` になっています。ですが、別のファイルを指定したり、複数のエントリーポイントを指定できます。
 
@@ -90,7 +92,7 @@ webpack を利用するにあたってコアとなるコンセプトを理解し
 
 ```js
 module.exports = {
-    entry: "./path/to/my/entry/file.js"
+  entry: "./path/to/my/entry/file.js"
 };
 ```
 
@@ -106,11 +108,11 @@ module.exports = {
 const path = require("path");
 
 module.exports = {
-    entry: "./path/to/my/entry/file.js",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "my-first-webpack.bundle.js"
-    }
+  entry: "./path/to/my/entry/file.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "my-first-webpack.bundle.js"
+  }
 };
 ```
 
@@ -131,12 +133,12 @@ module.exports = {
 const path = require("path");
 
 module.exports = {
-    output: {
-        filename: "my-first-webpack.bundle.js"
-    },
-    module: {
-        rules: [{test: /\.txt$/, use: "raw-loader"}]
-    }
+  output: {
+    filename: "my-first-webpack.bundle.js"
+  },
+  module: {
+    rules: [{ test: /\.txt$/, use: "raw-loader" }]
+  }
 };
 ```
 
@@ -162,10 +164,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); //installed via npm
 const webpack = require("webpack"); //to access built-in plugins
 
 module.exports = {
-    module: {
-        rules: [{test: /\.txt$/, use: "raw-loader"}]
-    },
-    plugins: [new HtmlWebpackPlugin({template: "./src/index.html"})]
+  module: {
+    rules: [{ test: /\.txt$/, use: "raw-loader" }]
+  },
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })]
 };
 ```
 
@@ -177,7 +179,7 @@ module.exports = {
 
 ```js
 module.exports = {
-    mode: "production"
+  mode: "production"
 };
 ```
 

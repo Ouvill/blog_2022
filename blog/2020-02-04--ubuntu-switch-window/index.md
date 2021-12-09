@@ -2,11 +2,12 @@
 title: "Ubuntu Desktop の Alt + Tab でウィンドウ単位の切り替え[ショートカット]"
 subTitle: ""
 description: ""
-date: 2020-02-04 category: 'it' tags:
-
-- Ubuntu
-- Shortcut cover: ./images/cover.png
-
+date: 2020-02-04
+category: 'it'
+tags:
+  - Ubuntu
+  - Shortcut
+cover: ./images/cover.png
 ---
 
 Ubuntu 18.04 のショートカット Alt + Tab は、アプリケーション単位での切り替えです。
@@ -29,6 +30,8 @@ $ sudo apt install dconf-editor
 - `switch-applications-backward` から `'<Shift><Alt>Tab'` を削除、`switch-windows-backward'` に `'<Shift><Alt>Tab'` を記述
 - dconf-editor を閉じる
 - 設定が反映されていないのなら、X11を再起動
+
+
 
 ## 参考
 

@@ -2,12 +2,12 @@
 title: "LVMでボリュームをリネームする"
 subTitle: ""
 description: ""
-date: 2021-06-13 category: 'it' tags:
-
-- LVM
-- Linux
-- FS
-
+date: 2021-06-13
+category: 'it'
+tags:
+  - LVM
+  - Linux
+  - FS
 ---
 
 普段私はUbuntu Desktopで作業しています。
@@ -33,7 +33,7 @@ $sudo lvrename VolGroup01 LogVol02 home_lv
 ```
 
 変更できたか確認
-
+ 
 ```
 $sudo lvs
 ```
@@ -53,6 +53,7 @@ $sudo blkid /dev/mapper/VolGroup01-home_lv
 ```
 sudo blkid /dev/mapper/VolGroup01-home_lv -s UUID -o value
 ```
+
 
 UUIDを取得したので、fstabにマウント設定が記述されているか確認する
 

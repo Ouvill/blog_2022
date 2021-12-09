@@ -1,11 +1,13 @@
 ---
-category: develop tags:
-
-- javascript
-- typescript
-- react date: 2019-04-17 title: Web サイトの作成 day 1 vssue-title: web-design-practice-1 description: "HTML
-  のデザインを勉強するためにかなり簡単なサイトを作成しました。"
-
+category: develop
+tags:
+  - javascript
+  - typescript
+  - react
+date: 2019-04-17
+title: Web サイトの作成 day 1
+vssue-title: web-design-practice-1
+description: "HTML のデザインを勉強するためにかなり簡単なサイトを作成しました。"
 ---
 
 HTML のデザインを勉強するためにかなり簡単なサイトを作成しました。
@@ -24,8 +26,7 @@ HTML のデザインを勉強するためにかなり簡単なサイトを作成
 
 node.js がインストールされていることを前提にしています。
 
-React に慣れるために無駄に react-create-app で React の開発環境を用意します。ペライチのサイトを用意するならば、必要無いのですが、webpack-dev-server
-やその他諸々の設定も一気にやってくれるので、ありがたく使っていきます。
+React に慣れるために無駄に react-create-app で React の開発環境を用意します。ペライチのサイトを用意するならば、必要無いのですが、webpack-dev-server やその他諸々の設定も一気にやってくれるので、ありがたく使っていきます。
 
 ```bash
 npx react-create-app web-design-practice-1 --typescript
@@ -62,27 +63,27 @@ npm install
 サイトのデザインを作成するために、App.tsx を編集します。以下のように全面的に書き換えました。
 
 ```js
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./App.scss";
 
 class App extends Component {
-    render() {
-        return (
-            <div className="Site">
-                <header className="Site-header">
-                    <div className="top-wrapper">
-                        <div className="top-container">
-                            <h1>サイトデザイン練習</h1>
-                            <h2>第一弾 : トップ画像を用意する</h2>
-                            <p>
-                                プログラムを作れるだけで、見た目が全然かっこよくなければ利用する気がおきないと思うので、デザインをちょっと頑張る
-                            </p>
-                        </div>
-                    </div>
-                </header>
+  render() {
+    return (
+      <div className="Site">
+        <header className="Site-header">
+          <div className="top-wrapper">
+            <div className="top-container">
+              <h1>サイトデザイン練習</h1>
+              <h2>第一弾 : トップ画像を用意する</h2>
+              <p>
+                プログラムを作れるだけで、見た目が全然かっこよくなければ利用する気がおきないと思うので、デザインをちょっと頑張る
+              </p>
             </div>
-        );
-    }
+          </div>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
@@ -96,8 +97,7 @@ export default App;
 
 今回は [Normalize.css](https://necolas.github.io/normalize.css/) を利用します。
 
-Normalize.css は HTML5 にも対応しており、 [Bootstrap](https://getbootstrap.com/)
-, [HTML5 Boilerplate](https://html5boilerplate.com/) などで利用されています。
+Normalize.css は HTML5 にも対応しており、 [Bootstrap](https://getbootstrap.com/), [HTML5 Boilerplate](https://html5boilerplate.com/) などで利用されています。
 
 ```
 npm install -s normalize.css
@@ -121,8 +121,7 @@ import * as serviceWorker from "./serviceWorker";
 
 画像を探すのに [unsplash](https://unsplash.com/) を利用しました。多数の美しい写真が公開されており、無料で利用することができるサイトです。
 
-今回使用した画像は Arnold Francisca
-さんの[画像](https://unsplash.com/photos/f77Bh3inUpE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)を利用しました。
+今回使用した画像は Arnold Francisca さんの[画像](https://unsplash.com/photos/f77Bh3inUpE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)を利用しました。
 
 unsplash からダンロードできる写真は 1 ~ 3 MB ほどあることもあり、かなり画像サイズが大きいです。
 
@@ -147,11 +146,11 @@ mv public/img cover.jpg
 
 ```scss
 .top-wrapper {
-    background-image: url("/img./cover.jpg");
-    background-size: cover;
-    width: 100%;
-    min-height: 80vh;
-    position: relative;
+  background-image: url("/img./cover.jpg");
+  background-size: cover;
+  width: 100%;
+  min-height: 80vh;
+  position: relative;
 }
 ```
 
@@ -163,11 +162,11 @@ mv public/img cover.jpg
 
 ```scss
 .top-container {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 ```
 
@@ -181,16 +180,14 @@ mv public/img cover.jpg
 
 ページを開いたときに Web フォントを読み込むように設定すると、クライアント側のフォントのあるなしを意識する必要がなくなります。
 
-[Google フォント + 日本語](https://googlefonts.github.io/japanese/) は無料で Web フォントを利用できる Google
-が提供しているサービスです。今回はこちらを利用します。今回はさわらびフォントを採用しました。
+[Google フォント + 日本語](https://googlefonts.github.io/japanese/) は無料で Web フォントを利用できる Google が提供しているサービスです。今回はこちらを利用します。今回はさわらびフォントを採用しました。
 
 `public/index.html` のヘッダー要素内に以下を記述します。
 
 ```html
-
 <link
-    href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho"
+  rel="stylesheet"
 />
 ```
 
@@ -198,10 +195,10 @@ mv public/img cover.jpg
 
 ```scss
 .top-container {
-    // 省略
-    color: white;
-    opacity: 0.9;
-    font-family: "Sawarabi Mincho";
+  // 省略
+  color: white;
+  opacity: 0.9;
+  font-family: "Sawarabi Mincho";
 }
 ```
 
@@ -217,14 +214,14 @@ mv public/img cover.jpg
 
 ```scss
 .top-wrapper::before {
-    background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: " ";
 }
 ```
 
@@ -234,10 +231,10 @@ mv public/img cover.jpg
 
 ### おまけ
 
-このままだと、動きもなくつまらないので、「ガンバレ」ボタンを作成します。 ガンバレボタンを表示させたい場所に HTML を記述します。
+このままだと、動きもなくつまらないので、「ガンバレ」ボタンを作成します。
+ガンバレボタンを表示させたい場所に HTML を記述します。
 
 ```html
-
 <button className="btn" onClick={() => { alert("ありがとうございます"); }} >
 ```
 
@@ -245,9 +242,9 @@ CSS で見た目を整えます。
 
 ```scss
 .btn {
-    padding: 0.6em 1em;
-    border-radius: 0.6em;
-    background-color: white;
+  padding: 0.6em 1em;
+  border-radius: 0.6em;
+  background-color: white;
 }
 ```
 

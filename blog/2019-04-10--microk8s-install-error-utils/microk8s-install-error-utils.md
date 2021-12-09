@@ -1,12 +1,14 @@
 ---
-category: develop tags:
-
-- k8s
-- microk8s
-- snap
-- linux date: 2019-04-11 title: Ubuntu 18.04 で microk8s が utils.sh 関連のエラーでインストールできないときの対処 vssue-title:
-  microk8s-install-error-utils description: "Ubuntu 18.04 で microk8s が utils.sh 関連のエラーでインストールできないときの対処"
-
+category: develop
+tags:
+  - k8s
+  - microk8s
+  - snap
+  - linux
+date: 2019-04-11
+title: Ubuntu 18.04 で microk8s が utils.sh 関連のエラーでインストールできないときの対処
+vssue-title: microk8s-install-error-utils
+description: "Ubuntu 18.04 で microk8s が utils.sh 関連のエラーでインストールできないときの対処"
 ---
 
 k8s が最近流行っているし、ちょっと勉強がてら、お手軽開発環境の microk8s でもインストールしようとしたら、なんだかインストール時にエラーが発生。
@@ -81,9 +83,11 @@ Github のほうを覗いてみると、しっかりとエラーとして Issue 
 
 どうやら Ubuntu 18.04 の特定環境下で発生するエラーのよう。
 
-チケットが切られたのが記事執筆時点で 9 日前。 そして修正がコミットされたのが、その翌日（はえー）
+チケットが切られたのが記事執筆時点で 9 日前。
+そして修正がコミットされたのが、その翌日（はえー）
 
-安定版にはまだ修正内容が取り入れていないが、edge 版には修正がすでに取り込まれた。 edge 版をインストール。
+安定版にはまだ修正内容が取り入れていないが、edge 版には修正がすでに取り込まれた。
+ edge 版をインストール。
 
 ```bash
 $sudo snap install microk8s --edge --classic

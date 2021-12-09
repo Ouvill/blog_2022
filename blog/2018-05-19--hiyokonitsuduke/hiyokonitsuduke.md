@@ -1,12 +1,12 @@
 ---
 title: "Twitter で #hiyokonitsuduke タグが流行っているーエンジニアの転職界隈"
 subTitle: "Twitter 転職で高待遇？？"
-date: 2018-05-19 00:00:00 category: "develop"
+date: 2018-05-19 00:00:00
+category: "develop"
 cover:
 ---
 
-本日 Twitter
-を閲覧していると、「[#hiyokonitsuduke](https://twitter.com/search?f=tweets&q=%23hiyokonitsuduke&src=typd)」というタグが流行っていました。今回はそのことについて
+本日 Twitter を閲覧していると、「[#hiyokonitsuduke](https://twitter.com/search?f=tweets&q=%23hiyokonitsuduke&src=typd)」というタグが流行っていました。今回はそのことについて
 
 ## どんなことが書かれたタグ？
 
@@ -50,8 +50,7 @@ GCPの技術本出版にちょっと関わった事もある
 希望年収：要相談</p>
 <a href="https://twitter.com/hashtag/hiyokonitsuduke?src=hash&amp;ref_src=twsrc%5Etfw">#hiyokonitsuduke</a>
 
-— yoichi㌠@ガルパンはいいぞ (@yo_i_chi) <a href="https://twitter.com/yo_i_chi/status/997030937559945216?ref_src=twsrc%5Etfw">
-2018年5月17日</a></blockquote>
+— yoichi㌠@ガルパンはいいぞ (@yo_i_chi) <a href="https://twitter.com/yo_i_chi/status/997030937559945216?ref_src=twsrc%5Etfw">2018年5月17日</a></blockquote>
 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
@@ -66,8 +65,6 @@ GCPの技術本出版にちょっと関わった事もある
 ツイッターを検索していると「[ひよこ大佐@hiyoko_taisa](https://twitter.com/hiyoko_taisa)」という方が Twitter で以下のようなツイートをしたのが元ネタのようです。
 
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">500万〜550万くらいでNW(Cisco系の機器は一通り)・x86サーバー周りの中〜大規模の設計〜構築・QA対応等の経験があって、AWSとかAzureでの経験もあり、英語は技術文書とか英文メールの読み書きとビジネス上の意思疎通する会話ぐらいは問題ない人材雇いたい会社、ありませんかね……</p>&mdash; ひよこ大佐🐣 (@hiyoko_taisa) <a href="https://twitter.com/hiyoko_taisa/status/935414721057927168?ref_src=twsrc%5Etfw">2017年11月28日</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 
 「ひよこ大佐」がこのよう呟いたら、「Google」や「Microsoft」、「Redhat」といった大企業からたくさんの声がかかり、引く手あまたの転職活動となったようです。
 
@@ -81,4 +78,5 @@ GCPの技術本出版にちょっと関わった事もある
 
 ## まとめ
 
-転職エンジニア界隈で特殊なタグが流行っているという記事でした。 現在、求職活動中の身として、私も頑張らなければと思いました。
+転職エンジニア界隈で特殊なタグが流行っているという記事でした。
+現在、求職活動中の身として、私も頑張らなければと思いました。

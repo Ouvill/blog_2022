@@ -1,12 +1,14 @@
 ---
-category: develop tags:
-
-- apple
-- google
-- android
-- iOS date: 2019-04-19 title: "Google Play ストア と Apple ストアのバッジを用意する"
-  vssue-title: apple-store-google-store-link description: ""
-
+category: develop
+tags:
+  - apple
+  - google
+  - android
+  - iOS
+date: 2019-04-19
+title: "Google Play ストア と Apple ストアのバッジを用意する"
+vssue-title: apple-store-google-store-link
+description: ""
 ---
 
 アプリのダウンロードリンクで使われる以下のような画像。

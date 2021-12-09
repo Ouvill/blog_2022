@@ -2,7 +2,9 @@
 title: "Discord に RSS の通知を流す"
 subTitle: "最新情報をチャットに流す"
 description: "最新情報をチャットに流す"
-date: 2019-01-28 category: 'game' cover: "thumb.jpg"
+date: 2019-01-28
+category: 'game'
+cover: "thumb.jpg"
 ---
 
 ゲーマーに人気のボイスチャットツール、Discord は利用していますか。
@@ -100,20 +102,16 @@ IFTTT で設定していきます。
 ![Screenshot from 2019-01-25 22-58-09.png](./images/a21425d0ce4e40829f559d31a21526ab.png)
 
 #### 各要素を入力
-
 - `URL` に Discord で発行した Webhooks URL を記述
 - `Method` で `POST` を選択
 - `Content Type` で `application/json` を選択
 - `Body` を以下のように記述
 
 ```json
-{
-    "content": " **{{EntryTitle}}** {{EntryPublished}} {{EntryUrl}} "
-}
+{ "content" : " **{{EntryTitle}}** {{EntryPublished}} {{EntryUrl}} " }
 ```
 
-※タイトルは太字で投稿日時、投稿URLをDiscordに投稿するように設定してある。Discord の Webhook については次のURL
-が詳しい（英語）https://discordapp.com/developers/docs/resources/webhook
+※タイトルは太字で投稿日時、投稿URLをDiscordに投稿するように設定してある。Discord の Webhook については次のURL が詳しい（英語）https://discordapp.com/developers/docs/resources/webhook
 
 設定できれば `Create action` をクリック
 
@@ -133,6 +131,4 @@ IFTTT を利用することで Discord に更新情報を通知できるよう�
 
 ![](./game.jpg)
 
-Photo
-by [Glenn Carstens-Peters](https://unsplash.com/photos/0woyPEJQ7jc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/search/photos/game?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Photo by [Glenn Carstens-Peters](https://unsplash.com/photos/0woyPEJQ7jc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/game?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

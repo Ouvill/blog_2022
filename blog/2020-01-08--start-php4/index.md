@@ -2,10 +2,11 @@
 title: "PHP のお勉強4"
 subTitle: ""
 description: ""
-date: 2020-01-08 category: 'it' tags:
-
-- PHP cover: ./images/cover.png
-
+date: 2020-01-08
+category: 'it'
+tags:
+  - PHP
+cover: ./images/cover.png
 ---
 
 PHP のお勉強。ほとんどメモ書きのようなもの。

@@ -2,7 +2,8 @@
 title: "Tutanotaを使ってみた。ドイツの暗号メールサービス"
 subTitle: "結構良さそう"
 description: "Tutanotaを使ってみた。ドイツの暗号メールサービス"
-date: 2018-12-04 20:00:08 category: "security"
+date: 2018-12-04 20:00:08
+category: "security"
 cover: "thumb.jpg"
 ---
 
@@ -49,8 +50,7 @@ UI は使いやすい印象。ウェブメールを触ったことがある人�
 
 現在私は Protonmail を有料アカウントとして利用しています。
 
-Protonmail はGPG暗号を利用しています。GPG暗号は、現在のメール暗号として主流です。Protonmail のほかにも Firefox や Chrome のブラウザ拡張、Thunderbird の Enigmail
-を利用することでGPG暗号を施したメールのやり取りが可能で、汎用性が高いです。
+Protonmail はGPG暗号を利用しています。GPG暗号は、現在のメール暗号として主流です。Protonmail のほかにも Firefox や Chrome のブラウザ拡張、Thunderbird の Enigmail を利用することでGPG暗号を施したメールのやり取りが可能で、汎用性が高いです。
 
 Protonmail は PGP暗号をフルサポートしているために、ほかツールでPGPメールを運用している人ともやり取りすることができます。
 
@@ -62,7 +62,7 @@ Protonmail と違い、 Tutanota は PGP 暗号をサポートしていません
 
 ~~記事執筆時点では日本語化はされておりません。ですが、公開されているソースコードの中身を除いてみると、日本語に翻訳されたファイルがあったので、じきに日本語対応となるでしょう。~~
 
-Tutanota の UI は日本語で利用可能です。
+Tutanota の UI は日本語で利用可能です。 
 
 ## iOS クライアントがとても遅いときの対策案
 
@@ -86,6 +86,4 @@ Safari の「ホーム画面に追加」機能を使えば、ほぼアプリ版�
 
 ![](./lock.jpg)
 
-Photo
-by [John Salvino](https://unsplash.com/photos/bqGBbLq_yfc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/search/photos/security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Photo by [John Salvino](https://unsplash.com/photos/bqGBbLq_yfc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/security?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)

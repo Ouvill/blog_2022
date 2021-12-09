@@ -1,11 +1,13 @@
 ---
-category: develop tags:
-
-- javascript
-- webpack
-- scss date: 2019-04-15 title: webpack と Sass/SCSS の設定 vssue-title: webpack-Sass/SCSS description: "webpack
-  の開発環境を利用して、Sass/SCSS を自動的にコンパイルする環境を構築します。"
-
+category: develop
+tags:
+  - javascript
+  - webpack
+  - scss
+date: 2019-04-15
+title: webpack と Sass/SCSS の設定
+vssue-title: webpack-Sass/SCSS
+description: "webpack の開発環境を利用して、Sass/SCSS を自動的にコンパイルする環境を構築します。"
 ---
 
 webpack の開発環境を利用して、Sass/SCSS を自動的にコンパイルする環境を構築します。
@@ -32,8 +34,7 @@ webpack や node-scss コンパイル時に必要になるだけなので`npm in
 npm install --save-dev webpack webpack-cli node-sass sass-loader
 ```
 
-['css-loader'](https://github.com/webpack-contrib/css-loader)
-と ['style-loader'](https://github.com/webpack-contrib/style-loader) も利用して、CSS ファイルをバンドルできるようにします。
+['css-loader'](https://github.com/webpack-contrib/css-loader) と ['style-loader'](https://github.com/webpack-contrib/style-loader) も利用して、CSS ファイルをバンドルできるようにします。
 
 ```
 npm install style-loader css-loader --save-dev
@@ -46,18 +47,18 @@ npm install style-loader css-loader --save-dev
 ```js
 // webpack.config.js
 module.exports = {
-    module: {
-        rules: [
-            {
-                test: /\.scss$/,
-                use: [
-                    "style-loader", // creates style nodes from JS strings
-                    "css-loader", // translates CSS into CommonJS
-                    "sass-loader" // compiles Sass to CSS, using Node Sass by default
-                ]
-            }
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
-    }
+      }
+    ]
+  }
 };
 ```
 
@@ -67,19 +68,11 @@ module.exports = {
 
 ```js
 {
-    "scripts"
-:
-    {
-        "build"
-    :
-        "webpack --mode=production",
-            "dev"
-    :
-        "webpack --mode=development",
-            "watch"
-    :
-        "webpack --mode=development --watch"
-    }
+ "scripts": {
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development",
+    "watch": "webpack --mode=development --watch"
+ }
 }
 ```
 
@@ -97,9 +90,9 @@ import "./scss/index.scss";
 ```scss
 // src/scss/index.scss
 div {
-    h1 {
-        color: blue;
-    }
+  h1 {
+    color: blue;
+  }
 }
 ```
 
@@ -107,18 +100,17 @@ div {
 <!-- src/index.html -->
 <!DOCTYPE html>
 <html>
-<head></head>
+  <head> </head>
 
-<body>
-<div><h1>hello</h1></div>
-<h1>world</h1>
-<script src="../dist/main.js"></script>
-</body>
+  <body>
+    <div><h1>hello</h1></div>
+    <h1>world</h1>
+    <script src="../dist/main.js"></script>
+  </body>
 </html>
 ```
 
-`src/index.js` では `src/scss/index.scss` をインポートしています。`src/scss/index.scss` は SCSS 記法で入れ子状にスタイルを指定しています。`src/index.html`では
-webpack の生成物の `dist/main.js` を読み込むように指定しています。
+`src/index.js` では `src/scss/index.scss` をインポートしています。`src/scss/index.scss` は SCSS 記法で入れ子状にスタイルを指定しています。`src/index.html`では webpack の生成物の `dist/main.js` を読み込むように指定しています。
 
 コンパイルします。
 
@@ -133,7 +125,6 @@ npm run build
 SCSS の指定通り以下の場所だけに文字色が変わっていることが確認できます。
 
 ```html
-
 <div><h1>hello</h1></div>
 ```
 

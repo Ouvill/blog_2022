@@ -2,11 +2,12 @@
 title: "ブログを VuePress から GatsbyJS に変更"
 subTitle: ""
 description: ""
-date: 2019-06-28 category: 'it' tags:
-
-- React
-- GatsbyJS cover: ./images/cover.png
-
+date: 2019-06-28
+category: 'it'
+tags:
+  - React
+  - GatsbyJS
+cover: ./images/cover.png
 ---
 
 本サイトのブログシステムを VuePress から GatsbyJS に変更しました。
