@@ -6,12 +6,11 @@ import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
 
 const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
   data,
-  pageContext,
 }) => {
-  const { markdownRemark } = data;
-  if (!markdownRemark) return null;
+  const { currentPost, next, prev } = data;
+  if (!currentPost) return null;
 
-  const { frontmatter, html } = markdownRemark;
+  const { frontmatter, html } = currentPost;
 
   if (!frontmatter) return null;
   if (!html) return null;
@@ -25,14 +24,10 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
         />
         <ul>
           <li>
-            {pageContext.next?.fields.slug && (
-              <Link to={pageContext.next.fields.slug}>Next</Link>
-            )}
+            {next?.fields?.slug && <Link to={next.fields.slug}>Next</Link>}
           </li>
           <li>
-            {pageContext.prev?.fields.slug && (
-              <Link to={pageContext.prev.fields.slug}>Previous</Link>
-            )}
+            {prev?.fields?.slug && <Link to={prev.fields.slug}>Previous</Link>}
           </li>
         </ul>
       </div>
@@ -41,9 +36,27 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
 };
 
 export const pageQuery = graphql`
-  query BlogPage($id: String) {
-    markdownRemark(id: { eq: $id }) {
+  query BlogPage($id: String, $nextId: String, $prevId: String) {
+    currentPost: markdownRemark(id: { eq: $id }) {
       html
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+      }
+    }
+
+    next: markdownRemark(id: { eq: $nextId }) {
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+      }
+    }
+
+    prev: markdownRemark(id: { eq: $prevId }) {
       fields {
         slug
       }

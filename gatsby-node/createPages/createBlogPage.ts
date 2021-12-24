@@ -2,13 +2,11 @@ import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
 import { CreateBlogPageQuery } from "../../graphql-types";
 
-type Node = CreateBlogPageQuery["allMarkdownRemark"]["edges"][number]["node"];
-
 export type BlogPageContext = {
   slug: string;
   id: string;
-  next: Node | null;
-  prev: Node | null;
+  nextId?: string;
+  prevId?: string;
 };
 
 export const createBlogPage = async ({
@@ -57,8 +55,8 @@ export const createBlogPage = async ({
         context: {
           slug: node.fields.slug,
           id: node.id,
-          next,
-          prev,
+          nextId: next?.id,
+          prevId: prev?.id,
         },
       });
     });
