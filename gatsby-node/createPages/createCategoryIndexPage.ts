@@ -1,5 +1,7 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
+import { CreateCategoryIndexPageQuery } from "../../graphql-types";
+import _ from "lodash";
 
 export type CategoryIndexContext = {
   limit: number;
@@ -21,7 +23,7 @@ export const createCategoryIndexPage = async ({
     `src/templates/CategoryIndexTemplate.tsx`
   );
   console.log("createCategoryIndexPage");
-  return graphql(`
+  return graphql<CreateCategoryIndexPageQuery>(`
     query CreateCategoryIndexPage {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "//blog//" } }
@@ -34,26 +36,28 @@ export const createCategoryIndexPage = async ({
       }
     }
   `).then((result) => {
-    if (result.errors) {
+    if (result.errors || !result.data) {
       return Promise.reject(result.errors);
     }
     const postsPerPage = 10;
-    // @ts-ignore
     result.data.allMarkdownRemark.group.forEach((category) => {
       const numPages = Math.ceil(category.totalCount / postsPerPage);
-      Array.from({ length: numPages }).forEach((_, i) => {
+      if (!category.fieldValue) return;
+      for (let i = 0; i < numPages; i++) {
+        const currentPage = i + 1;
+        const context: CategoryIndexContext = {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage,
+          category: category.fieldValue,
+        };
         createPage<CategoryIndexContext>({
-          path: `/categories/${category.fieldValue}/${i + 1}`,
+          path: `/category/${_.kebabCase(category.fieldValue)}/${currentPage}`,
           component: categoryIndexTemplate,
-          context: {
-            limit: postsPerPage,
-            skip: i * postsPerPage,
-            numPages,
-            currentPage: i + 1,
-            category: category.fieldValue,
-          },
+          context,
         });
-      });
+      }
     });
   });
 };

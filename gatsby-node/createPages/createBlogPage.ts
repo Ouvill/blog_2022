@@ -1,11 +1,8 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
-import { MarkdownRemarkFields } from "../../graphql-types";
+import { CreateBlogPageQuery } from "../../graphql-types";
 
-type Node = {
-  id: string;
-  fields: MarkdownRemarkFields;
-};
+type Node = CreateBlogPageQuery["allMarkdownRemark"]["edges"][number]["node"];
 
 export type BlogPageContext = {
   slug: string;
@@ -23,7 +20,7 @@ export const createBlogPage = async ({
 }) => {
   const { createPage } = actions;
   const blogPostTemplate = path.resolve("src/templates/BlogTemplate.tsx");
-  return graphql(`
+  return graphql<CreateBlogPageQuery>(`
     query CreateBlogPage {
       allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "//blog//" } }
@@ -45,13 +42,14 @@ export const createBlogPage = async ({
       return Promise.reject(result.errors);
     }
 
-    // @ts-ignore
     const { edges } = result.data.allMarkdownRemark;
-    // @ts-ignore
     edges.forEach(({ node }, index) => {
-      const next: Node = index === 0 ? null : edges[index - 1].node;
-      const prev: Node =
-        index === edges.length - 1 ? null : edges[index + 1].node;
+      if (!node.fields?.slug) {
+        return;
+      }
+
+      const next = index === 0 ? null : edges[index - 1].node;
+      const prev = index === edges.length - 1 ? null : edges[index + 1].node;
 
       createPage<BlogPageContext>({
         path: node.fields.slug,

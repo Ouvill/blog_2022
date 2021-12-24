@@ -8,7 +8,17 @@ module.exports = {
   plugins: [
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-emotion",
-    "gatsby-plugin-graphql-codegen",
+    {
+      resolve: "gatsby-plugin-graphql-codegen",
+      options: {
+        documentPaths: [
+          "./src/**/*.{ts,tsx}",
+          "./gatsby-node/**/*.{ts,tsx}",
+          "./.cache/fragments/*.js",
+          "./node_modules/gatsby-*/**/*.js",
+        ],
+      },
+    },
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
