@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { BlogPageQuery } from "../../graphql-types";
+import Layout from "../components/Layout";
 
 const BlogTemplate: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
   const { markdownRemark } = data;
@@ -11,13 +12,15 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
   if (!frontmatter) return null;
   if (!html) return null;
   return (
-    <div>
-      <h1>{frontmatter.title}</h1>
-      <div
-        className="blog-post-content"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    </div>
+    <Layout>
+      <div>
+        <h1>{frontmatter.title}</h1>
+        <div
+          className="blog-post-content"
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      </div>
+    </Layout>
   );
 };
 

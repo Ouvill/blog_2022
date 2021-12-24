@@ -1,14 +1,10 @@
 import React from "react";
-import Search from "./search";
-
-const searchIndices = [{ name: `Pages`, title: `Pages` }];
+import Header from "./Header";
 
 const Layout: React.FC = ({ children }) => {
   return (
     <div>
-      <div>
-        <Search indices={searchIndices} />
-      </div>
+      <Header />
       {children}
     </div>
   );
