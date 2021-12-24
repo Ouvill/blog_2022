@@ -1,6 +1,8 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
 
+export type BlogPageContext = { slug: string; id: string };
+
 export const createBlogPage = async ({
   actions,
   graphql,
@@ -28,12 +30,13 @@ export const createBlogPage = async ({
       }
     }
   `).then((result) => {
-    if (result.errors) {
+    if (result.errors || !result.data) {
       return Promise.reject(result.errors);
     }
+
     // @ts-ignore
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      createPage({
+      createPage<BlogPageContext>({
         path: node.fields.slug,
         component: blogPostTemplate,
         context: {

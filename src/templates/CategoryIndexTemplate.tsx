@@ -2,16 +2,10 @@ import React from "react";
 import { graphql, Link, PageProps } from "gatsby";
 import { CategoryIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
-
-type PageContext = {
-  limit: number;
-  skip: number;
-  numPages: number;
-  currentPage: number;
-};
+import { CategoryIndexContext } from "../../gatsby-node/createPages/createCategoryIndexPage";
 
 const CategoryIndexTemplate: React.FC<
-  PageProps<CategoryIndexPageQuery, PageContext>
+  PageProps<CategoryIndexPageQuery, CategoryIndexContext>
 > = ({ data, pageContext }) => {
   if (!data) return null;
 

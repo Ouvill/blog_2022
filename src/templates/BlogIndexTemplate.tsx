@@ -2,16 +2,10 @@ import React from "react";
 import { graphql, Link, PageProps } from "gatsby";
 import { BlogIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
-
-type PageContext = {
-  limit: number;
-  skip: number;
-  numPages: number;
-  currentPage: number;
-};
+import { BlogIndexPageContext } from "../../gatsby-node/createPages/createBlogIndexPage";
 
 const BlogIndexTemplate: React.FC<
-  PageProps<BlogIndexPageQuery, PageContext>
+  PageProps<BlogIndexPageQuery, BlogIndexPageContext>
 > = ({ data, pageContext }) => {
   if (!data) return null;
 

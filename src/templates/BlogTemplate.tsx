@@ -2,8 +2,11 @@ import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { BlogPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
+import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
 
-const BlogTemplate: React.FC<PageProps<BlogPageQuery>> = ({ data }) => {
+const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
+  data,
+}) => {
   const { markdownRemark } = data;
   if (!markdownRemark) return null;
 

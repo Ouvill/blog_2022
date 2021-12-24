@@ -1,6 +1,13 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
 
+export type BlogIndexPageContext = {
+  limit: number;
+  skip: number;
+  numPages: number;
+  currentPage: number;
+};
+
 export const createBlogIndexPage = async ({
   actions,
   graphql,
@@ -29,7 +36,7 @@ export const createBlogIndexPage = async ({
       result.data.allMarkdownRemark.totalCount / postsPerPage
     );
     Array.from({ length: numPages }).forEach((_, i) => {
-      createPage({
+      createPage<BlogIndexPageContext>({
         path: i === 0 ? `/` : `/indexes/${i + 1}`,
         component: blogIndexTemplate,
         context: {

@@ -1,6 +1,14 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
 
+export type CategoryIndexContext = {
+  limit: number;
+  skip: number;
+  numPages: number;
+  currentPage: number;
+  category: string;
+};
+
 export const createCategoryIndexPage = async ({
   actions,
   graphql,
@@ -34,7 +42,7 @@ export const createCategoryIndexPage = async ({
     result.data.allMarkdownRemark.group.forEach((category) => {
       const numPages = Math.ceil(category.totalCount / postsPerPage);
       Array.from({ length: numPages }).forEach((_, i) => {
-        createPage({
+        createPage<CategoryIndexContext>({
           path: `/categories/${category.fieldValue}/${i + 1}`,
           component: categoryIndexTemplate,
           context: {
