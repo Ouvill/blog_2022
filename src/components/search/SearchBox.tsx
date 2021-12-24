@@ -1,7 +1,6 @@
 import React from "react";
 import { connectSearchBox } from "react-instantsearch-dom";
 import { SearchBoxProvided } from "react-instantsearch-core";
-import { Search as SearchIcon } from "@styled-icons/fa-solid";
 
 export type Props = {
   className?: string;
@@ -22,7 +21,6 @@ export default connectSearchBox<Props>(
           value={currentRefinement}
           onFocus={onFocus}
         />
-        <SearchIcon className={"SearchIcon"} />
       </form>
     );
   }
