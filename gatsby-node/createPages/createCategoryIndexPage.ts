@@ -1,7 +1,7 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
 import { CreateCategoryIndexPageQuery } from "../../graphql-types";
-import _ from "lodash";
+import { genCategoryIndexSlug } from "../../src/utils/genSlug";
 
 export type CategoryIndexContext = {
   limit: number;
@@ -53,7 +53,7 @@ export const createCategoryIndexPage = async ({
           category: category.fieldValue,
         };
         createPage<CategoryIndexContext>({
-          path: `/category/${_.kebabCase(category.fieldValue)}/${currentPage}`,
+          path: genCategoryIndexSlug(category.fieldValue, currentPage),
           component: categoryIndexTemplate,
           context,
         });

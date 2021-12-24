@@ -1,7 +1,7 @@
 import path from "path";
 import { Reporter, Actions, CreatePagesArgs } from "gatsby";
-import _ from "lodash";
 import { CreateTagIndexPageQuery } from "../../graphql-types";
+import { genTagIndexSlug } from "../../src/utils/genSlug";
 
 export type TagIndexPageContext = {
   tag: string;
@@ -60,7 +60,7 @@ export const createTagIndexPage = async ({
       };
 
       createPage<TagIndexPageContext>({
-        path: `/tags/${_.kebabCase(tag.fieldValue)}/${currentPage}`,
+        path: genTagIndexSlug(tag.fieldValue, currentPage),
         component: tagTemplate,
         context,
       });
