@@ -3,6 +3,8 @@ import { graphql, Link, PageProps } from "gatsby";
 import { BlogIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { BlogIndexPageContext } from "../../gatsby-node/createPages/createBlogIndexPage";
+import IndexPagination from "../components/IndexPagination";
+import { genBlogIndexSlug } from "../utils/genSlug";
 
 const BlogIndexTemplate: React.FC<
   PageProps<BlogIndexPageQuery, BlogIndexPageContext>
@@ -30,49 +32,11 @@ const BlogIndexTemplate: React.FC<
           );
         })}
 
-        {/* Pagination */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "2rem",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {Array.from({ length: pageContext.numPages }, (_, i) => (
-              <Link
-                key={`pagination-number${i + 1}`}
-                to={i === 0 ? "/" : `/indexes/${i + 1}`}
-                style={{
-                  padding: "0.5rem",
-                  margin: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  color: "black",
-                  fontWeight: "bold",
-                  fontSize: "1.2rem",
-                  textAlign: "center",
-                  width: "2rem",
-                  height: "2rem",
-                  lineHeight: "2rem",
-                  backgroundColor:
-                    pageContext.currentPage === i + 1 ? "#ccc" : "white",
-                }}
-              >
-                {i + 1}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <IndexPagination
+          currentPage={pageContext.currentPage}
+          numPages={pageContext.numPages}
+          generateSlug={genBlogIndexSlug}
+        />
       </div>
     </Layout>
   );

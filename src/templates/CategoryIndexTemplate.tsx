@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { graphql, Link, PageProps } from "gatsby";
 import { CategoryIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { CategoryIndexContext } from "../../gatsby-node/createPages/createCategoryIndexPage";
+import IndexPagination from "../components/IndexPagination";
+import { genCategoryIndexSlug } from "../utils/genSlug";
 
 const CategoryIndexTemplate: React.FC<
   PageProps<CategoryIndexPageQuery, CategoryIndexContext>
 > = ({ data, pageContext }) => {
   if (!data) return null;
+
+  const generateSlug = useCallback(
+    (page: number) => {
+      return genCategoryIndexSlug(pageContext.category, page);
+    },
+    [pageContext.category]
+  );
 
   return (
     <Layout>
@@ -30,49 +39,11 @@ const CategoryIndexTemplate: React.FC<
           );
         })}
 
-        {/* Pagination */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "2rem",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {Array.from({ length: pageContext.numPages }, (_, i) => (
-              <Link
-                key={`pagination-number${i + 1}`}
-                to={i === 0 ? "/" : `/indexes/${i + 1}`}
-                style={{
-                  padding: "0.5rem",
-                  margin: "0.5rem",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  color: "black",
-                  fontWeight: "bold",
-                  fontSize: "1.2rem",
-                  textAlign: "center",
-                  width: "2rem",
-                  height: "2rem",
-                  lineHeight: "2rem",
-                  backgroundColor:
-                    pageContext.currentPage === i + 1 ? "#ccc" : "white",
-                }}
-              >
-                {i + 1}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <IndexPagination
+          currentPage={pageContext.currentPage}
+          numPages={pageContext.numPages}
+          generateSlug={generateSlug}
+        />
       </div>
     </Layout>
   );
