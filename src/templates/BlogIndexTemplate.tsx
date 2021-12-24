@@ -1,10 +1,11 @@
 import React from "react";
-import { graphql, Link, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { BlogIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { BlogIndexPageContext } from "../../gatsby-node/createPages/createBlogIndexPage";
 import IndexPagination from "../components/IndexPagination";
 import { genBlogIndexSlug } from "../utils/genSlug";
+import Index from "../components/Index";
 
 const BlogIndexTemplate: React.FC<
   PageProps<BlogIndexPageQuery, BlogIndexPageContext>
@@ -14,24 +15,7 @@ const BlogIndexTemplate: React.FC<
   return (
     <Layout>
       <div>
-        {data.allMarkdownRemark.edges.map(({ node }) => {
-          if (
-            !node.frontmatter ||
-            !node.frontmatter.title ||
-            !node.frontmatter.date ||
-            !node.fields?.slug
-          )
-            return null;
-          return (
-            <div key={node.id}>
-              <Link to={node.fields.slug}>
-                <h3>{node.frontmatter.title}</h3>
-              </Link>
-              <p>{node.frontmatter.date}</p>
-            </div>
-          );
-        })}
-
+        <Index data={data} />
         <IndexPagination
           currentPage={pageContext.currentPage}
           numPages={pageContext.numPages}

@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
-import { graphql, Link, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { CategoryIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { CategoryIndexContext } from "../../gatsby-node/createPages/createCategoryIndexPage";
 import IndexPagination from "../components/IndexPagination";
 import { genCategoryIndexSlug } from "../utils/genSlug";
+import Index from "../components/Index";
 
 const CategoryIndexTemplate: React.FC<
   PageProps<CategoryIndexPageQuery, CategoryIndexContext>
@@ -21,23 +22,7 @@ const CategoryIndexTemplate: React.FC<
   return (
     <Layout>
       <div>
-        {data.allMarkdownRemark.edges.map(({ node }) => {
-          if (
-            !node.frontmatter ||
-            !node.frontmatter.title ||
-            !node.frontmatter.date ||
-            !node.fields?.slug
-          )
-            return null;
-          return (
-            <div key={node.id}>
-              <Link to={node.fields.slug}>
-                <h3>{node.frontmatter.title}</h3>
-              </Link>
-              <p>{node.frontmatter.date}</p>
-            </div>
-          );
-        })}
+        <Index data={data} />
 
         <IndexPagination
           currentPage={pageContext.currentPage}
