@@ -1,11 +1,12 @@
 import React from "react";
-import { graphql, PageProps } from "gatsby";
+import { graphql, Link, PageProps } from "gatsby";
 import { BlogPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
 
 const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
   data,
+  pageContext,
 }) => {
   const { markdownRemark } = data;
   if (!markdownRemark) return null;
@@ -22,6 +23,18 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: html }}
         />
+        <ul>
+          <li>
+            {pageContext.next?.fields.slug && (
+              <Link to={pageContext.next.fields.slug}>Next</Link>
+            )}
+          </li>
+          <li>
+            {pageContext.prev?.fields.slug && (
+              <Link to={pageContext.prev.fields.slug}>Previous</Link>
+            )}
+          </li>
+        </ul>
       </div>
     </Layout>
   );

@@ -1,7 +1,18 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
+import { MarkdownRemarkFields } from "../../graphql-types";
 
-export type BlogPageContext = { slug: string; id: string };
+type Node = {
+  id: string;
+  fields: MarkdownRemarkFields;
+};
+
+export type BlogPageContext = {
+  slug: string;
+  id: string;
+  next: Node | null;
+  prev: Node | null;
+};
 
 export const createBlogPage = async ({
   actions,
@@ -35,13 +46,21 @@ export const createBlogPage = async ({
     }
 
     // @ts-ignore
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const { edges } = result.data.allMarkdownRemark;
+    // @ts-ignore
+    edges.forEach(({ node }, index) => {
+      const next: Node = index === 0 ? null : edges[index - 1].node;
+      const prev: Node =
+        index === edges.length - 1 ? null : edges[index + 1].node;
+
       createPage<BlogPageContext>({
         path: node.fields.slug,
         component: blogPostTemplate,
         context: {
           slug: node.fields.slug,
           id: node.id,
+          next,
+          prev,
         },
       });
     });
