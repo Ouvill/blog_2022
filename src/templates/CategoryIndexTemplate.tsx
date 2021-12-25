@@ -36,7 +36,7 @@ const CategoryIndexTemplate: React.FC<
 
 export const pageQuery = graphql`
   query CategoryIndexPage($limit: Int!, $skip: Int!, $category: String!) {
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         fileAbsolutePath: { regex: "//blog//" }

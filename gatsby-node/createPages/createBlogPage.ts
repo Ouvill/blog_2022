@@ -1,5 +1,5 @@
 import path from "path";
-import { Actions, CreatePagesArgs } from "gatsby";
+import { Actions, CreatePagesArgs, Reporter } from "gatsby";
 import { CreateBlogPageQuery } from "../../graphql-types";
 
 export type BlogPageContext = {
@@ -12,15 +12,17 @@ export type BlogPageContext = {
 export const createBlogPage = async ({
   actions,
   graphql,
+  reporter,
 }: {
   actions: Actions;
   graphql: CreatePagesArgs["graphql"];
+  reporter: Reporter;
 }) => {
   const { createPage } = actions;
   const blogPostTemplate = path.resolve("src/templates/BlogTemplate.tsx");
   return graphql<CreateBlogPageQuery>(`
     query CreateBlogPage {
-      allMarkdownRemark(
+      allMdx(
         filter: { fileAbsolutePath: { regex: "//blog//" } }
         sort: { order: DESC, fields: [frontmatter___date] }
         limit: 1000
@@ -37,10 +39,12 @@ export const createBlogPage = async ({
     }
   `).then((result) => {
     if (result.errors || !result.data) {
-      return Promise.reject(result.errors);
+      reporter.panicOnBuild(`Error while running GraphQL query.`);
+      return;
     }
 
-    const { edges } = result.data.allMarkdownRemark;
+    const { edges } = result.data.allMdx;
+    // @ts-ignore
     edges.forEach(({ node }, index) => {
       if (!node.fields?.slug) {
         return;

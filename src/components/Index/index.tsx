@@ -13,7 +13,7 @@ type Props = {
 const Index: React.FC<Props> = ({ data }) => {
   return (
     <>
-      {data.allMarkdownRemark.edges.map(({ node }) => {
+      {data.allMdx.edges.map(({ node }) => {
         if (
           !node.frontmatter ||
           !node.frontmatter.title ||

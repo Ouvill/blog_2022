@@ -34,7 +34,7 @@ const TagIndexTemplate: React.FC<
 
 export const pageQuery = graphql`
   query TagIndexPage($limit: Int!, $skip: Int!, $tag: String!) {
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         fileAbsolutePath: { regex: "//blog//" }

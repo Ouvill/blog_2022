@@ -5,7 +5,7 @@ import { genCategoryIndexSlug } from "../utils/genSlug";
 const useCategoryList = () => {
   const data = useStaticQuery<UseCategoryListQuery>(graphql`
     query UseCategoryList {
-      allMarkdownRemark {
+      allMdx {
         group(field: frontmatter___category) {
           fieldValue
           totalCount
@@ -14,7 +14,7 @@ const useCategoryList = () => {
     }
   `);
 
-  return data.allMarkdownRemark.group.flatMap((item) =>
+  return data.allMdx.group.flatMap((item) =>
     item.fieldValue
       ? [
           {

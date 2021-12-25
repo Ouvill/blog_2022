@@ -25,7 +25,7 @@ export const createCategoryIndexPage = async ({
   console.log("createCategoryIndexPage");
   return graphql<CreateCategoryIndexPageQuery>(`
     query CreateCategoryIndexPage {
-      allMarkdownRemark(
+      allMdx(
         filter: { fileAbsolutePath: { regex: "//blog//" } }
         sort: { order: DESC, fields: [frontmatter___date] }
       ) {
@@ -40,7 +40,8 @@ export const createCategoryIndexPage = async ({
       return Promise.reject(result.errors);
     }
     const postsPerPage = 10;
-    result.data.allMarkdownRemark.group.forEach((category) => {
+    // @ts-ignore
+    result.data.allMdx.group.forEach((category) => {
       const numPages = Math.ceil(category.totalCount / postsPerPage);
       if (!category.fieldValue) return;
       for (let i = 0; i < numPages; i++) {

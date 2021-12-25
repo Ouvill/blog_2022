@@ -24,7 +24,7 @@ export const createTagIndexPage = async ({
 
   const result = await graphql<CreateTagIndexPageQuery>(`
     query CreateTagIndexPage {
-      allMarkdownRemark(
+      allMdx(
         limit: 1000
         filter: { fileAbsolutePath: { regex: "//blog//" } }
         sort: { fields: [frontmatter___date], order: DESC }
@@ -45,7 +45,8 @@ export const createTagIndexPage = async ({
   const postsPerPage = 10;
   const tagTemplate = path.resolve(`src/templates/TagIndexTemplate.tsx`);
 
-  const tags = result.data.allMarkdownRemark.group;
+  const tags = result.data.allMdx.group;
+  // @ts-ignore
   tags.forEach((tag) => {
     const numPages = Math.ceil(tag.totalCount / postsPerPage);
     if (!tag.fieldValue) return;

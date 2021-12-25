@@ -14,7 +14,6 @@ module.exports = {
         documentPaths: [
           "./src/**/*.{ts,tsx}",
           "./gatsby-node/**/*.{ts,tsx}",
-          "./.cache/fragments/*.js",
           "./node_modules/gatsby-*/**/*.js",
         ],
       },
@@ -34,12 +33,12 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {

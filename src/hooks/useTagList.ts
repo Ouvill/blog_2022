@@ -5,7 +5,7 @@ import { genTagIndexSlug } from "../utils/genSlug";
 const useTagList = () => {
   const data = useStaticQuery<UseTagListQuery>(graphql`
     query UseTagList {
-      allMarkdownRemark {
+      allMdx {
         group(field: frontmatter___tags) {
           fieldValue
           totalCount
@@ -14,7 +14,7 @@ const useTagList = () => {
     }
   `);
 
-  return data.allMarkdownRemark.group.flatMap((item) =>
+  return data.allMdx.group.flatMap((item) =>
     item.fieldValue
       ? [
           {

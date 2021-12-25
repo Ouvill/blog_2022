@@ -15,7 +15,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   reporter,
 }) => {
   await Promise.all([
-    createBlogPage({ actions, graphql }),
+    createBlogPage({ actions, graphql, reporter }),
     createBlogIndexPage({ actions, graphql }),
     createCategoryIndexPage({ actions, graphql }),
     createTagIndexPage({ actions, graphql, reporter }),

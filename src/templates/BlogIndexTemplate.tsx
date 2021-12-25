@@ -28,7 +28,7 @@ const BlogIndexTemplate: React.FC<
 
 export const pageQuery = graphql`
   query BlogIndexPage($limit: Int!, $skip: Int!) {
-    allMarkdownRemark(
+    allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { fileAbsolutePath: { regex: "//blog//" } }
       skip: $skip

@@ -3,6 +3,7 @@ import { graphql, Link, PageProps } from "gatsby";
 import { BlogPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
 const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
   data,
@@ -10,18 +11,15 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
   const { currentPost, next, prev } = data;
   if (!currentPost) return null;
 
-  const { frontmatter, html } = currentPost;
+  const { frontmatter, body } = currentPost;
 
   if (!frontmatter) return null;
-  if (!html) return null;
+  if (!body) return null;
   return (
     <Layout>
       <div>
         <h1>{frontmatter.title}</h1>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <MDXRenderer>{body}</MDXRenderer>
         <ul>
           <li>
             {next?.fields?.slug && <Link to={next.fields.slug}>Next</Link>}
@@ -37,8 +35,8 @@ const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
 
 export const pageQuery = graphql`
   query BlogPage($id: String, $nextId: String, $prevId: String) {
-    currentPost: markdownRemark(id: { eq: $id }) {
-      html
+    currentPost: mdx(id: { eq: $id }) {
+      body
       fields {
         slug
       }
@@ -47,7 +45,7 @@ export const pageQuery = graphql`
       }
     }
 
-    next: markdownRemark(id: { eq: $nextId }) {
+    next: mdx(id: { eq: $nextId }) {
       fields {
         slug
       }
@@ -56,7 +54,7 @@ export const pageQuery = graphql`
       }
     }
 
-    prev: markdownRemark(id: { eq: $prevId }) {
+    prev: mdx(id: { eq: $prevId }) {
       fields {
         slug
       }

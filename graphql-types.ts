@@ -59,10 +59,10 @@ export type File = Node & {
   blocks?: Maybe<Scalars['Int']>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars['String']>;
-  /** Returns all children nodes filtered by type MarkdownRemark */
-  childrenMarkdownRemark?: Maybe<Array<Maybe<MarkdownRemark>>>;
-  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
-  childMarkdownRemark?: Maybe<MarkdownRemark>;
+  /** Returns all children nodes filtered by type Mdx */
+  childrenMdx?: Maybe<Array<Maybe<Mdx>>>;
+  /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
+  childMdx?: Maybe<Mdx>;
   /** Returns all children nodes filtered by type ImageSharp */
   childrenImageSharp?: Maybe<Array<Maybe<ImageSharp>>>;
   /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
@@ -353,6 +353,22 @@ export type GatsbyImagePlaceholder =
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
+  category?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
+  date?: Maybe<Scalars['Date']>;
+  vssue_title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  subTitle?: Maybe<Scalars['String']>;
+  cover?: Maybe<File>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+
+export type MdxFrontmatterDateArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 export type MdxHeadingMdx = {
@@ -387,6 +403,7 @@ export type Mdx = Node & {
   tableOfContents?: Maybe<Scalars['JSON']>;
   timeToRead?: Maybe<Scalars['Int']>;
   wordCount?: Maybe<MdxWordCount>;
+  fields?: Maybe<MdxFields>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -409,97 +426,7 @@ export type MdxTableOfContentsArgs = {
   maxDepth?: InputMaybe<Scalars['Int']>;
 };
 
-export type MarkdownHeading = {
-  id?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
-  depth?: Maybe<Scalars['Int']>;
-};
-
-export type MarkdownHeadingLevels =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6';
-
-export type MarkdownExcerptFormats =
-  | 'PLAIN'
-  | 'HTML'
-  | 'MARKDOWN';
-
-export type MarkdownWordCount = {
-  paragraphs?: Maybe<Scalars['Int']>;
-  sentences?: Maybe<Scalars['Int']>;
-  words?: Maybe<Scalars['Int']>;
-};
-
-export type MarkdownRemark = Node & {
-  id: Scalars['ID'];
-  frontmatter?: Maybe<MarkdownRemarkFrontmatter>;
-  excerpt?: Maybe<Scalars['String']>;
-  rawMarkdownBody?: Maybe<Scalars['String']>;
-  fileAbsolutePath?: Maybe<Scalars['String']>;
-  fields?: Maybe<MarkdownRemarkFields>;
-  html?: Maybe<Scalars['String']>;
-  htmlAst?: Maybe<Scalars['JSON']>;
-  excerptAst?: Maybe<Scalars['JSON']>;
-  headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
-  timeToRead?: Maybe<Scalars['Int']>;
-  tableOfContents?: Maybe<Scalars['String']>;
-  wordCount?: Maybe<MarkdownWordCount>;
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-};
-
-
-export type MarkdownRemarkExcerptArgs = {
-  pruneLength?: InputMaybe<Scalars['Int']>;
-  truncate?: InputMaybe<Scalars['Boolean']>;
-  format?: InputMaybe<MarkdownExcerptFormats>;
-};
-
-
-export type MarkdownRemarkExcerptAstArgs = {
-  pruneLength?: InputMaybe<Scalars['Int']>;
-  truncate?: InputMaybe<Scalars['Boolean']>;
-};
-
-
-export type MarkdownRemarkHeadingsArgs = {
-  depth?: InputMaybe<MarkdownHeadingLevels>;
-};
-
-
-export type MarkdownRemarkTableOfContentsArgs = {
-  absolute?: InputMaybe<Scalars['Boolean']>;
-  pathToSlugField?: InputMaybe<Scalars['String']>;
-  maxDepth?: InputMaybe<Scalars['Int']>;
-  heading?: InputMaybe<Scalars['String']>;
-};
-
-export type MarkdownRemarkFrontmatter = {
-  title?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['Date']>;
-  category?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>;
-  vssue_title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  subTitle?: Maybe<Scalars['String']>;
-  cover?: Maybe<File>;
-};
-
-
-export type MarkdownRemarkFrontmatterDateArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-export type MarkdownRemarkFields = {
+export type MdxFields = {
   slug?: Maybe<Scalars['String']>;
 };
 
@@ -769,8 +696,6 @@ export type Query = {
   allSiteBuildMetadata: SiteBuildMetadataConnection;
   mdx?: Maybe<Mdx>;
   allMdx: MdxConnection;
-  markdownRemark?: Maybe<MarkdownRemark>;
-  allMarkdownRemark: MarkdownRemarkConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
 };
@@ -811,8 +736,8 @@ export type QueryFileArgs = {
   blksize?: InputMaybe<IntQueryOperatorInput>;
   blocks?: InputMaybe<IntQueryOperatorInput>;
   publicURL?: InputMaybe<StringQueryOperatorInput>;
-  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
-  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+  childrenMdx?: InputMaybe<MdxFilterListInput>;
+  childMdx?: InputMaybe<MdxFilterInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
@@ -1001,6 +926,7 @@ export type QueryMdxArgs = {
   tableOfContents?: InputMaybe<JsonQueryOperatorInput>;
   timeToRead?: InputMaybe<IntQueryOperatorInput>;
   wordCount?: InputMaybe<MdxWordCountFilterInput>;
+  fields?: InputMaybe<MdxFieldsFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1011,34 +937,6 @@ export type QueryMdxArgs = {
 export type QueryAllMdxArgs = {
   filter?: InputMaybe<MdxFilterInput>;
   sort?: InputMaybe<MdxSortInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryMarkdownRemarkArgs = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
-  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
-  fileAbsolutePath?: InputMaybe<StringQueryOperatorInput>;
-  fields?: InputMaybe<MarkdownRemarkFieldsFilterInput>;
-  html?: InputMaybe<StringQueryOperatorInput>;
-  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
-  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
-  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
-  timeToRead?: InputMaybe<IntQueryOperatorInput>;
-  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
-  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
-
-export type QueryAllMarkdownRemarkArgs = {
-  filter?: InputMaybe<MarkdownRemarkFilterInput>;
-  sort?: InputMaybe<MarkdownRemarkSortInput>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -1106,39 +1004,40 @@ export type FloatQueryOperatorInput = {
   nin?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
-export type MarkdownRemarkFilterListInput = {
-  elemMatch?: InputMaybe<MarkdownRemarkFilterInput>;
+export type MdxFilterListInput = {
+  elemMatch?: InputMaybe<MdxFilterInput>;
 };
 
-export type MarkdownRemarkFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  frontmatter?: InputMaybe<MarkdownRemarkFrontmatterFilterInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
-  rawMarkdownBody?: InputMaybe<StringQueryOperatorInput>;
+export type MdxFilterInput = {
+  rawBody?: InputMaybe<StringQueryOperatorInput>;
   fileAbsolutePath?: InputMaybe<StringQueryOperatorInput>;
-  fields?: InputMaybe<MarkdownRemarkFieldsFilterInput>;
+  frontmatter?: InputMaybe<MdxFrontmatterFilterInput>;
+  slug?: InputMaybe<StringQueryOperatorInput>;
+  body?: InputMaybe<StringQueryOperatorInput>;
+  excerpt?: InputMaybe<StringQueryOperatorInput>;
+  headings?: InputMaybe<MdxHeadingMdxFilterListInput>;
   html?: InputMaybe<StringQueryOperatorInput>;
-  htmlAst?: InputMaybe<JsonQueryOperatorInput>;
-  excerptAst?: InputMaybe<JsonQueryOperatorInput>;
-  headings?: InputMaybe<MarkdownHeadingFilterListInput>;
+  mdxAST?: InputMaybe<JsonQueryOperatorInput>;
+  tableOfContents?: InputMaybe<JsonQueryOperatorInput>;
   timeToRead?: InputMaybe<IntQueryOperatorInput>;
-  tableOfContents?: InputMaybe<StringQueryOperatorInput>;
-  wordCount?: InputMaybe<MarkdownWordCountFilterInput>;
+  wordCount?: InputMaybe<MdxWordCountFilterInput>;
+  fields?: InputMaybe<MdxFieldsFilterInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
 };
 
-export type MarkdownRemarkFrontmatterFilterInput = {
+export type MdxFrontmatterFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
-  slug?: InputMaybe<StringQueryOperatorInput>;
-  date?: InputMaybe<DateQueryOperatorInput>;
   category?: InputMaybe<StringQueryOperatorInput>;
   tags?: InputMaybe<StringQueryOperatorInput>;
+  date?: InputMaybe<DateQueryOperatorInput>;
   vssue_title?: InputMaybe<StringQueryOperatorInput>;
   description?: InputMaybe<StringQueryOperatorInput>;
   subTitle?: InputMaybe<StringQueryOperatorInput>;
   cover?: InputMaybe<FileFilterInput>;
+  slug?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type FileFilterInput = {
@@ -1176,8 +1075,8 @@ export type FileFilterInput = {
   blksize?: InputMaybe<IntQueryOperatorInput>;
   blocks?: InputMaybe<IntQueryOperatorInput>;
   publicURL?: InputMaybe<StringQueryOperatorInput>;
-  childrenMarkdownRemark?: InputMaybe<MarkdownRemarkFilterListInput>;
-  childMarkdownRemark?: InputMaybe<MarkdownRemarkFilterInput>;
+  childrenMdx?: InputMaybe<MdxFilterListInput>;
+  childMdx?: InputMaybe<MdxFilterInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
@@ -1283,24 +1182,23 @@ export type BooleanQueryOperatorInput = {
   nin?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
 };
 
-export type MarkdownRemarkFieldsFilterInput = {
-  slug?: InputMaybe<StringQueryOperatorInput>;
+export type MdxHeadingMdxFilterListInput = {
+  elemMatch?: InputMaybe<MdxHeadingMdxFilterInput>;
 };
 
-export type MarkdownHeadingFilterListInput = {
-  elemMatch?: InputMaybe<MarkdownHeadingFilterInput>;
-};
-
-export type MarkdownHeadingFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
+export type MdxHeadingMdxFilterInput = {
   value?: InputMaybe<StringQueryOperatorInput>;
   depth?: InputMaybe<IntQueryOperatorInput>;
 };
 
-export type MarkdownWordCountFilterInput = {
+export type MdxWordCountFilterInput = {
   paragraphs?: InputMaybe<IntQueryOperatorInput>;
   sentences?: InputMaybe<IntQueryOperatorInput>;
   words?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type MdxFieldsFilterInput = {
+  slug?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type FileConnection = {
@@ -1393,207 +1291,207 @@ export type FileFieldsEnum =
   | 'blksize'
   | 'blocks'
   | 'publicURL'
-  | 'childrenMarkdownRemark'
-  | 'childrenMarkdownRemark___id'
-  | 'childrenMarkdownRemark___frontmatter___title'
-  | 'childrenMarkdownRemark___frontmatter___slug'
-  | 'childrenMarkdownRemark___frontmatter___date'
-  | 'childrenMarkdownRemark___frontmatter___category'
-  | 'childrenMarkdownRemark___frontmatter___tags'
-  | 'childrenMarkdownRemark___frontmatter___vssue_title'
-  | 'childrenMarkdownRemark___frontmatter___description'
-  | 'childrenMarkdownRemark___frontmatter___subTitle'
-  | 'childrenMarkdownRemark___frontmatter___cover___sourceInstanceName'
-  | 'childrenMarkdownRemark___frontmatter___cover___absolutePath'
-  | 'childrenMarkdownRemark___frontmatter___cover___relativePath'
-  | 'childrenMarkdownRemark___frontmatter___cover___extension'
-  | 'childrenMarkdownRemark___frontmatter___cover___size'
-  | 'childrenMarkdownRemark___frontmatter___cover___prettySize'
-  | 'childrenMarkdownRemark___frontmatter___cover___modifiedTime'
-  | 'childrenMarkdownRemark___frontmatter___cover___accessTime'
-  | 'childrenMarkdownRemark___frontmatter___cover___changeTime'
-  | 'childrenMarkdownRemark___frontmatter___cover___birthTime'
-  | 'childrenMarkdownRemark___frontmatter___cover___root'
-  | 'childrenMarkdownRemark___frontmatter___cover___dir'
-  | 'childrenMarkdownRemark___frontmatter___cover___base'
-  | 'childrenMarkdownRemark___frontmatter___cover___ext'
-  | 'childrenMarkdownRemark___frontmatter___cover___name'
-  | 'childrenMarkdownRemark___frontmatter___cover___relativeDirectory'
-  | 'childrenMarkdownRemark___frontmatter___cover___dev'
-  | 'childrenMarkdownRemark___frontmatter___cover___mode'
-  | 'childrenMarkdownRemark___frontmatter___cover___nlink'
-  | 'childrenMarkdownRemark___frontmatter___cover___uid'
-  | 'childrenMarkdownRemark___frontmatter___cover___gid'
-  | 'childrenMarkdownRemark___frontmatter___cover___rdev'
-  | 'childrenMarkdownRemark___frontmatter___cover___ino'
-  | 'childrenMarkdownRemark___frontmatter___cover___atimeMs'
-  | 'childrenMarkdownRemark___frontmatter___cover___mtimeMs'
-  | 'childrenMarkdownRemark___frontmatter___cover___ctimeMs'
-  | 'childrenMarkdownRemark___frontmatter___cover___atime'
-  | 'childrenMarkdownRemark___frontmatter___cover___mtime'
-  | 'childrenMarkdownRemark___frontmatter___cover___ctime'
-  | 'childrenMarkdownRemark___frontmatter___cover___birthtime'
-  | 'childrenMarkdownRemark___frontmatter___cover___birthtimeMs'
-  | 'childrenMarkdownRemark___frontmatter___cover___blksize'
-  | 'childrenMarkdownRemark___frontmatter___cover___blocks'
-  | 'childrenMarkdownRemark___frontmatter___cover___publicURL'
-  | 'childrenMarkdownRemark___frontmatter___cover___childrenMarkdownRemark'
-  | 'childrenMarkdownRemark___frontmatter___cover___childrenImageSharp'
-  | 'childrenMarkdownRemark___frontmatter___cover___id'
-  | 'childrenMarkdownRemark___frontmatter___cover___children'
-  | 'childrenMarkdownRemark___excerpt'
-  | 'childrenMarkdownRemark___rawMarkdownBody'
-  | 'childrenMarkdownRemark___fileAbsolutePath'
-  | 'childrenMarkdownRemark___fields___slug'
-  | 'childrenMarkdownRemark___html'
-  | 'childrenMarkdownRemark___htmlAst'
-  | 'childrenMarkdownRemark___excerptAst'
-  | 'childrenMarkdownRemark___headings'
-  | 'childrenMarkdownRemark___headings___id'
-  | 'childrenMarkdownRemark___headings___value'
-  | 'childrenMarkdownRemark___headings___depth'
-  | 'childrenMarkdownRemark___timeToRead'
-  | 'childrenMarkdownRemark___tableOfContents'
-  | 'childrenMarkdownRemark___wordCount___paragraphs'
-  | 'childrenMarkdownRemark___wordCount___sentences'
-  | 'childrenMarkdownRemark___wordCount___words'
-  | 'childrenMarkdownRemark___parent___id'
-  | 'childrenMarkdownRemark___parent___parent___id'
-  | 'childrenMarkdownRemark___parent___parent___children'
-  | 'childrenMarkdownRemark___parent___children'
-  | 'childrenMarkdownRemark___parent___children___id'
-  | 'childrenMarkdownRemark___parent___children___children'
-  | 'childrenMarkdownRemark___parent___internal___content'
-  | 'childrenMarkdownRemark___parent___internal___contentDigest'
-  | 'childrenMarkdownRemark___parent___internal___description'
-  | 'childrenMarkdownRemark___parent___internal___fieldOwners'
-  | 'childrenMarkdownRemark___parent___internal___ignoreType'
-  | 'childrenMarkdownRemark___parent___internal___mediaType'
-  | 'childrenMarkdownRemark___parent___internal___owner'
-  | 'childrenMarkdownRemark___parent___internal___type'
-  | 'childrenMarkdownRemark___children'
-  | 'childrenMarkdownRemark___children___id'
-  | 'childrenMarkdownRemark___children___parent___id'
-  | 'childrenMarkdownRemark___children___parent___children'
-  | 'childrenMarkdownRemark___children___children'
-  | 'childrenMarkdownRemark___children___children___id'
-  | 'childrenMarkdownRemark___children___children___children'
-  | 'childrenMarkdownRemark___children___internal___content'
-  | 'childrenMarkdownRemark___children___internal___contentDigest'
-  | 'childrenMarkdownRemark___children___internal___description'
-  | 'childrenMarkdownRemark___children___internal___fieldOwners'
-  | 'childrenMarkdownRemark___children___internal___ignoreType'
-  | 'childrenMarkdownRemark___children___internal___mediaType'
-  | 'childrenMarkdownRemark___children___internal___owner'
-  | 'childrenMarkdownRemark___children___internal___type'
-  | 'childrenMarkdownRemark___internal___content'
-  | 'childrenMarkdownRemark___internal___contentDigest'
-  | 'childrenMarkdownRemark___internal___description'
-  | 'childrenMarkdownRemark___internal___fieldOwners'
-  | 'childrenMarkdownRemark___internal___ignoreType'
-  | 'childrenMarkdownRemark___internal___mediaType'
-  | 'childrenMarkdownRemark___internal___owner'
-  | 'childrenMarkdownRemark___internal___type'
-  | 'childMarkdownRemark___id'
-  | 'childMarkdownRemark___frontmatter___title'
-  | 'childMarkdownRemark___frontmatter___slug'
-  | 'childMarkdownRemark___frontmatter___date'
-  | 'childMarkdownRemark___frontmatter___category'
-  | 'childMarkdownRemark___frontmatter___tags'
-  | 'childMarkdownRemark___frontmatter___vssue_title'
-  | 'childMarkdownRemark___frontmatter___description'
-  | 'childMarkdownRemark___frontmatter___subTitle'
-  | 'childMarkdownRemark___frontmatter___cover___sourceInstanceName'
-  | 'childMarkdownRemark___frontmatter___cover___absolutePath'
-  | 'childMarkdownRemark___frontmatter___cover___relativePath'
-  | 'childMarkdownRemark___frontmatter___cover___extension'
-  | 'childMarkdownRemark___frontmatter___cover___size'
-  | 'childMarkdownRemark___frontmatter___cover___prettySize'
-  | 'childMarkdownRemark___frontmatter___cover___modifiedTime'
-  | 'childMarkdownRemark___frontmatter___cover___accessTime'
-  | 'childMarkdownRemark___frontmatter___cover___changeTime'
-  | 'childMarkdownRemark___frontmatter___cover___birthTime'
-  | 'childMarkdownRemark___frontmatter___cover___root'
-  | 'childMarkdownRemark___frontmatter___cover___dir'
-  | 'childMarkdownRemark___frontmatter___cover___base'
-  | 'childMarkdownRemark___frontmatter___cover___ext'
-  | 'childMarkdownRemark___frontmatter___cover___name'
-  | 'childMarkdownRemark___frontmatter___cover___relativeDirectory'
-  | 'childMarkdownRemark___frontmatter___cover___dev'
-  | 'childMarkdownRemark___frontmatter___cover___mode'
-  | 'childMarkdownRemark___frontmatter___cover___nlink'
-  | 'childMarkdownRemark___frontmatter___cover___uid'
-  | 'childMarkdownRemark___frontmatter___cover___gid'
-  | 'childMarkdownRemark___frontmatter___cover___rdev'
-  | 'childMarkdownRemark___frontmatter___cover___ino'
-  | 'childMarkdownRemark___frontmatter___cover___atimeMs'
-  | 'childMarkdownRemark___frontmatter___cover___mtimeMs'
-  | 'childMarkdownRemark___frontmatter___cover___ctimeMs'
-  | 'childMarkdownRemark___frontmatter___cover___atime'
-  | 'childMarkdownRemark___frontmatter___cover___mtime'
-  | 'childMarkdownRemark___frontmatter___cover___ctime'
-  | 'childMarkdownRemark___frontmatter___cover___birthtime'
-  | 'childMarkdownRemark___frontmatter___cover___birthtimeMs'
-  | 'childMarkdownRemark___frontmatter___cover___blksize'
-  | 'childMarkdownRemark___frontmatter___cover___blocks'
-  | 'childMarkdownRemark___frontmatter___cover___publicURL'
-  | 'childMarkdownRemark___frontmatter___cover___childrenMarkdownRemark'
-  | 'childMarkdownRemark___frontmatter___cover___childrenImageSharp'
-  | 'childMarkdownRemark___frontmatter___cover___id'
-  | 'childMarkdownRemark___frontmatter___cover___children'
-  | 'childMarkdownRemark___excerpt'
-  | 'childMarkdownRemark___rawMarkdownBody'
-  | 'childMarkdownRemark___fileAbsolutePath'
-  | 'childMarkdownRemark___fields___slug'
-  | 'childMarkdownRemark___html'
-  | 'childMarkdownRemark___htmlAst'
-  | 'childMarkdownRemark___excerptAst'
-  | 'childMarkdownRemark___headings'
-  | 'childMarkdownRemark___headings___id'
-  | 'childMarkdownRemark___headings___value'
-  | 'childMarkdownRemark___headings___depth'
-  | 'childMarkdownRemark___timeToRead'
-  | 'childMarkdownRemark___tableOfContents'
-  | 'childMarkdownRemark___wordCount___paragraphs'
-  | 'childMarkdownRemark___wordCount___sentences'
-  | 'childMarkdownRemark___wordCount___words'
-  | 'childMarkdownRemark___parent___id'
-  | 'childMarkdownRemark___parent___parent___id'
-  | 'childMarkdownRemark___parent___parent___children'
-  | 'childMarkdownRemark___parent___children'
-  | 'childMarkdownRemark___parent___children___id'
-  | 'childMarkdownRemark___parent___children___children'
-  | 'childMarkdownRemark___parent___internal___content'
-  | 'childMarkdownRemark___parent___internal___contentDigest'
-  | 'childMarkdownRemark___parent___internal___description'
-  | 'childMarkdownRemark___parent___internal___fieldOwners'
-  | 'childMarkdownRemark___parent___internal___ignoreType'
-  | 'childMarkdownRemark___parent___internal___mediaType'
-  | 'childMarkdownRemark___parent___internal___owner'
-  | 'childMarkdownRemark___parent___internal___type'
-  | 'childMarkdownRemark___children'
-  | 'childMarkdownRemark___children___id'
-  | 'childMarkdownRemark___children___parent___id'
-  | 'childMarkdownRemark___children___parent___children'
-  | 'childMarkdownRemark___children___children'
-  | 'childMarkdownRemark___children___children___id'
-  | 'childMarkdownRemark___children___children___children'
-  | 'childMarkdownRemark___children___internal___content'
-  | 'childMarkdownRemark___children___internal___contentDigest'
-  | 'childMarkdownRemark___children___internal___description'
-  | 'childMarkdownRemark___children___internal___fieldOwners'
-  | 'childMarkdownRemark___children___internal___ignoreType'
-  | 'childMarkdownRemark___children___internal___mediaType'
-  | 'childMarkdownRemark___children___internal___owner'
-  | 'childMarkdownRemark___children___internal___type'
-  | 'childMarkdownRemark___internal___content'
-  | 'childMarkdownRemark___internal___contentDigest'
-  | 'childMarkdownRemark___internal___description'
-  | 'childMarkdownRemark___internal___fieldOwners'
-  | 'childMarkdownRemark___internal___ignoreType'
-  | 'childMarkdownRemark___internal___mediaType'
-  | 'childMarkdownRemark___internal___owner'
-  | 'childMarkdownRemark___internal___type'
+  | 'childrenMdx'
+  | 'childrenMdx___rawBody'
+  | 'childrenMdx___fileAbsolutePath'
+  | 'childrenMdx___frontmatter___title'
+  | 'childrenMdx___frontmatter___category'
+  | 'childrenMdx___frontmatter___tags'
+  | 'childrenMdx___frontmatter___date'
+  | 'childrenMdx___frontmatter___vssue_title'
+  | 'childrenMdx___frontmatter___description'
+  | 'childrenMdx___frontmatter___subTitle'
+  | 'childrenMdx___frontmatter___cover___sourceInstanceName'
+  | 'childrenMdx___frontmatter___cover___absolutePath'
+  | 'childrenMdx___frontmatter___cover___relativePath'
+  | 'childrenMdx___frontmatter___cover___extension'
+  | 'childrenMdx___frontmatter___cover___size'
+  | 'childrenMdx___frontmatter___cover___prettySize'
+  | 'childrenMdx___frontmatter___cover___modifiedTime'
+  | 'childrenMdx___frontmatter___cover___accessTime'
+  | 'childrenMdx___frontmatter___cover___changeTime'
+  | 'childrenMdx___frontmatter___cover___birthTime'
+  | 'childrenMdx___frontmatter___cover___root'
+  | 'childrenMdx___frontmatter___cover___dir'
+  | 'childrenMdx___frontmatter___cover___base'
+  | 'childrenMdx___frontmatter___cover___ext'
+  | 'childrenMdx___frontmatter___cover___name'
+  | 'childrenMdx___frontmatter___cover___relativeDirectory'
+  | 'childrenMdx___frontmatter___cover___dev'
+  | 'childrenMdx___frontmatter___cover___mode'
+  | 'childrenMdx___frontmatter___cover___nlink'
+  | 'childrenMdx___frontmatter___cover___uid'
+  | 'childrenMdx___frontmatter___cover___gid'
+  | 'childrenMdx___frontmatter___cover___rdev'
+  | 'childrenMdx___frontmatter___cover___ino'
+  | 'childrenMdx___frontmatter___cover___atimeMs'
+  | 'childrenMdx___frontmatter___cover___mtimeMs'
+  | 'childrenMdx___frontmatter___cover___ctimeMs'
+  | 'childrenMdx___frontmatter___cover___atime'
+  | 'childrenMdx___frontmatter___cover___mtime'
+  | 'childrenMdx___frontmatter___cover___ctime'
+  | 'childrenMdx___frontmatter___cover___birthtime'
+  | 'childrenMdx___frontmatter___cover___birthtimeMs'
+  | 'childrenMdx___frontmatter___cover___blksize'
+  | 'childrenMdx___frontmatter___cover___blocks'
+  | 'childrenMdx___frontmatter___cover___publicURL'
+  | 'childrenMdx___frontmatter___cover___childrenMdx'
+  | 'childrenMdx___frontmatter___cover___childrenImageSharp'
+  | 'childrenMdx___frontmatter___cover___id'
+  | 'childrenMdx___frontmatter___cover___children'
+  | 'childrenMdx___frontmatter___slug'
+  | 'childrenMdx___slug'
+  | 'childrenMdx___body'
+  | 'childrenMdx___excerpt'
+  | 'childrenMdx___headings'
+  | 'childrenMdx___headings___value'
+  | 'childrenMdx___headings___depth'
+  | 'childrenMdx___html'
+  | 'childrenMdx___mdxAST'
+  | 'childrenMdx___tableOfContents'
+  | 'childrenMdx___timeToRead'
+  | 'childrenMdx___wordCount___paragraphs'
+  | 'childrenMdx___wordCount___sentences'
+  | 'childrenMdx___wordCount___words'
+  | 'childrenMdx___fields___slug'
+  | 'childrenMdx___id'
+  | 'childrenMdx___parent___id'
+  | 'childrenMdx___parent___parent___id'
+  | 'childrenMdx___parent___parent___children'
+  | 'childrenMdx___parent___children'
+  | 'childrenMdx___parent___children___id'
+  | 'childrenMdx___parent___children___children'
+  | 'childrenMdx___parent___internal___content'
+  | 'childrenMdx___parent___internal___contentDigest'
+  | 'childrenMdx___parent___internal___description'
+  | 'childrenMdx___parent___internal___fieldOwners'
+  | 'childrenMdx___parent___internal___ignoreType'
+  | 'childrenMdx___parent___internal___mediaType'
+  | 'childrenMdx___parent___internal___owner'
+  | 'childrenMdx___parent___internal___type'
+  | 'childrenMdx___children'
+  | 'childrenMdx___children___id'
+  | 'childrenMdx___children___parent___id'
+  | 'childrenMdx___children___parent___children'
+  | 'childrenMdx___children___children'
+  | 'childrenMdx___children___children___id'
+  | 'childrenMdx___children___children___children'
+  | 'childrenMdx___children___internal___content'
+  | 'childrenMdx___children___internal___contentDigest'
+  | 'childrenMdx___children___internal___description'
+  | 'childrenMdx___children___internal___fieldOwners'
+  | 'childrenMdx___children___internal___ignoreType'
+  | 'childrenMdx___children___internal___mediaType'
+  | 'childrenMdx___children___internal___owner'
+  | 'childrenMdx___children___internal___type'
+  | 'childrenMdx___internal___content'
+  | 'childrenMdx___internal___contentDigest'
+  | 'childrenMdx___internal___description'
+  | 'childrenMdx___internal___fieldOwners'
+  | 'childrenMdx___internal___ignoreType'
+  | 'childrenMdx___internal___mediaType'
+  | 'childrenMdx___internal___owner'
+  | 'childrenMdx___internal___type'
+  | 'childMdx___rawBody'
+  | 'childMdx___fileAbsolutePath'
+  | 'childMdx___frontmatter___title'
+  | 'childMdx___frontmatter___category'
+  | 'childMdx___frontmatter___tags'
+  | 'childMdx___frontmatter___date'
+  | 'childMdx___frontmatter___vssue_title'
+  | 'childMdx___frontmatter___description'
+  | 'childMdx___frontmatter___subTitle'
+  | 'childMdx___frontmatter___cover___sourceInstanceName'
+  | 'childMdx___frontmatter___cover___absolutePath'
+  | 'childMdx___frontmatter___cover___relativePath'
+  | 'childMdx___frontmatter___cover___extension'
+  | 'childMdx___frontmatter___cover___size'
+  | 'childMdx___frontmatter___cover___prettySize'
+  | 'childMdx___frontmatter___cover___modifiedTime'
+  | 'childMdx___frontmatter___cover___accessTime'
+  | 'childMdx___frontmatter___cover___changeTime'
+  | 'childMdx___frontmatter___cover___birthTime'
+  | 'childMdx___frontmatter___cover___root'
+  | 'childMdx___frontmatter___cover___dir'
+  | 'childMdx___frontmatter___cover___base'
+  | 'childMdx___frontmatter___cover___ext'
+  | 'childMdx___frontmatter___cover___name'
+  | 'childMdx___frontmatter___cover___relativeDirectory'
+  | 'childMdx___frontmatter___cover___dev'
+  | 'childMdx___frontmatter___cover___mode'
+  | 'childMdx___frontmatter___cover___nlink'
+  | 'childMdx___frontmatter___cover___uid'
+  | 'childMdx___frontmatter___cover___gid'
+  | 'childMdx___frontmatter___cover___rdev'
+  | 'childMdx___frontmatter___cover___ino'
+  | 'childMdx___frontmatter___cover___atimeMs'
+  | 'childMdx___frontmatter___cover___mtimeMs'
+  | 'childMdx___frontmatter___cover___ctimeMs'
+  | 'childMdx___frontmatter___cover___atime'
+  | 'childMdx___frontmatter___cover___mtime'
+  | 'childMdx___frontmatter___cover___ctime'
+  | 'childMdx___frontmatter___cover___birthtime'
+  | 'childMdx___frontmatter___cover___birthtimeMs'
+  | 'childMdx___frontmatter___cover___blksize'
+  | 'childMdx___frontmatter___cover___blocks'
+  | 'childMdx___frontmatter___cover___publicURL'
+  | 'childMdx___frontmatter___cover___childrenMdx'
+  | 'childMdx___frontmatter___cover___childrenImageSharp'
+  | 'childMdx___frontmatter___cover___id'
+  | 'childMdx___frontmatter___cover___children'
+  | 'childMdx___frontmatter___slug'
+  | 'childMdx___slug'
+  | 'childMdx___body'
+  | 'childMdx___excerpt'
+  | 'childMdx___headings'
+  | 'childMdx___headings___value'
+  | 'childMdx___headings___depth'
+  | 'childMdx___html'
+  | 'childMdx___mdxAST'
+  | 'childMdx___tableOfContents'
+  | 'childMdx___timeToRead'
+  | 'childMdx___wordCount___paragraphs'
+  | 'childMdx___wordCount___sentences'
+  | 'childMdx___wordCount___words'
+  | 'childMdx___fields___slug'
+  | 'childMdx___id'
+  | 'childMdx___parent___id'
+  | 'childMdx___parent___parent___id'
+  | 'childMdx___parent___parent___children'
+  | 'childMdx___parent___children'
+  | 'childMdx___parent___children___id'
+  | 'childMdx___parent___children___children'
+  | 'childMdx___parent___internal___content'
+  | 'childMdx___parent___internal___contentDigest'
+  | 'childMdx___parent___internal___description'
+  | 'childMdx___parent___internal___fieldOwners'
+  | 'childMdx___parent___internal___ignoreType'
+  | 'childMdx___parent___internal___mediaType'
+  | 'childMdx___parent___internal___owner'
+  | 'childMdx___parent___internal___type'
+  | 'childMdx___children'
+  | 'childMdx___children___id'
+  | 'childMdx___children___parent___id'
+  | 'childMdx___children___parent___children'
+  | 'childMdx___children___children'
+  | 'childMdx___children___children___id'
+  | 'childMdx___children___children___children'
+  | 'childMdx___children___internal___content'
+  | 'childMdx___children___internal___contentDigest'
+  | 'childMdx___children___internal___description'
+  | 'childMdx___children___internal___fieldOwners'
+  | 'childMdx___children___internal___ignoreType'
+  | 'childMdx___children___internal___mediaType'
+  | 'childMdx___children___internal___owner'
+  | 'childMdx___children___internal___type'
+  | 'childMdx___internal___content'
+  | 'childMdx___internal___contentDigest'
+  | 'childMdx___internal___description'
+  | 'childMdx___internal___fieldOwners'
+  | 'childMdx___internal___ignoreType'
+  | 'childMdx___internal___mediaType'
+  | 'childMdx___internal___owner'
+  | 'childMdx___internal___type'
   | 'childrenImageSharp'
   | 'childrenImageSharp___fixed___base64'
   | 'childrenImageSharp___fixed___tracedSVG'
@@ -3166,25 +3064,6 @@ export type SiteBuildMetadataSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type MdxFrontmatterFilterInput = {
-  title?: InputMaybe<StringQueryOperatorInput>;
-};
-
-export type MdxHeadingMdxFilterListInput = {
-  elemMatch?: InputMaybe<MdxHeadingMdxFilterInput>;
-};
-
-export type MdxHeadingMdxFilterInput = {
-  value?: InputMaybe<StringQueryOperatorInput>;
-  depth?: InputMaybe<IntQueryOperatorInput>;
-};
-
-export type MdxWordCountFilterInput = {
-  paragraphs?: InputMaybe<IntQueryOperatorInput>;
-  sentences?: InputMaybe<IntQueryOperatorInput>;
-  words?: InputMaybe<IntQueryOperatorInput>;
-};
-
 export type MdxConnection = {
   totalCount: Scalars['Int'];
   edges: Array<MdxEdge>;
@@ -3234,6 +3113,93 @@ export type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter___title'
+  | 'frontmatter___category'
+  | 'frontmatter___tags'
+  | 'frontmatter___date'
+  | 'frontmatter___vssue_title'
+  | 'frontmatter___description'
+  | 'frontmatter___subTitle'
+  | 'frontmatter___cover___sourceInstanceName'
+  | 'frontmatter___cover___absolutePath'
+  | 'frontmatter___cover___relativePath'
+  | 'frontmatter___cover___extension'
+  | 'frontmatter___cover___size'
+  | 'frontmatter___cover___prettySize'
+  | 'frontmatter___cover___modifiedTime'
+  | 'frontmatter___cover___accessTime'
+  | 'frontmatter___cover___changeTime'
+  | 'frontmatter___cover___birthTime'
+  | 'frontmatter___cover___root'
+  | 'frontmatter___cover___dir'
+  | 'frontmatter___cover___base'
+  | 'frontmatter___cover___ext'
+  | 'frontmatter___cover___name'
+  | 'frontmatter___cover___relativeDirectory'
+  | 'frontmatter___cover___dev'
+  | 'frontmatter___cover___mode'
+  | 'frontmatter___cover___nlink'
+  | 'frontmatter___cover___uid'
+  | 'frontmatter___cover___gid'
+  | 'frontmatter___cover___rdev'
+  | 'frontmatter___cover___ino'
+  | 'frontmatter___cover___atimeMs'
+  | 'frontmatter___cover___mtimeMs'
+  | 'frontmatter___cover___ctimeMs'
+  | 'frontmatter___cover___atime'
+  | 'frontmatter___cover___mtime'
+  | 'frontmatter___cover___ctime'
+  | 'frontmatter___cover___birthtime'
+  | 'frontmatter___cover___birthtimeMs'
+  | 'frontmatter___cover___blksize'
+  | 'frontmatter___cover___blocks'
+  | 'frontmatter___cover___publicURL'
+  | 'frontmatter___cover___childrenMdx'
+  | 'frontmatter___cover___childrenMdx___rawBody'
+  | 'frontmatter___cover___childrenMdx___fileAbsolutePath'
+  | 'frontmatter___cover___childrenMdx___slug'
+  | 'frontmatter___cover___childrenMdx___body'
+  | 'frontmatter___cover___childrenMdx___excerpt'
+  | 'frontmatter___cover___childrenMdx___headings'
+  | 'frontmatter___cover___childrenMdx___html'
+  | 'frontmatter___cover___childrenMdx___mdxAST'
+  | 'frontmatter___cover___childrenMdx___tableOfContents'
+  | 'frontmatter___cover___childrenMdx___timeToRead'
+  | 'frontmatter___cover___childrenMdx___id'
+  | 'frontmatter___cover___childrenMdx___children'
+  | 'frontmatter___cover___childMdx___rawBody'
+  | 'frontmatter___cover___childMdx___fileAbsolutePath'
+  | 'frontmatter___cover___childMdx___slug'
+  | 'frontmatter___cover___childMdx___body'
+  | 'frontmatter___cover___childMdx___excerpt'
+  | 'frontmatter___cover___childMdx___headings'
+  | 'frontmatter___cover___childMdx___html'
+  | 'frontmatter___cover___childMdx___mdxAST'
+  | 'frontmatter___cover___childMdx___tableOfContents'
+  | 'frontmatter___cover___childMdx___timeToRead'
+  | 'frontmatter___cover___childMdx___id'
+  | 'frontmatter___cover___childMdx___children'
+  | 'frontmatter___cover___childrenImageSharp'
+  | 'frontmatter___cover___childrenImageSharp___gatsbyImageData'
+  | 'frontmatter___cover___childrenImageSharp___id'
+  | 'frontmatter___cover___childrenImageSharp___children'
+  | 'frontmatter___cover___childImageSharp___gatsbyImageData'
+  | 'frontmatter___cover___childImageSharp___id'
+  | 'frontmatter___cover___childImageSharp___children'
+  | 'frontmatter___cover___id'
+  | 'frontmatter___cover___parent___id'
+  | 'frontmatter___cover___parent___children'
+  | 'frontmatter___cover___children'
+  | 'frontmatter___cover___children___id'
+  | 'frontmatter___cover___children___children'
+  | 'frontmatter___cover___internal___content'
+  | 'frontmatter___cover___internal___contentDigest'
+  | 'frontmatter___cover___internal___description'
+  | 'frontmatter___cover___internal___fieldOwners'
+  | 'frontmatter___cover___internal___ignoreType'
+  | 'frontmatter___cover___internal___mediaType'
+  | 'frontmatter___cover___internal___owner'
+  | 'frontmatter___cover___internal___type'
+  | 'frontmatter___slug'
   | 'slug'
   | 'body'
   | 'excerpt'
@@ -3247,6 +3213,7 @@ export type MdxFieldsEnum =
   | 'wordCount___paragraphs'
   | 'wordCount___sentences'
   | 'wordCount___words'
+  | 'fields___slug'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -3375,308 +3342,8 @@ export type MdxGroupConnectionGroupArgs = {
   field: MdxFieldsEnum;
 };
 
-export type MdxFilterInput = {
-  rawBody?: InputMaybe<StringQueryOperatorInput>;
-  fileAbsolutePath?: InputMaybe<StringQueryOperatorInput>;
-  frontmatter?: InputMaybe<MdxFrontmatterFilterInput>;
-  slug?: InputMaybe<StringQueryOperatorInput>;
-  body?: InputMaybe<StringQueryOperatorInput>;
-  excerpt?: InputMaybe<StringQueryOperatorInput>;
-  headings?: InputMaybe<MdxHeadingMdxFilterListInput>;
-  html?: InputMaybe<StringQueryOperatorInput>;
-  mdxAST?: InputMaybe<JsonQueryOperatorInput>;
-  tableOfContents?: InputMaybe<JsonQueryOperatorInput>;
-  timeToRead?: InputMaybe<IntQueryOperatorInput>;
-  wordCount?: InputMaybe<MdxWordCountFilterInput>;
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-};
-
 export type MdxSortInput = {
   fields?: InputMaybe<Array<InputMaybe<MdxFieldsEnum>>>;
-  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
-};
-
-export type MarkdownRemarkConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<MarkdownRemarkEdge>;
-  nodes: Array<MarkdownRemark>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<MarkdownRemarkGroupConnection>;
-};
-
-
-export type MarkdownRemarkConnectionDistinctArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkConnectionMaxArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkConnectionMinArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkConnectionSumArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: MarkdownRemarkFieldsEnum;
-};
-
-export type MarkdownRemarkEdge = {
-  next?: Maybe<MarkdownRemark>;
-  node: MarkdownRemark;
-  previous?: Maybe<MarkdownRemark>;
-};
-
-export type MarkdownRemarkFieldsEnum =
-  | 'id'
-  | 'frontmatter___title'
-  | 'frontmatter___slug'
-  | 'frontmatter___date'
-  | 'frontmatter___category'
-  | 'frontmatter___tags'
-  | 'frontmatter___vssue_title'
-  | 'frontmatter___description'
-  | 'frontmatter___subTitle'
-  | 'frontmatter___cover___sourceInstanceName'
-  | 'frontmatter___cover___absolutePath'
-  | 'frontmatter___cover___relativePath'
-  | 'frontmatter___cover___extension'
-  | 'frontmatter___cover___size'
-  | 'frontmatter___cover___prettySize'
-  | 'frontmatter___cover___modifiedTime'
-  | 'frontmatter___cover___accessTime'
-  | 'frontmatter___cover___changeTime'
-  | 'frontmatter___cover___birthTime'
-  | 'frontmatter___cover___root'
-  | 'frontmatter___cover___dir'
-  | 'frontmatter___cover___base'
-  | 'frontmatter___cover___ext'
-  | 'frontmatter___cover___name'
-  | 'frontmatter___cover___relativeDirectory'
-  | 'frontmatter___cover___dev'
-  | 'frontmatter___cover___mode'
-  | 'frontmatter___cover___nlink'
-  | 'frontmatter___cover___uid'
-  | 'frontmatter___cover___gid'
-  | 'frontmatter___cover___rdev'
-  | 'frontmatter___cover___ino'
-  | 'frontmatter___cover___atimeMs'
-  | 'frontmatter___cover___mtimeMs'
-  | 'frontmatter___cover___ctimeMs'
-  | 'frontmatter___cover___atime'
-  | 'frontmatter___cover___mtime'
-  | 'frontmatter___cover___ctime'
-  | 'frontmatter___cover___birthtime'
-  | 'frontmatter___cover___birthtimeMs'
-  | 'frontmatter___cover___blksize'
-  | 'frontmatter___cover___blocks'
-  | 'frontmatter___cover___publicURL'
-  | 'frontmatter___cover___childrenMarkdownRemark'
-  | 'frontmatter___cover___childrenMarkdownRemark___id'
-  | 'frontmatter___cover___childrenMarkdownRemark___excerpt'
-  | 'frontmatter___cover___childrenMarkdownRemark___rawMarkdownBody'
-  | 'frontmatter___cover___childrenMarkdownRemark___fileAbsolutePath'
-  | 'frontmatter___cover___childrenMarkdownRemark___html'
-  | 'frontmatter___cover___childrenMarkdownRemark___htmlAst'
-  | 'frontmatter___cover___childrenMarkdownRemark___excerptAst'
-  | 'frontmatter___cover___childrenMarkdownRemark___headings'
-  | 'frontmatter___cover___childrenMarkdownRemark___timeToRead'
-  | 'frontmatter___cover___childrenMarkdownRemark___tableOfContents'
-  | 'frontmatter___cover___childrenMarkdownRemark___children'
-  | 'frontmatter___cover___childMarkdownRemark___id'
-  | 'frontmatter___cover___childMarkdownRemark___excerpt'
-  | 'frontmatter___cover___childMarkdownRemark___rawMarkdownBody'
-  | 'frontmatter___cover___childMarkdownRemark___fileAbsolutePath'
-  | 'frontmatter___cover___childMarkdownRemark___html'
-  | 'frontmatter___cover___childMarkdownRemark___htmlAst'
-  | 'frontmatter___cover___childMarkdownRemark___excerptAst'
-  | 'frontmatter___cover___childMarkdownRemark___headings'
-  | 'frontmatter___cover___childMarkdownRemark___timeToRead'
-  | 'frontmatter___cover___childMarkdownRemark___tableOfContents'
-  | 'frontmatter___cover___childMarkdownRemark___children'
-  | 'frontmatter___cover___childrenImageSharp'
-  | 'frontmatter___cover___childrenImageSharp___gatsbyImageData'
-  | 'frontmatter___cover___childrenImageSharp___id'
-  | 'frontmatter___cover___childrenImageSharp___children'
-  | 'frontmatter___cover___childImageSharp___gatsbyImageData'
-  | 'frontmatter___cover___childImageSharp___id'
-  | 'frontmatter___cover___childImageSharp___children'
-  | 'frontmatter___cover___id'
-  | 'frontmatter___cover___parent___id'
-  | 'frontmatter___cover___parent___children'
-  | 'frontmatter___cover___children'
-  | 'frontmatter___cover___children___id'
-  | 'frontmatter___cover___children___children'
-  | 'frontmatter___cover___internal___content'
-  | 'frontmatter___cover___internal___contentDigest'
-  | 'frontmatter___cover___internal___description'
-  | 'frontmatter___cover___internal___fieldOwners'
-  | 'frontmatter___cover___internal___ignoreType'
-  | 'frontmatter___cover___internal___mediaType'
-  | 'frontmatter___cover___internal___owner'
-  | 'frontmatter___cover___internal___type'
-  | 'excerpt'
-  | 'rawMarkdownBody'
-  | 'fileAbsolutePath'
-  | 'fields___slug'
-  | 'html'
-  | 'htmlAst'
-  | 'excerptAst'
-  | 'headings'
-  | 'headings___id'
-  | 'headings___value'
-  | 'headings___depth'
-  | 'timeToRead'
-  | 'tableOfContents'
-  | 'wordCount___paragraphs'
-  | 'wordCount___sentences'
-  | 'wordCount___words'
-  | 'parent___id'
-  | 'parent___parent___id'
-  | 'parent___parent___parent___id'
-  | 'parent___parent___parent___children'
-  | 'parent___parent___children'
-  | 'parent___parent___children___id'
-  | 'parent___parent___children___children'
-  | 'parent___parent___internal___content'
-  | 'parent___parent___internal___contentDigest'
-  | 'parent___parent___internal___description'
-  | 'parent___parent___internal___fieldOwners'
-  | 'parent___parent___internal___ignoreType'
-  | 'parent___parent___internal___mediaType'
-  | 'parent___parent___internal___owner'
-  | 'parent___parent___internal___type'
-  | 'parent___children'
-  | 'parent___children___id'
-  | 'parent___children___parent___id'
-  | 'parent___children___parent___children'
-  | 'parent___children___children'
-  | 'parent___children___children___id'
-  | 'parent___children___children___children'
-  | 'parent___children___internal___content'
-  | 'parent___children___internal___contentDigest'
-  | 'parent___children___internal___description'
-  | 'parent___children___internal___fieldOwners'
-  | 'parent___children___internal___ignoreType'
-  | 'parent___children___internal___mediaType'
-  | 'parent___children___internal___owner'
-  | 'parent___children___internal___type'
-  | 'parent___internal___content'
-  | 'parent___internal___contentDigest'
-  | 'parent___internal___description'
-  | 'parent___internal___fieldOwners'
-  | 'parent___internal___ignoreType'
-  | 'parent___internal___mediaType'
-  | 'parent___internal___owner'
-  | 'parent___internal___type'
-  | 'children'
-  | 'children___id'
-  | 'children___parent___id'
-  | 'children___parent___parent___id'
-  | 'children___parent___parent___children'
-  | 'children___parent___children'
-  | 'children___parent___children___id'
-  | 'children___parent___children___children'
-  | 'children___parent___internal___content'
-  | 'children___parent___internal___contentDigest'
-  | 'children___parent___internal___description'
-  | 'children___parent___internal___fieldOwners'
-  | 'children___parent___internal___ignoreType'
-  | 'children___parent___internal___mediaType'
-  | 'children___parent___internal___owner'
-  | 'children___parent___internal___type'
-  | 'children___children'
-  | 'children___children___id'
-  | 'children___children___parent___id'
-  | 'children___children___parent___children'
-  | 'children___children___children'
-  | 'children___children___children___id'
-  | 'children___children___children___children'
-  | 'children___children___internal___content'
-  | 'children___children___internal___contentDigest'
-  | 'children___children___internal___description'
-  | 'children___children___internal___fieldOwners'
-  | 'children___children___internal___ignoreType'
-  | 'children___children___internal___mediaType'
-  | 'children___children___internal___owner'
-  | 'children___children___internal___type'
-  | 'children___internal___content'
-  | 'children___internal___contentDigest'
-  | 'children___internal___description'
-  | 'children___internal___fieldOwners'
-  | 'children___internal___ignoreType'
-  | 'children___internal___mediaType'
-  | 'children___internal___owner'
-  | 'children___internal___type'
-  | 'internal___content'
-  | 'internal___contentDigest'
-  | 'internal___description'
-  | 'internal___fieldOwners'
-  | 'internal___ignoreType'
-  | 'internal___mediaType'
-  | 'internal___owner'
-  | 'internal___type';
-
-export type MarkdownRemarkGroupConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<MarkdownRemarkEdge>;
-  nodes: Array<MarkdownRemark>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<MarkdownRemarkGroupConnection>;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-
-export type MarkdownRemarkGroupConnectionDistinctArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkGroupConnectionMaxArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkGroupConnectionMinArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkGroupConnectionSumArgs = {
-  field: MarkdownRemarkFieldsEnum;
-};
-
-
-export type MarkdownRemarkGroupConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: MarkdownRemarkFieldsEnum;
-};
-
-export type MarkdownRemarkSortInput = {
-  fields?: InputMaybe<Array<InputMaybe<MarkdownRemarkFieldsEnum>>>;
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
@@ -3894,12 +3561,12 @@ export type ImageSharpSortInput = {
 export type UseCategoryListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UseCategoryListQuery = { allMarkdownRemark: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
+export type UseCategoryListQuery = { allMdx: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
 
 export type UseTagListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UseTagListQuery = { allMarkdownRemark: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
+export type UseTagListQuery = { allMdx: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
 
 export type BlogIndexPageQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3907,7 +3574,7 @@ export type BlogIndexPageQueryVariables = Exact<{
 }>;
 
 
-export type BlogIndexPageQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title?: string | null | undefined, date?: any | null | undefined } | null | undefined } }> } };
+export type BlogIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined } | null | undefined } }> } };
 
 export type BlogPageQueryVariables = Exact<{
   id?: InputMaybe<Scalars['String']>;
@@ -3916,7 +3583,7 @@ export type BlogPageQueryVariables = Exact<{
 }>;
 
 
-export type BlogPageQuery = { currentPost?: { html?: string | null | undefined, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title?: string | null | undefined } | null | undefined } | null | undefined, next?: { fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title?: string | null | undefined } | null | undefined } | null | undefined, prev?: { fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title?: string | null | undefined } | null | undefined } | null | undefined };
+export type BlogPageQuery = { currentPost?: { body: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string } | null | undefined } | null | undefined, next?: { fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string } | null | undefined } | null | undefined, prev?: { fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string } | null | undefined } | null | undefined };
 
 export type CategoryIndexPageQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3925,7 +3592,7 @@ export type CategoryIndexPageQueryVariables = Exact<{
 }>;
 
 
-export type CategoryIndexPageQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title?: string | null | undefined, date?: any | null | undefined } | null | undefined } }> } };
+export type CategoryIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined } | null | undefined } }> } };
 
 export type TagIndexPageQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3934,27 +3601,27 @@ export type TagIndexPageQueryVariables = Exact<{
 }>;
 
 
-export type TagIndexPageQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title?: string | null | undefined, date?: any | null | undefined } | null | undefined } }> } };
+export type TagIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined } | null | undefined } }> } };
 
 export type CreateBlogIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CreateBlogIndexPageQuery = { allMarkdownRemark: { totalCount: number } };
+export type CreateBlogIndexPageQuery = { allMdx: { totalCount: number } };
 
 export type CreateBlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CreateBlogPageQuery = { allMarkdownRemark: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined } }> } };
+export type CreateBlogPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined } }> } };
 
 export type CreateCategoryIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CreateCategoryIndexPageQuery = { allMarkdownRemark: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
+export type CreateCategoryIndexPageQuery = { allMdx: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
 
 export type CreateTagIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CreateTagIndexPageQuery = { allMarkdownRemark: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
+export type CreateTagIndexPageQuery = { allMdx: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null | undefined, width: number, height: number, src: string, srcSet: string };
 

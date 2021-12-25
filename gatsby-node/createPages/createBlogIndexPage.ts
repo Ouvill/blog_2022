@@ -21,7 +21,7 @@ export const createBlogIndexPage = async ({
   const blogIndexTemplate = path.resolve(`src/templates/BlogIndexTemplate.tsx`);
   return graphql<CreateBlogIndexPageQuery>(`
     query CreateBlogIndexPage {
-      allMarkdownRemark(
+      allMdx(
         sort: { order: DESC, fields: [frontmatter___date] }
         filter: { fileAbsolutePath: { regex: "//blog//" } }
       ) {
@@ -33,9 +33,8 @@ export const createBlogIndexPage = async ({
       return Promise.reject(result.errors);
     }
     const postsPerPage = 10;
-    const numPages = Math.ceil(
-      result.data.allMarkdownRemark.totalCount / postsPerPage
-    );
+
+    const numPages = Math.ceil(result.data.allMdx.totalCount / postsPerPage);
     Array.from({ length: numPages }).forEach((_, i) => {
       const currentPage = i + 1;
       createPage<BlogIndexPageContext>({
