@@ -7,7 +7,7 @@ export const genBlogIndexSlug = (currentPage: number = 1) => {
 export const genCategoryIndexSlug = (
   category: string,
   currentPage: number = 1
-) => `/category/${_.kebabCase(category)}/${currentPage}`;
+) => `/category/${_.snakeCase(category)}/${currentPage}`;
 
 export const genTagIndexSlug = (tag: string, currentPage: number = 1) =>
-  `/tag/${_.kebabCase(tag)}/${currentPage}`;
+  `/tag/${_.snakeCase(tag)}/${currentPage}`;
