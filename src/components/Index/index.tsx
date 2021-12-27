@@ -4,7 +4,7 @@ import {
   CategoryIndexPageQuery,
   TagIndexPageQuery,
 } from "../../../graphql-types";
-import { Link } from "gatsby";
+import IndexItem from "../IndexItem";
 
 type Props = {
   data: BlogIndexPageQuery | CategoryIndexPageQuery | TagIndexPageQuery;
@@ -12,7 +12,7 @@ type Props = {
 
 const Index: React.FC<Props> = ({ data }) => {
   return (
-    <>
+    <div style={{ display: "flex" }}>
       {data.allMdx.edges.map(({ node }) => {
         if (
           !node.frontmatter ||
@@ -22,15 +22,14 @@ const Index: React.FC<Props> = ({ data }) => {
         )
           return null;
         return (
-          <div key={node.id}>
-            <Link to={node.fields.slug}>
-              <h3>{node.frontmatter.title}</h3>
-            </Link>
-            <p>{node.frontmatter.date}</p>
-          </div>
+          <IndexItem
+            key={node.id}
+            title={node.frontmatter.title}
+            link={node.fields.slug}
+          />
         );
       })}
-    </>
+    </div>
   );
 };
 

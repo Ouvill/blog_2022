@@ -93,6 +93,14 @@ module.exports = {
       __key: "blog",
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "assets",
+        path: "./contents/assets/",
+      },
+      __key: "assets",
+    },
+    {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,

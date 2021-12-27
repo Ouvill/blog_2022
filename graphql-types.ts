@@ -270,6 +270,12 @@ export type SiteSiteMetadata = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   siteUrl?: Maybe<Scalars['String']>;
+  defaultCover?: Maybe<Scalars['String']>;
+  social?: Maybe<SiteSiteMetadataSocial>;
+};
+
+export type SiteSiteMetadataSocial = {
+  twitter?: Maybe<Scalars['String']>;
 };
 
 export type SiteFunction = Node & {
@@ -2022,6 +2028,12 @@ export type SiteSiteMetadataFilterInput = {
   title?: InputMaybe<StringQueryOperatorInput>;
   description?: InputMaybe<StringQueryOperatorInput>;
   siteUrl?: InputMaybe<StringQueryOperatorInput>;
+  defaultCover?: InputMaybe<StringQueryOperatorInput>;
+  social?: InputMaybe<SiteSiteMetadataSocialFilterInput>;
+};
+
+export type SiteSiteMetadataSocialFilterInput = {
+  twitter?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type SiteConnection = {
@@ -2074,6 +2086,8 @@ export type SiteFieldsEnum =
   | 'siteMetadata___title'
   | 'siteMetadata___description'
   | 'siteMetadata___siteUrl'
+  | 'siteMetadata___defaultCover'
+  | 'siteMetadata___social___twitter'
   | 'port'
   | 'host'
   | 'polyfill'
@@ -3563,6 +3577,11 @@ export type UseCategoryListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UseCategoryListQuery = { allMdx: { group: Array<{ fieldValue?: string | null | undefined, totalCount: number }> } };
 
+export type UseDefaultCoverQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UseDefaultCoverQuery = { site?: { siteMetadata?: { defaultCover?: string | null | undefined } | null | undefined } | null | undefined };
+
 export type UseTagListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3574,7 +3593,7 @@ export type BlogIndexPageQueryVariables = Exact<{
 }>;
 
 
-export type BlogIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined } | null | undefined } }> } };
+export type BlogIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined, cover?: { childImageSharp?: { gatsbyImageData: any } | null | undefined } | null | undefined } | null | undefined } }> } };
 
 export type BlogPageQueryVariables = Exact<{
   id?: InputMaybe<Scalars['String']>;
@@ -3592,7 +3611,7 @@ export type CategoryIndexPageQueryVariables = Exact<{
 }>;
 
 
-export type CategoryIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined } | null | undefined } }> } };
+export type CategoryIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined, cover?: { childImageSharp?: { gatsbyImageData: any } | null | undefined } | null | undefined } | null | undefined } }> } };
 
 export type TagIndexPageQueryVariables = Exact<{
   limit: Scalars['Int'];
@@ -3601,7 +3620,7 @@ export type TagIndexPageQueryVariables = Exact<{
 }>;
 
 
-export type TagIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined } | null | undefined } }> } };
+export type TagIndexPageQuery = { allMdx: { edges: Array<{ node: { id: string, fields?: { slug?: string | null | undefined } | null | undefined, frontmatter?: { title: string, date?: any | null | undefined, cover?: { childImageSharp?: { gatsbyImageData: any } | null | undefined } | null | undefined } | null | undefined } }> } };
 
 export type CreateBlogIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
