@@ -2,8 +2,13 @@ require("dotenv").config();
 
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "blog_2022",
+    siteUrl: "https://blog.ouvill.net",
+    title: "おーびるのブログ",
+    description: "おーびるのブログです。",
+    defaultCover: `${__dirname}/content/assets/site-header.jpg`,
+    social: {
+      twitter: `Ouvill`,
+    },
   },
   plugins: [
     "gatsby-plugin-netlify-cms",
