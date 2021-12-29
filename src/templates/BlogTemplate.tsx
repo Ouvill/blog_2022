@@ -1,13 +1,12 @@
 import React from "react";
 import { graphql, Link, PageProps } from "gatsby";
-import { BlogPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
-const BlogTemplate: React.FC<PageProps<BlogPageQuery, BlogPageContext>> = ({
-  data,
-}) => {
+const BlogTemplate: React.FC<
+  PageProps<GatsbyTypes.BlogPageQuery, BlogPageContext>
+> = ({ data }) => {
   const { currentPost, next, prev } = data;
   if (!currentPost) return null;
 

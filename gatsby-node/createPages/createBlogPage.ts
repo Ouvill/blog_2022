@@ -1,6 +1,5 @@
 import path from "path";
 import { Actions, CreatePagesArgs, Reporter } from "gatsby";
-import { CreateBlogPageQuery } from "../../graphql-types";
 
 export type BlogPageContext = {
   slug: string;
@@ -20,7 +19,7 @@ export const createBlogPage = async ({
 }) => {
   const { createPage } = actions;
   const blogPostTemplate = path.resolve("src/templates/BlogTemplate.tsx");
-  return graphql<CreateBlogPageQuery>(`
+  return graphql(`
     query CreateBlogPage {
       allMdx(
         filter: { fileAbsolutePath: { regex: "//blog//" } }
@@ -43,6 +42,7 @@ export const createBlogPage = async ({
       return;
     }
 
+    // @ts-ignore
     const { edges } = result.data.allMdx;
     // @ts-ignore
     edges.forEach(({ node }, index) => {
