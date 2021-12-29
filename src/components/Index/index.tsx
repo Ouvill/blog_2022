@@ -11,7 +11,7 @@ type Props = {
 
 const Index: React.FC<Props> = ({ data }) => {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
       {data.allMdx.edges.map(({ node }) => {
         if (
           !node.frontmatter ||
@@ -21,9 +21,8 @@ const Index: React.FC<Props> = ({ data }) => {
         )
           return null;
         return (
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4} key={node.id}>
             <IndexItem
-              key={node.id}
               title={node.frontmatter.title}
               link={node.fields.slug}
               image={node.frontmatter.cover}
