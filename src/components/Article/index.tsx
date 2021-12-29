@@ -1,7 +1,7 @@
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import Chip from "@mui/material/Chip";
 import React from "react";
 import Stack from "@mui/material/Stack";
+import { TagChip } from "./TagChip";
 
 type Props = {
   title: string;
@@ -14,7 +14,7 @@ const Article: React.FC<Props> = ({ title, tags, body }) => {
     <article>
       <h1>{title}</h1>
       <Stack direction={"row"} spacing={2}>
-        {tags && tags.map((tag) => <Chip key={tag} label={tag} clickable />)}
+        {tags && tags.map((tag) => <TagChip key={tag} tag={tag} />)}
       </Stack>
       <MDXRenderer>{body}</MDXRenderer>
     </article>
