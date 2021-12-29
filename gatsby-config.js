@@ -42,6 +42,10 @@ module.exports = {
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
           {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {},
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               // It's important to specify the maxWidth (in pixels) of

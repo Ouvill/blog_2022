@@ -10,7 +10,7 @@ const BlogTemplate: React.FC<
   const { currentPost, next, prev } = data;
   if (!currentPost) return null;
 
-  const { frontmatter, body } = currentPost;
+  const { frontmatter, body, tableOfContents } = currentPost;
 
   if (!frontmatter) return null;
   if (!body) return null;
@@ -21,6 +21,8 @@ const BlogTemplate: React.FC<
           title={frontmatter.title}
           tags={frontmatter.tags as string[]}
           body={body}
+          // @ts-ignore
+          toc={tableOfContents?.items}
         />
         <ul>
           <li>
@@ -39,6 +41,7 @@ export const pageQuery = graphql`
   query BlogPage($id: String, $nextId: String, $prevId: String) {
     currentPost: mdx(id: { eq: $id }) {
       body
+      tableOfContents
       fields {
         slug
       }
