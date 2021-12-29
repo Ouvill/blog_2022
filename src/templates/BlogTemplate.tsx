@@ -1,8 +1,11 @@
 import React from "react";
-import { graphql, Link, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
 import Article from "../components/Article";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import { PageNav } from "../components/PageNav";
 
 const BlogTemplate: React.FC<
   PageProps<GatsbyTypes.BlogPageQuery, BlogPageContext>
@@ -24,14 +27,30 @@ const BlogTemplate: React.FC<
           // @ts-ignore
           toc={tableOfContents?.items}
         />
-        <ul>
-          <li>
-            {next?.fields?.slug && <Link to={next.fields.slug}>Next</Link>}
-          </li>
-          <li>
-            {prev?.fields?.slug && <Link to={prev.fields.slug}>Previous</Link>}
-          </li>
-        </ul>
+
+        <Container maxWidth={"xl"}>
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs={"auto"} />
+            <Grid item xs={12} md={8} lg={6} alignItems={"center"}>
+              <PageNav
+                next={{
+                  title: next?.frontmatter?.title,
+                  slug: next?.fields?.slug,
+                }}
+                prev={{
+                  title: prev?.frontmatter?.title,
+                  slug: prev?.fields?.slug,
+                }}
+              />
+            </Grid>
+            <Grid item lg={"auto"} />
+          </Grid>
+        </Container>
       </div>
     </Layout>
   );

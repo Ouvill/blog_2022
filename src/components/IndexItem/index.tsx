@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import useDefaultCover from "../../hooks/useDefaultCover";
 import { css } from "@emotion/core";
 
-type IndexItemProps = {
+export type IndexItemProps = {
   title: string;
   link: string;
   description?: string;
