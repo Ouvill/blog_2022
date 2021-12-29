@@ -7,7 +7,7 @@ const useDefaultCover = () => {
         defaultCover: file(relativePath: { eq: "defaults-cover.jpg" }) {
           childImageSharp {
             gatsbyImageData(
-              width: 200
+              width: 320
               placeholder: BLURRED
               formats: [AUTO, WEBP]
             )

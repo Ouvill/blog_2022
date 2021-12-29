@@ -1,13 +1,11 @@
 import React from "react";
-import {
-  BlogIndexPageQuery,
-  CategoryIndexPageQuery,
-  TagIndexPageQuery,
-} from "../../../graphql-types";
 import IndexItem from "../IndexItem";
 
 type Props = {
-  data: BlogIndexPageQuery | CategoryIndexPageQuery | TagIndexPageQuery;
+  data:
+    | GatsbyTypes.BlogIndexPageQuery
+    | GatsbyTypes.CategoryIndexPageQuery
+    | GatsbyTypes.TagIndexPageQuery;
 };
 
 const Index: React.FC<Props> = ({ data }) => {
@@ -26,6 +24,7 @@ const Index: React.FC<Props> = ({ data }) => {
             key={node.id}
             title={node.frontmatter.title}
             link={node.fields.slug}
+            image={node.frontmatter.cover}
           />
         );
       })}

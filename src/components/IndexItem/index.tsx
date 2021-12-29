@@ -1,7 +1,9 @@
 import React from "react";
 import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import useDefaultCover from "../../hooks/useDefaultCover";
+import styled from "@emotion/styled";
 
 type IndexItemProps = {
   title: string;
@@ -9,18 +11,29 @@ type IndexItemProps = {
   description?: string;
   createdAt?: string;
   updatedAt?: string;
+  image?: any;
 };
 
+const StyledCard = styled(Card)`
+  max-width: 320px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 const IndexItem: React.FC<IndexItemProps> = (props) => {
+  const defaultCover = useDefaultCover();
+  const image = getImage(props.image || defaultCover);
+
   return (
-    <Card>
+    <StyledCard>
       <CardActionArea component={Link} to={props.link}>
-        <StaticImage src={"./site-header.jpg"} alt={""} width={400} />
+        {image && <GatsbyImage image={image} alt={""} />}
         <CardContent>
           <Typography>{props.title}</Typography>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </StyledCard>
   );
 };
 
