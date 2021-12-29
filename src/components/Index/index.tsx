@@ -1,5 +1,6 @@
 import React from "react";
 import IndexItem from "../IndexItem";
+import Grid from "@mui/material/Grid";
 
 type Props = {
   data:
@@ -10,7 +11,7 @@ type Props = {
 
 const Index: React.FC<Props> = ({ data }) => {
   return (
-    <div style={{ display: "flex" }}>
+    <Grid container spacing={2}>
       {data.allMdx.edges.map(({ node }) => {
         if (
           !node.frontmatter ||
@@ -20,15 +21,17 @@ const Index: React.FC<Props> = ({ data }) => {
         )
           return null;
         return (
-          <IndexItem
-            key={node.id}
-            title={node.frontmatter.title}
-            link={node.fields.slug}
-            image={node.frontmatter.cover}
-          />
+          <Grid item xs={4}>
+            <IndexItem
+              key={node.id}
+              title={node.frontmatter.title}
+              link={node.fields.slug}
+              image={node.frontmatter.cover}
+            />
+          </Grid>
         );
       })}
-    </div>
+    </Grid>
   );
 };
 
