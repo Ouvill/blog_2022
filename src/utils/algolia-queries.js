@@ -1,7 +1,7 @@
 const indexName = `Pages`;
 
 const pageQuery = `{
-  pages: allMarkdownRemark(
+  pages: allMdx(
     filter: {
       fileAbsolutePath: { regex: "//blog//" },
     }
