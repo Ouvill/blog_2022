@@ -1,6 +1,7 @@
 import path from "path";
 import { Reporter, Actions, CreatePagesArgs } from "gatsby";
 import { genTagIndexSlug } from "../../src/utils/genSlug";
+import { POSTS_PER_PAGE } from "./createBlogIndexPage";
 
 export type TagIndexPageContext = {
   tag: string;
@@ -41,21 +42,20 @@ export const createTagIndexPage = async ({
     return;
   }
 
-  const postsPerPage = 10;
   const tagTemplate = path.resolve(`src/templates/TagIndexTemplate.tsx`);
 
   // @ts-ignore
   const tags = result.data.allMdx.group;
   // @ts-ignore
   tags.forEach((tag) => {
-    const numPages = Math.ceil(tag.totalCount / postsPerPage);
+    const numPages = Math.ceil(tag.totalCount / POSTS_PER_PAGE);
     if (!tag.fieldValue) return;
     for (let i = 0; i < numPages; i++) {
       const currentPage = i + 1;
       const context: TagIndexPageContext = {
         tag: tag.fieldValue,
-        limit: postsPerPage,
-        skip: i * postsPerPage,
+        limit: POSTS_PER_PAGE,
+        skip: i * POSTS_PER_PAGE,
         numPages,
         currentPage,
       };

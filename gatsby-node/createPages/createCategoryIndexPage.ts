@@ -1,6 +1,7 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
 import { genCategoryIndexSlug } from "../../src/utils/genSlug";
+import { POSTS_PER_PAGE } from "./createBlogIndexPage";
 
 export type CategoryIndexContext = {
   limit: number;
@@ -38,16 +39,15 @@ export const createCategoryIndexPage = async ({
     if (result.errors || !result.data) {
       return Promise.reject(result.errors);
     }
-    const postsPerPage = 10;
     // @ts-ignore
     result.data.allMdx.group.forEach((category) => {
-      const numPages = Math.ceil(category.totalCount / postsPerPage);
+      const numPages = Math.ceil(category.totalCount / POSTS_PER_PAGE);
       if (!category.fieldValue) return;
       for (let i = 0; i < numPages; i++) {
         const currentPage = i + 1;
         const context: CategoryIndexContext = {
-          limit: postsPerPage,
-          skip: i * postsPerPage,
+          limit: POSTS_PER_PAGE,
+          skip: i * POSTS_PER_PAGE,
           numPages,
           currentPage,
           category: category.fieldValue,

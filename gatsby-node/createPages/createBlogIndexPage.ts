@@ -9,6 +9,8 @@ export type BlogIndexPageContext = {
   currentPage: number;
 };
 
+export const POSTS_PER_PAGE = 12;
+
 export const createBlogIndexPage = async ({
   actions,
   graphql,
@@ -31,18 +33,17 @@ export const createBlogIndexPage = async ({
     if (result.errors || !result.data) {
       return Promise.reject(result.errors);
     }
-    const postsPerPage = 10;
 
     // @ts-ignore
-    const numPages = Math.ceil(result.data.allMdx.totalCount / postsPerPage);
+    const numPages = Math.ceil(result.data.allMdx.totalCount / POSTS_PER_PAGE);
     Array.from({ length: numPages }).forEach((_, i) => {
       const currentPage = i + 1;
       createPage<BlogIndexPageContext>({
         path: genBlogIndexSlug(currentPage),
         component: blogIndexTemplate,
         context: {
-          limit: postsPerPage,
-          skip: i * postsPerPage,
+          limit: POSTS_PER_PAGE,
+          skip: i * POSTS_PER_PAGE,
           numPages,
           currentPage,
         },
