@@ -1,6 +1,5 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
-import { CreateBlogIndexPageQuery } from "../../graphql-types";
 import { genBlogIndexSlug } from "../../src/utils/genSlug";
 
 export type BlogIndexPageContext = {
@@ -19,7 +18,7 @@ export const createBlogIndexPage = async ({
 }) => {
   const { createPage } = actions;
   const blogIndexTemplate = path.resolve(`src/templates/BlogIndexTemplate.tsx`);
-  return graphql<CreateBlogIndexPageQuery>(`
+  return graphql(`
     query CreateBlogIndexPage {
       allMdx(
         sort: { order: DESC, fields: [frontmatter___date] }
@@ -34,6 +33,7 @@ export const createBlogIndexPage = async ({
     }
     const postsPerPage = 10;
 
+    // @ts-ignore
     const numPages = Math.ceil(result.data.allMdx.totalCount / postsPerPage);
     Array.from({ length: numPages }).forEach((_, i) => {
       const currentPage = i + 1;

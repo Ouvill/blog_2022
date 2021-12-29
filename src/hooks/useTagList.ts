@@ -1,9 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { UseTagListQuery } from "../../graphql-types";
 import { genTagIndexSlug } from "../utils/genSlug";
 
 const useTagList = () => {
-  const data = useStaticQuery<UseTagListQuery>(graphql`
+  const data = useStaticQuery<GatsbyTypes.UseTagListQuery>(graphql`
     query UseTagList {
       allMdx {
         group(field: frontmatter___tags) {

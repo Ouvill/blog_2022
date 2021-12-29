@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { graphql, PageProps } from "gatsby";
-import { CategoryIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { CategoryIndexContext } from "../../gatsby-node/createPages/createCategoryIndexPage";
 import IndexPagination from "../components/IndexPagination";
@@ -8,7 +7,7 @@ import { genCategoryIndexSlug } from "../utils/genSlug";
 import Index from "../components/Index";
 
 const CategoryIndexTemplate: React.FC<
-  PageProps<CategoryIndexPageQuery, CategoryIndexContext>
+  PageProps<GatsbyTypes.CategoryIndexPageQuery, CategoryIndexContext>
 > = ({ data, pageContext }) => {
   if (!data) return null;
 
@@ -59,7 +58,7 @@ export const pageQuery = graphql`
                 gatsbyImageData(
                   width: 200
                   placeholder: BLURRED
-                  formats: [AUTO, WEBP, AVIF]
+                  formats: [AUTO, WEBP]
                 )
               }
             }

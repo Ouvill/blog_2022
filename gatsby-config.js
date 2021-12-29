@@ -5,7 +5,7 @@ module.exports = {
     siteUrl: "https://blog.ouvill.net",
     title: "おーびるのブログ",
     description: "おーびるのブログです。",
-    defaultCover: `${__dirname}/content/assets/site-header.jpg`,
+    defaultCover: `${__dirname}/contents/assets/site-header.jpg`,
     social: {
       twitter: `Ouvill`,
     },
@@ -15,13 +15,9 @@ module.exports = {
     "gatsby-plugin-emotion",
     "gatsby-plugin-material-ui",
     {
-      resolve: "gatsby-plugin-graphql-codegen",
+      resolve: "gatsby-plugin-typegen",
       options: {
-        documentPaths: [
-          "./src/**/*.{ts,tsx}",
-          "./gatsby-node/**/*.{ts,tsx}",
-          "./node_modules/gatsby-*/**/*.js",
-        ],
+        outputPath: `src/__generated__/gatsby-types.d.ts`,
       },
     },
     {

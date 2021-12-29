@@ -1,6 +1,5 @@
 import path from "path";
 import { Reporter, Actions, CreatePagesArgs } from "gatsby";
-import { CreateTagIndexPageQuery } from "../../graphql-types";
 import { genTagIndexSlug } from "../../src/utils/genSlug";
 
 export type TagIndexPageContext = {
@@ -22,7 +21,7 @@ export const createTagIndexPage = async ({
 }) => {
   const { createPage } = actions;
 
-  const result = await graphql<CreateTagIndexPageQuery>(`
+  const result = await graphql(`
     query CreateTagIndexPage {
       allMdx(
         limit: 1000
@@ -45,6 +44,7 @@ export const createTagIndexPage = async ({
   const postsPerPage = 10;
   const tagTemplate = path.resolve(`src/templates/TagIndexTemplate.tsx`);
 
+  // @ts-ignore
   const tags = result.data.allMdx.group;
   // @ts-ignore
   tags.forEach((tag) => {

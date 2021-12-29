@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import { graphql, PageProps } from "gatsby";
-import { TagIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { TagIndexPageContext } from "../../gatsby-node/createPages/createTagsPage";
 import IndexPagination from "../components/IndexPagination";
@@ -8,7 +7,7 @@ import { genCategoryIndexSlug } from "../utils/genSlug";
 import Index from "../components/Index";
 
 const TagIndexTemplate: React.FC<
-  PageProps<TagIndexPageQuery, TagIndexPageContext>
+  PageProps<GatsbyTypes.TagIndexPageQuery, TagIndexPageContext>
 > = ({ data, pageContext }) => {
   if (!data) return null;
   const generateSlug = useCallback(
@@ -57,7 +56,7 @@ export const pageQuery = graphql`
                 gatsbyImageData(
                   width: 200
                   placeholder: BLURRED
-                  formats: [AUTO, WEBP, AVIF]
+                  formats: [AUTO, WEBP]
                 )
               }
             }

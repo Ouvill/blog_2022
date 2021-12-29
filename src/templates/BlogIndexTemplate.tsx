@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql, PageProps } from "gatsby";
-import { BlogIndexPageQuery } from "../../graphql-types";
 import Layout from "../components/Layout";
 import { BlogIndexPageContext } from "../../gatsby-node/createPages/createBlogIndexPage";
 import IndexPagination from "../components/IndexPagination";
@@ -8,7 +7,7 @@ import { genBlogIndexSlug } from "../utils/genSlug";
 import Index from "../components/Index";
 
 const BlogIndexTemplate: React.FC<
-  PageProps<BlogIndexPageQuery, BlogIndexPageContext>
+  PageProps<GatsbyTypes.BlogIndexPageQuery, BlogIndexPageContext>
 > = ({ data, pageContext }) => {
   if (!data) return null;
 
@@ -48,7 +47,7 @@ export const pageQuery = graphql`
                 gatsbyImageData(
                   width: 200
                   placeholder: BLURRED
-                  formats: [AUTO, WEBP, AVIF]
+                  formats: [AUTO, WEBP]
                 )
               }
             }

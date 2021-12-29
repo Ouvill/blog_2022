@@ -1,9 +1,8 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { UseCategoryListQuery } from "../../graphql-types";
 import { genCategoryIndexSlug } from "../utils/genSlug";
 
 const useCategoryList = () => {
-  const data = useStaticQuery<UseCategoryListQuery>(graphql`
+  const data = useStaticQuery<GatsbyTypes.UseCategoryListQuery>(graphql`
     query UseCategoryList {
       allMdx {
         group(field: frontmatter___category) {

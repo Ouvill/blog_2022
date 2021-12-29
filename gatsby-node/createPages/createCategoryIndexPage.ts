@@ -1,6 +1,5 @@
 import path from "path";
 import { Actions, CreatePagesArgs } from "gatsby";
-import { CreateCategoryIndexPageQuery } from "../../graphql-types";
 import { genCategoryIndexSlug } from "../../src/utils/genSlug";
 
 export type CategoryIndexContext = {
@@ -23,7 +22,7 @@ export const createCategoryIndexPage = async ({
     `src/templates/CategoryIndexTemplate.tsx`
   );
   console.log("createCategoryIndexPage");
-  return graphql<CreateCategoryIndexPageQuery>(`
+  return graphql(`
     query CreateCategoryIndexPage {
       allMdx(
         filter: { fileAbsolutePath: { regex: "//blog//" } }

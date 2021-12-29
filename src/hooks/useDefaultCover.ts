@@ -1,19 +1,22 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { UseDefaultCoverQuery } from "../../graphql-types";
 
 const useDefaultCover = () => {
-  const data = useStaticQuery<UseDefaultCoverQuery>(
+  const data = useStaticQuery<GatsbyTypes.UseDefaultCoverQuery>(
     graphql`
       query UseDefaultCover {
-        site {
-          siteMetadata {
-            defaultCover
+        defaultCover: file(relativePath: { eq: "defaults-cover.jpg" }) {
+          childImageSharp {
+            gatsbyImageData(
+              width: 200
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+            )
           }
         }
       }
     `
   );
-  return data.site?.siteMetadata?.defaultCover;
+  return data.defaultCover;
 };
 
 export default useDefaultCover;
