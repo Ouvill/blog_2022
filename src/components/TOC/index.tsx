@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { Link } from "gatsby";
 import { css } from "@emotion/react";
+import Paper from "@mui/material/Paper";
 
 export type TableOfContent = {
   title: string;
@@ -23,9 +24,15 @@ const subListStyle = css`
   margin-left: 1rem;
 `;
 
+const paperStyle = css`
+  padding: 1rem;
+  position: sticky;
+  top: 100px;
+`;
+
 const TOC: React.VFC<Props> = ({ data }) => {
   return (
-    <div>
+    <Paper css={paperStyle}>
       <Typography>目次</Typography>
       <ul css={listStyle}>
         {data.map((item) => (
@@ -47,7 +54,7 @@ const TOC: React.VFC<Props> = ({ data }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Paper>
   );
 };
 
