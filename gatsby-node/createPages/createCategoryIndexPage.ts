@@ -22,7 +22,6 @@ export const createCategoryIndexPage = async ({
   const categoryIndexTemplate = path.resolve(
     `src/templates/CategoryIndexTemplate.tsx`
   );
-  console.log("createCategoryIndexPage");
   return graphql(`
     query CreateCategoryIndexPage {
       allMdx(

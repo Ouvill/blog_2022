@@ -7,7 +7,6 @@ export const createSlug = ({ node, actions, getNode }: CreateNodeArgs) => {
   if (node.internal.type === "Mdx") {
     const value = createFilePath({ node, getNode });
 
-    console.log("createSlug", value);
     // Extend another node. The new node field is placed under the 'fields' key on the extended node object.
     createNodeField({
       // Name of the field adding
