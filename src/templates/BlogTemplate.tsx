@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, Link, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 import { BlogPageContext } from "../../gatsby-node/createPages/createBlogPage";
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import Article from "../components/Article";
 
 const BlogTemplate: React.FC<
   PageProps<GatsbyTypes.BlogPageQuery, BlogPageContext>
@@ -17,8 +17,11 @@ const BlogTemplate: React.FC<
   return (
     <Layout>
       <div>
-        <h1>{frontmatter.title}</h1>
-        <MDXRenderer>{body}</MDXRenderer>
+        <Article
+          title={frontmatter.title}
+          tags={frontmatter.tags as string[]}
+          body={body}
+        />
         <ul>
           <li>
             {next?.fields?.slug && <Link to={next.fields.slug}>Next</Link>}
@@ -41,6 +44,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        tags
       }
     }
 
