@@ -3594,7 +3594,7 @@ type BlogPageQueryVariables = Exact<{
 
 type BlogPageQuery = { readonly currentPost: Maybe<(
     Pick<Mdx, 'body'>
-    & { readonly fields: Maybe<Pick<MdxFields, 'slug'>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+    & { readonly fields: Maybe<Pick<MdxFields, 'slug'>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title' | 'tags'>> }
   )>, readonly next: Maybe<{ readonly fields: Maybe<Pick<MdxFields, 'slug'>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }>, readonly prev: Maybe<{ readonly fields: Maybe<Pick<MdxFields, 'slug'>>, readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }> };
 
 type BlogIndexPageQueryVariables = Exact<{
