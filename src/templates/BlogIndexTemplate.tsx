@@ -13,14 +13,12 @@ const BlogIndexTemplate: React.FC<
 
   return (
     <Layout>
-      <div>
-        <Index data={data} />
-        <IndexPagination
-          currentPage={pageContext.currentPage}
-          numPages={pageContext.numPages}
-          generateSlug={genBlogIndexSlug}
-        />
-      </div>
+      <Index data={data} />
+      <IndexPagination
+        currentPage={pageContext.currentPage}
+        numPages={pageContext.numPages}
+        generateSlug={genBlogIndexSlug}
+      />
     </Layout>
   );
 };
@@ -46,6 +44,7 @@ export const pageQuery = graphql`
               childImageSharp {
                 gatsbyImageData(
                   width: 320
+                  height: 180
                   placeholder: BLURRED
                   formats: [AUTO, WEBP]
                 )
